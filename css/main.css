@@ -2535,7 +2535,7 @@ ul.breadcrumb li:last-child {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #3699ba;
+  background: #3daf50;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2763,9 +2763,11 @@ body {
 .gt-container .gt-svg svg {
   fill: #ccc !important;
 }
-.gt-container .gt-header-textarea {
+.gt-container .gt-header-textarea,
+.gt-container .gt-header-preview {
   background-color: #181818 !important;
   color: #ccc !important;
+  font-family: Pretendard !important;
 }
 .gt-container .gt-btn {
   background-color: #181818 !important;
