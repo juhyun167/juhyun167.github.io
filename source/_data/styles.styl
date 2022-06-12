@@ -211,3 +211,49 @@ body
 
 .category .collection-header small
   display: none
+
+
+/* comments */
+
+$gitalk-link-color              = #748a96
+$gitalk-link-hover-color		= $66bbe0
+
+.gt-header-textarea
+  color: black;
+
+.gt-container
+  a
+    color: $gitalk-link-color
+
+    &:hover
+      color: $gitalk-link-hover-color
+	  border-color: $gitalk-link-hover-color
+
+  .gt-svg svg
+    fill: $gitalk-link-color
+
+  .gt-spinner:before
+    border-top-color: $gitalk-link-color
+
+  .gt-btn
+    border: 1px solid $gitalk-link-color
+	background-color: $gitalk-link-color
+
+  .gt-btn-preview
+    color: $gitalk-link-color
+
+    &:hover
+      border-color: $gitalk-link-hover-color
+	
+  .gt-btn-public
+    &:hover
+	  border-color: $gitalk-link-hover-color
+
+  .gt-comment-username
+    color: $gitalk-link-color
+
+.gt-container .gt-user .is--poping .gt-ico svg
+  fill: $gitalk-link-color
+
+.gt-container .gt-popup .gt-action.is--active:before
+  background: $gitalk-link-color
