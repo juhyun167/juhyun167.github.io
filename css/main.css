@@ -2535,7 +2535,7 @@ ul.breadcrumb li:last-child {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ac3090;
+  background: #220b33;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2787,13 +2787,13 @@ body {
   background-color: #181818 !important;
   border: 1px solid #181818 !important;
   border-radius: 5px !important;
-  font-family: Pretendard !important;
 }
 :hover {
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
-.markdown-body {
+.gt-comment-body {
   color: #ccc !important;
+  font-family: Pretendard !important;
 }
