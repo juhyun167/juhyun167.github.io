@@ -2535,7 +2535,7 @@ ul.breadcrumb li:last-child {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #3daf50;
+  background: #55ffe8;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2687,6 +2687,9 @@ ul.breadcrumb li:last-child {
   margin-right: 5px;
   border-radius: 3.5px;
 }
+.sidebar-active {
+  padding-left: 0;
+}
 .collapsible-wrapper {
   display: flex;
   overflow: hidden;
@@ -2732,7 +2735,7 @@ body {
   z-index: 10;
 }
 .sidebar-active .sidebar-dimmer {
-  opacity: 0.7;
+  opacity: 0.6;
   visibility: visible;
 }
 /* posts */
