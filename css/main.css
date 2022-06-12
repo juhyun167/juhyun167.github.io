@@ -2535,7 +2535,7 @@ ul.breadcrumb li:last-child {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #86ffff;
+  background: #ac3090;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2786,13 +2786,13 @@ body {
 .gt-container .gt-comment-content {
   background-color: #181818 !important;
   border: 1px solid #181818 !important;
-  border-radius: 5px;
+  border-radius: 5px !important;
   font-family: Pretendard !important;
 }
 :hover {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 .markdown-body {
   color: #ccc !important;
