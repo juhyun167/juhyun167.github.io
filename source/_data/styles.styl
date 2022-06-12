@@ -1,0 +1,169 @@
+/* header */
+
+.custom-logo-image
+  background: none
+  margin: 0 auto
+  max-width: 300px
+
+  +tablet-mobile()
+	  display: block
+
+
+.site-title, .site-subtitle
+  display: none
+
+
+/* sidebar */
+
+$sidebar-bg-color           = #0e0e0e
+$sidebar-bg-color-hover     = #171717
+$sidebar-color              = #b4b4b4
+$sidebar-list-border-color  = #1f1f1f
+$sidebar-list-height        = 2.8em
+
+.sidebar
+  background: $sidebar-bg-color
+
+.sidebar-toggle
+  background: none
+  height: 22px
+  width: 18px
+
+.site-author-name
+  font-size: 1.3em
+
+.new-category-list
+  padding-inline-start: 35px    
+  padding-inline-end: 10px    
+  cursor: pointer    
+
+  li
+    list-style-type: none    
+    text-align: left    
+    line-height: $sidebar-list-height  
+    border-bottom: 1px solid $sidebar-list-border-color
+
+    button
+      float: right    
+      border: none    
+      height: $sidebar-list-height
+      width: $sidebar-list-height     
+      background: none    
+      color: $sidebar-color    
+      cursor: pointer    
+
+.new-category-list-link
+  border-bottom: none      
+  color: $sidebar-color !important    
+
+  span
+    font-size: .8em    
+    color: #4e4e4e    
+
+.child-category-list
+  padding-inline-start: 0
+  padding-inline-end: 0
+  border-top: 1px solid $sidebar-list-border-color
+
+  li
+    padding-inline-start: 0    
+    border: none    
+
+    i
+      color: $sidebar-color   
+      font-size: .9em    
+      padding-inline-end: 10px    
+
+.new-category-list-container
+  display: flex    
+  align-items: center    
+  
+  img
+    margin-left: 0
+
+  &:hover
+    background: $sidebar-bg-color-hover
+    
+.last-index-list-item
+  border-bottom: 0 !important    
+
+.social-icon
+  display: inline    
+  height: 13px    
+  width: 13px    
+  margin-right: 5px    
+  border-radius: 3.5px     
+
+// collapsible wrapper
+// https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css
+.collapsible-wrapper
+  display: flex    
+  overflow: hidden    
+
+  &:after
+    content: ''    
+    height: 50px    
+    transition: height 0.2s linear, max-height 0s 0.2s linear    
+    max-height: 0px    
+
+.collapsible
+  transition: margin-bottom 0.2s cubic-bezier(0, 0, 0, 1)    
+  margin-bottom: 0    
+  max-height: 1000000px    
+  width: 100%    
+
+.collapsible-wrapper.collapsed > .collapsible
+  margin-bottom: -2000px    
+  transition: margin-bottom 0.2s cubic-bezier(1, 0, 1, 1),
+              visibility 0s 0.2s, max-height 0s 0.2s    
+  visibility: hidden    
+  max-height: 0    
+
+.collapsible-wrapper.collapsed:after
+  height: 0    
+  transition: height 0.2s linear    
+  max-height: 50px    
+
+
+/* body */
+
+body
+  line-height: 1.75    
+
+.sidebar-dimmer
+  background: black
+  display: block
+  height: 100%
+  left: 0
+  opacity: 0
+  position: fixed
+  top: 0
+  transition: visibility .4s, opacity .4s
+  visibility: hidden
+  width: 100%
+  z-index: $zindex-1
+
+  .sidebar-active &
+    opacity: .7
+    visibility: visible
+
+
+/* posts */
+
+.posts-expand .post-title
+  font-weight: bold    
+
+.post-meta-item time
+  border: 0 !important    
+
+.post-meta-item span a
+  border: 0 !important    
+
+.post-meta-item-icon, .post-meta-item-text
+  display: none    
+
+
+/* pages */
+
+.category .collection-header small
+  display: none
