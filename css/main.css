@@ -2527,7 +2527,7 @@ ul.breadcrumb li:last-child {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #749cff;
+  background: #8e70da;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2558,6 +2558,9 @@ ul.breadcrumb li:last-child {
     display: block;
   }
 }
+.custom-logo-image:hover {
+  cursor: pointer;
+}
 .site-title,
 .site-subtitle {
   display: none;
@@ -2573,6 +2576,10 @@ ul.breadcrumb li:last-child {
 }
 .site-author-name {
   font-size: 1.3em;
+  cursor: pointer;
+}
+.site-state-wrap {
+  margin-bottom: 10px;
 }
 .new-category-list {
   padding-inline-start: 35px;

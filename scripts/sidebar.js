@@ -165,3 +165,9 @@ for (let i = 0; i < social_list.length; i++) {
 }
 
 insertAfter(social_ul_elem, new_ul_elem);
+
+// add link to site author name
+let p_elem = document.getElementsByClassName("site-author-name")[0];
+p_elem.onclick = () => {
+	location.href = "/";
+}
