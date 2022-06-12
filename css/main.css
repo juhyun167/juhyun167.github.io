@@ -2535,7 +2535,7 @@ ul.breadcrumb li:last-child {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #220b33;
+  background: #ff29ff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2793,7 +2793,7 @@ body {
   -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
-.gt-comment-body {
+.gt-comments .gt-comment-body {
   color: #ccc !important;
   font-family: Pretendard !important;
 }
