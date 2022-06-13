@@ -2648,7 +2648,7 @@ mark.search-keyword {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #8186ff;
+  background: #ff1;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2885,7 +2885,8 @@ body {
 }
 /* header */
 .site-nav,
-.site-nav-right {
+.site-nav-right,
+.site-nav-toggle {
   display: none;
 }
 /* posts */
