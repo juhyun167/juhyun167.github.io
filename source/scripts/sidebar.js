@@ -171,3 +171,16 @@ let p_elem = document.getElementsByClassName("site-author-name")[0];
 p_elem.onclick = () => {
 	location.href = "/";
 }
+
+// add search button on sidebar
+let a_elem = document.createElement("a");
+a_elem.setAttribute("role", "button");
+a_elem.setAttribute("class", "popup-trigger search-button");
+
+let i_elem = document.createElement("i");
+i_elem.setAttribute("class", "fa fa-search fa-fw");
+
+a_elem.appendChild(i_elem);
+
+let site_state_wrap = document.getElementsByClassName("site-state-wrap")[0];
+insertAfter(a_elem, site_state_wrap);

@@ -55,7 +55,7 @@
 
 /* sidebar */
 
-$sidebar-bg-color           = #0e0e0e
+$sidebar-bg-color           = #0b0b0b
 $sidebar-bg-color-hover     = #171717
 $sidebar-color              = #b4b4b4
 $sidebar-list-border-color  = #1f1f1f
@@ -141,6 +141,39 @@ $sidebar-list-height        = 2.8em
 .sidebar-active
   padding-left: 0
 
+$search-button-color				= #181818;
+
+.search-button
+  background-color: $search-button-color
+  border: 1px solid $search-button-color !important
+  border-radius: 5px
+  margin-inline-start: 35px
+  margin-inline-end: 10px
+  height: $sidebar-list-height - 0.1em
+  display: flex
+  align-items: center
+  padding-inline-start: 15px
+  margin-top: 70px
+  margin-bottom: 20px
+
+.site-state-wrap, .site-author
+  display: none
+
+.search-popup
+  background-color: $search-button-color
+
+.search-result-container
+  background-color: $search-button-color
+
+  hr
+    background-image: none
+
+.search-popup p.search-result 
+  border-bottom: 0
+
+.search-input
+  color: $search-button-color
+
 // collapsible wrapper
 // https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css
 .collapsible-wrapper
@@ -193,6 +226,12 @@ body
   .sidebar-active &
     opacity: .6
     visibility: visible
+
+
+/* header */
+
+.site-nav, .site-nav-right
+  display: none
 
 
 /* posts */

@@ -103,3 +103,11 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 
+
+# Search services
+## https://theme-next.js.org/docs/third-party-services/search-services.html
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
