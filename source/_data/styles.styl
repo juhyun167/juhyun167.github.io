@@ -248,14 +248,29 @@ body
 .post-meta-item-icon, .post-meta-item-text
   display: none    
 
+.post-meta-item:nth-of-type(2)
+  display: none
+
 .post-body
   line-height: 1.8
 
   h1, h2, h3, h4, h5, h6
-    margin: 30px 0 10px
+    margin: 40px 0 10px
 
-.post-body h3
-  margin-top: 10px
+  pre
+    tab-size: 4
+    padding-top: 15px !important
+    padding-bottom: 15px !important
+
+  code
+    background: none
+    color: #59ca87
+
+@css {
+	.post-body h2 + h3 {
+		margin-top: 0px;
+	}
+}
 
 .post-body ul
   margin-block-start: 0.5em
@@ -286,6 +301,12 @@ body
 
 .post-body blockquote p:last-of-type
   margin-bottom: 0
+
+.hljs-comment, .hljs-quote
+  font-style: normal
+
+:root img
+  opacity: 1
 
 
 /* pages */
