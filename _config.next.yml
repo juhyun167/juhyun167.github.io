@@ -558,7 +558,6 @@ quicklink:
   # Default (true) will attempt to use the fetch() API if supported (rather than link[rel=prefetch]).
   priority: true
 
-
 # ---------------------------------------------------------------
 # Comments Settings
 # See: https://theme-next.js.org/docs/third-party-services/comments
@@ -750,7 +749,6 @@ local_search:
   unescape: false
   # Preload the search data when the page loads.
   preload: false
-
 
 # ---------------------------------------------------------------
 # Chat Services

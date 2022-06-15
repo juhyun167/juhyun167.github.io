@@ -3,7 +3,7 @@ function insertAfter(newNode, referenceNode) {
 }
 
 // construct list of categories 
-let category_list = [{ name: "About", href: "/about/", count: 1 }]; // hardcoded page exists
+let category_list = [{ name: "About", href: "/about/", count: 1 }]
 let ul_elem = document.getElementsByClassName("category-list")[0];
 
 for (let i = 0; i < ul_elem.children.length; i++) {

@@ -111,3 +111,18 @@ search:
   field: post
   content: true
   format: html
+  
+# hexo-renderer-markdown
+## https://github.com/niemingzhao/hexo-renderer-markdown
+markdown:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: true
+    langPrefix: language-
+    linkify: true
+    typographer: true
+    quotes: “”‘’
+  plugins:
+    markdown-it-link-preview:
+      _parser: parser.use(require(pugs))
