@@ -333,7 +333,7 @@ body
   -webkit-line-clamp: 2
 
 .link-preview-widget-description
-  font-size: 0.8em
+  font-size: 0.9em
   font-style: normal
   line-height: 1.5
   display: -webkit-box
@@ -346,12 +346,13 @@ body
   -webkit-line-clamp: 2
 
 .link-preview-widget-url
-  font-size: 12px
+  font-size: 0.8em
   font-style: normal
   line-height: 1.5
   display: block
+  margin-top: 7px
   margin-bottom: 0
-  color: #222
+  color: #6c6f6e
 
 .link-preview-widget > a
   display: table-cell
@@ -437,3 +438,45 @@ $gitalk-textarea-color			= #181818
 .gt-container .gt-comments .gt-comment-body
   color: $gitalk-color !important
   font-family: Pretendard !important
+
+
+/* frontpage */
+
+.frontpage-slider
+  flex-direction: row
+  flex-wrap: wrap
+  height: 50vh
+  margin-top: -70px
+  background-image: url("/images/frontpage/background.jpg")
+  background-size: cover
+  background-position-x: 50%
+  background-position-y: 50%
+  position: absolute
+  left: 0
+  width: 100vw
+
+.frontpage-slider > h1, .frontpage-slider > p
+  display: flex
+  align-items: center
+  flex-direction: column
+  width: 100%
+  margin: 0 !important
+
+.frontpage-slider > h1
+  justify-content: end
+  font-size: 2.2em
+  color: white;
+  padding-bottom: 2px
+  letter-spacing: 0.1rem
+
+  +mobile()
+    font-size: 1.8em
+
+.frontpage-slider > p
+  color: rgba(255, 255, 255, 0.7)
+  justify-content: start
+  font-weight: bold
+  font-size: 1em
+
+  +mobile()
+    font-size: 0.9em
