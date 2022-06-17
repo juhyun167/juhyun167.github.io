@@ -2655,7 +2655,7 @@ mjx-container[display='true'] + br {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #249371;
+  background: #9f8821;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2712,6 +2712,9 @@ mjx-container[display='true'] + br {
   color-scheme: light;
 }
 /* header */
+.header-inner {
+  padding-top: 70px;
+}
 .custom-logo-image {
   background: none;
   margin: 0 auto;
@@ -2872,6 +2875,9 @@ mjx-container[display='true'] + br {
 /* body */
 body {
   line-height: 1.75;
+}
+.main-inner {
+  margin-top: -30px;
 }
 .sidebar-dimmer {
   background: #000;
