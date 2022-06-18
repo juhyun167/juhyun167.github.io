@@ -150,3 +150,10 @@ sitemap:
   path: sitemap.xml
   tag: false
   category: false
+
+# hexo-generator-feed
+## https://github.com/hexojs/hexo-generator-feed
+feed:
+  type: rss2
+  path: rss2.xml
+  limit: 20
