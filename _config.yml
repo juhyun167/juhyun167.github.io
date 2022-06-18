@@ -126,3 +126,27 @@ markdown:
   plugins:
     markdown-it-link-preview:
       _parser: parser.use(require(pugs))
+
+# hexo-generator-robotstxt
+## https://github.com/leecrossley/hexo-generator-robotstxt
+robotstxt:
+  useragent: "*"
+  allow:
+    - /
+  sitemap: https://username.github.io/sitemap.xml
+
+# hexo-filter-nofollow
+## https://github.com/hexojs/hexo-filter-nofollow
+nofollow:
+  enable: true
+  field: site
+  exclude:
+    - 'exclude1.com'
+    - 'exclude2.com'
+
+# hexo-generator-seo-friendly-sitemap
+## https://github.com/ludoviclefevre/hexo-generator-seo-friendly-sitemap
+sitemap:
+  path: sitemap.xml
+  tag: false
+  category: false
