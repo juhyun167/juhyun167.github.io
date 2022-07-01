@@ -2655,7 +2655,7 @@ mjx-container[display='true'] + br {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #6625af;
+  background: #9899e2;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -3110,15 +3110,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  height: 50vh;
+  height: 65vh;
   margin-top: -70px;
-  background-image: url("/images/frontpage/background.jpg");
-  background-size: cover;
-  background-position-x: 50%;
-  background-position-y: 50%;
-  position: absolute;
-  left: 0;
-  width: 100vw;
 }
 .frontpage-slider > h1,
 .frontpage-slider > p {
@@ -3150,4 +3143,20 @@ body {
   .frontpage-slider > p {
     font-size: 0.9em;
   }
+}
+.frontpage-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -5;
+  background: 50% 50%/cover no-repeat;
+  background-image: url("/images/frontpage/background.jpg");
+}
+/* footer */
+footer {
+  position: sticky;
+  top: 100vh;
 }
