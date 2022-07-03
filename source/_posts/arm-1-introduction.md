@@ -586,14 +586,14 @@ BOOL unk_function(struct1 *, struct2 *, int, int)
 
 ```c
 struct struct1 {
-    unk8;          // +0x8 ; struct2.unk18과 같은 타입입니다.
+    unk8;          // +0x8 ; struct2.unk18과 같은 타입
     short unk10;    // +0x10
     int unk18;      // +0x18
     int unk1c;      // +0x1c
 };
 
 struct struct2 {
-    unk18;          // +0x18 ; struct1.unk8과 같은 타입입니다.
+    unk18;          // +0x18 ; struct1.unk8과 같은 타입
 }
 ```
 
