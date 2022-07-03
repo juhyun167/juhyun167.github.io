@@ -20,7 +20,7 @@ for (let i = 0; i < ul_elem.children.length; i++) {
         let child_ul_elem = li_elem.getElementsByClassName("category-list-child")[0];
 
         for (let j = 0; j < child_ul_elem.children.length; j++) {
-            let child_li_elem = child_ul_elem.children[i];
+            let child_li_elem = child_ul_elem.children[j];
             let child_a_elem = child_li_elem.getElementsByClassName("category-list-link")[0];
 
             let child_name = child_a_elem.innerText;

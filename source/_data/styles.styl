@@ -91,7 +91,6 @@ $sidebar-list-height        = 2.8em
     border-bottom: 1px solid $sidebar-list-border-color
 
     button
-      float: right    
       border: none    
       height: $sidebar-list-height
       width: $sidebar-list-height     
@@ -101,7 +100,8 @@ $sidebar-list-height        = 2.8em
 
 .new-category-list-link
   border-bottom: none      
-  color: $sidebar-color !important    
+  color: $sidebar-color !important
+  flex-grow: 1  
 
   span
     font-size: .8em    
@@ -230,7 +230,7 @@ body
   z-index: $zindex-1
 
   .sidebar-active &
-    opacity: .6
+    opacity: .7
     visibility: visible
 
 
@@ -243,7 +243,11 @@ body
 /* posts */
 
 .posts-expand .post-title
+  font-size: 1.9em
   font-weight: bold    
+
+  +mobile()
+    font-size: 1.65em
 
 .post-meta-item time
   border: 0 !important    
@@ -253,9 +257,6 @@ body
 
 .post-meta-item-icon, .post-meta-item-text
   display: none    
-
-.post-meta-item:nth-of-type(2)
-  display: none
 
 .post-body
   line-height: 1.8
@@ -287,6 +288,33 @@ body
   margin-block-start: 0 !important
   margin-block-end: 0.2em !important
 
+.post-body ol
+  margin-block-start: 0.5em
+  margin-block-end: 0.5em
+  padding-inline-start: 20px
+
+.post-body ol li ul
+  margin-block-start: 0 !important
+  margin-block-end: 0.2em !important
+
+@css {
+	.post-body p + ol {
+		margin-top: -15px;
+	}
+
+  .post-body p + ul {
+		margin-top: -15px;
+	}
+
+  .post-body ul + p img {
+		margin-top: 15px;
+	}
+
+  .post-body ul + .table-container {
+		margin-top: 10px;
+	}
+}
+
 .post-body li p
   margin-bottom: 0
 
@@ -310,6 +338,24 @@ body
 
 .post-body blockquote p:last-of-type
   margin-bottom: 0
+
+.post-body table
+  font-size: 1em
+
+.post-body th, td 
+  border-style: solid
+  border-width: 1px
+  border-color: rgba(221, 221, 221, 0.5)
+  padding: 6px96px 6px 9px
+
+.post-body thead tr  
+  background: #191919
+
+  th 
+    border-bottom: 0
+
+.post-body tbody tr 
+  background: var(--body-bg-color)
 
 .hljs-comment, .hljs-quote
   font-style: normal
@@ -451,7 +497,7 @@ $gitalk-textarea-color			= #181818
 .frontpage-slider
   flex-direction: row
   flex-wrap: wrap
-  height: 65vh
+  height: 60vh
   margin-top: -70px
 
 .frontpage-slider > h1, .frontpage-slider > p
@@ -497,3 +543,17 @@ $gitalk-textarea-color			= #181818
 footer
   position: sticky
   top: 100vh
+
+
+/* search */
+
+mark.search-keyword:not(.post-body mark.search-keyword)
+  background: 0 
+  color: #f1b855
+  border: 0
+  font-weight: bold
+
+.post-body mark.search-keyword
+  background: 0 
+  color: #f1b855
+  border: 0
