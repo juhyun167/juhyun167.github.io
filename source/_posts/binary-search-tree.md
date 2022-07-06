@@ -365,11 +365,15 @@ $ ./main
 
 이진 탐색 트리는 키-값 데이터를 정렬된 순서로 관리할 수 있고, 삽입과 삭제 등의 모든 연산을 이상적으로는 $O(\log n)$ 시간에 처리할 수 있습니다. 하지만 트리의 형태에 따라 최악의 경우 $O(n)$ 시간까지 걸릴 수 있습니다. 이 경우에는 선형 자료구조에 비해 별로 좋은 점이 없습니다.
 
-따라서 집합이나 딕셔너리 등 컨테이너의 구현에는 트리의 형태를 효율적인 형태로 유지하도록 하는 알고리즘이 추가된 자가 균형(self-balancing) 이진 탐색 트리를 사용합니다. 실제로 리눅스의 `g++` 컴파일러가 사용하는 C++ 라이브러리를 [동적 분석한 결과](https://stackoverflow.com/questions/2558153/what-is-the-underlying-data-structure-of-a-stl-set-in-c), `std::set` 의 구현에 자가 균형 이진 탐색 트리의 일종인 레드-블랙 트리(red-black tree)를 사용하고 있었다고 합니다.
+따라서 집합이나 딕셔너리 등 컨테이너의 구현에는 트리의 형태를 효율적인 형태로 유지하도록 하는 알고리즘이 추가된 자가 균형(self-balancing) 이진 탐색 트리를 사용합니다. 실제로 리눅스의 `g++` 컴파일러가 사용하는 C++ 라이브러리를 동적 분석한 결과, `std::set` 의 구현에 자가 균형 이진 탐색 트리의 일종인 레드-블랙 트리(red-black tree)를 사용하고 있었다고 합니다.
+
+[@preview](https://stackoverflow.com/questions/2558153/what-is-the-underlying-data-structure-of-a-stl-set-in-c)
+
 
 ## 참고자료
 
 [1] T.H. Corman, C.E. Leiserson, R.L. Rivest and C. Stein, "Binary Search Trees," in _Introduction to Algorithms_, 3rd ed. Cambridge, MA: MIT Press, 2009, pp. 286-298.
+
 
 ## 부록
 
