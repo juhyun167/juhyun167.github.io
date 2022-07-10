@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>1. ARM 리버스 엔지니어링 기초</title>
+    <title>[ARM] 1. ARM 리버스 엔지니어링 기초</title>
     <url>/2022/07/02/arm-1-introduction/</url>
     <content><![CDATA[<h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
 <p>ARM 아키텍처의 특징과 인스트럭션을 이해하고, 기초적인 리버스 엔지니어링을 연습해 보겠습니다.</p>
@@ -616,7 +616,7 @@ Always SMiLEY 😃</p>
 <li><code>g_stack_idx</code> 의 값을 음수로 만들 수 있다면 두 함수의 경계 검사를 모두 통과하여, <code>stack</code> 보다 낮은 주소의 메모리에 대한 읽기와 쓰기가 가능합니다.</li>
 </ul>
 </li>
-<li><code>PUSH</code> 와 <code>POP</code> opcode는 블로킹 방식의 <code>send_blocked</code> 함수가 아닌 <code>send</code> 함수를 호출하여, <code>g_stack_idx</code> 값에 대해 의도하</li>
+<li><code>PUSH</code> 와 <code>POP</code> opcode는 블로킹 방식의 <code>send_blocked</code> 함수가 아닌 <code>send</code> 함수를 호출하고 있습니다.</li>
 </ol>
 <p><code>run</code> 함수의 switch 구문을 보면 <code>PUSH</code> 와 <code>POP</code> opcode를 처리하는 case 블록에서 단순히 <code>send</code> 함수를 호출하여 시그널을 전송하도록 하고 있습니다. <code>send</code> 함수는 <code>send_blocked</code> 함수와 달리 부모 프로세스에서 실행 중인 핸들러 함수가 종료할 때까지 기다리는 메커니즘이 존재하지 않아, 연속하여 호출할 경우 의도하지 않은 결과를 일으킬 수 있습니다.</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span> ( code[op] )</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">0</span>:                                   <span class="comment">// PUSH [u32 arg1]</span></span><br><span class="line">    push_arg1 = *(_DWORD *)&amp;code[pc];</span><br><span class="line">    pc += <span class="number">4</span>;</span><br><span class="line">    send(ppid, context, PUSH, push_arg1);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">1</span>:                                   <span class="comment">// POP</span></span><br><span class="line">    send(ppid, context, POP, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
