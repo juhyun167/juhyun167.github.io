@@ -353,7 +353,7 @@ switch ( code[op] )
 
 1. `g_stack_idx` 의 자료형이 `int` 로, `push_handler` 와 `pop_handler` 함수에서 충분하지 않은 경계 검사를 수행하고 있습니다.
     - `g_stack_idx` 의 값을 음수로 만들 수 있다면 두 함수의 경계 검사를 모두 통과하여, `stack` 보다 낮은 주소의 메모리에 대한 읽기와 쓰기가 가능합니다.
-2. `PUSH` 와 `POP` opcode는 블로킹 방식의 `send_blocked` 함수가 아닌 `send` 함수를 호출하여, `g_stack_idx` 값에 대해 의도하
+2. `PUSH` 와 `POP` opcode는 블로킹 방식의 `send_blocked` 함수가 아닌 `send` 함수를 호출하고 있습니다.
 
 `run` 함수의 switch 구문을 보면 `PUSH` 와 `POP` opcode를 처리하는 case 블록에서 단순히 `send` 함수를 호출하여 시그널을 전송하도록 하고 있습니다. `send` 함수는 `send_blocked` 함수와 달리 부모 프로세스에서 실행 중인 핸들러 함수가 종료할 때까지 기다리는 메커니즘이 존재하지 않아, 연속하여 호출할 경우 의도하지 않은 결과를 일으킬 수 있습니다.
 
