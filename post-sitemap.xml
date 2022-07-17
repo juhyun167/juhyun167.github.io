@@ -9,8 +9,16 @@
 
 
     <url>
+        <loc>https://juhyun167.github.io/2022/07/02/arm-1-introduction/</loc>
+        <lastmod>2022-07-17T13:43:08.437Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://juhyun167.github.io/2022/06/08/binary-search-tree/</loc>
-        <lastmod>2022-07-10T12:58:36.875Z</lastmod>
+        <lastmod>2022-07-17T13:43:08.437Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -18,7 +26,7 @@
 
     <url>
         <loc>https://juhyun167.github.io/2022/07/03/codegate22-arvm/</loc>
-        <lastmod>2022-07-10T12:58:36.875Z</lastmod>
+        <lastmod>2022-07-17T13:43:08.437Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -26,7 +34,7 @@
 
     <url>
         <loc>https://juhyun167.github.io/2022/07/06/codegate22-isolated/</loc>
-        <lastmod>2022-07-10T12:58:36.875Z</lastmod>
+        <lastmod>2022-07-17T13:43:08.437Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -34,7 +42,7 @@
 
     <url>
         <loc>https://juhyun167.github.io/2022/07/05/codegate22-vimt/</loc>
-        <lastmod>2022-07-10T12:58:36.875Z</lastmod>
+        <lastmod>2022-07-17T13:43:08.437Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -42,7 +50,7 @@
 
     <url>
         <loc>https://juhyun167.github.io/2022/06/09/kitri-bob-9-1/</loc>
-        <lastmod>2022-07-10T12:58:36.875Z</lastmod>
+        <lastmod>2022-07-17T13:43:08.437Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -50,15 +58,7 @@
 
     <url>
         <loc>https://juhyun167.github.io/2022/06/18/kitri-bob-9-2/</loc>
-        <lastmod>2022-07-10T12:58:36.875Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://juhyun167.github.io/2022/07/02/arm-1-introduction/</loc>
-        <lastmod>2022-07-10T12:58:36.871Z</lastmod>
+        <lastmod>2022-07-17T13:43:08.437Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
