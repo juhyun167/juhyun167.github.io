@@ -45,7 +45,7 @@ categories: about
     - Privilege escalation in MSI Dragon Center
 
 - **KVE-2020-1585, KVE-2020-1604**
-    - Privilege escalation in TFG Gaming Center and nProtect KeyCrypt (Reported to KISA bug bounty)
+    - Privilege escalation in T\* gaming software and N\* keyboard security solution. (Reported to KISA bug bounty)
 
 - **NBB-1705**
     - Stored XSS in kin.naver.com (Reported to Naver bug bounty)
