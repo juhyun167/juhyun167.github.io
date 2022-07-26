@@ -2,7 +2,7 @@
 title: "[ARM] 1. ARM 리버스 엔지니어링 기초"
 date: 2022-07-02 01:14:59
 tags:
-categories: [Security, ARM Exploitation]
+categories: [Security, System Hacking]
 ---
 
 ## 개요
