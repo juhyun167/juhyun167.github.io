@@ -1256,3 +1256,11 @@ pwndbg> emu 3
 
    0x4012d7       <func()+111>                    mov    rax, rbx
 ```
+
+
+## 참고자료
+
+[1] S. B. Lippman, J. Lajoie and B. E. Moo, "18.1 Exception Handling," in *C++ Primer*, 5th ed. Boston, MA: Addison-Wesley, 2012, pp. 772-784.
+[2] *DWARF Debugging Information Format, Version 5*, DWARF Debugging Information Format Committee, 2012.
+[3] *Exception Handling*, Itanium C++ ABI, 2012. [Online] Available: https://itanium-cxx-abi.github.io/cxx-abi/abi-eh.html
+[4] *Exception Handling Tables*, HP aC++ A.01.15 - Public version, 2012. [Online] Available: https://itanium-cxx-abi.github.io/cxx-abi/exceptions.pdf
