@@ -2655,7 +2655,7 @@ mjx-container[display='true'] + br {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #28b1c9;
+  background: #edd58c;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2996,6 +2996,15 @@ body {
 .post-body blockquote:before {
   position: absolute;
   content: "\f10d";
+  font: var(--fa-font-solid);
+  font-size: 1.1em;
+  margin-top: 4px;
+  margin-left: -27px;
+  color: #555 !important;
+}
+.post-body .callout-warning:before {
+  position: absolute;
+  content: "\f7e4";
   font: var(--fa-font-solid);
   font-size: 1.1em;
   margin-top: 4px;
