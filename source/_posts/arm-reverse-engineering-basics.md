@@ -1,9 +1,16 @@
 ---
-title: "[ARM] 1. ARM 리버스 엔지니어링 기초"
+title: ARM 리버스 엔지니어링 기초
 date: 2022-07-02 01:14:59
 tags:
-categories: [Security, System Hacking]
+categories: [Security, Reverse Engineering]
 ---
+
+<blockquote class="callout-note">
+    <p>
+    <strong>유의사항</strong><br>
+    이 글은 Practical Reverse Engineering 책의 내용을 학습 목적으로 정리하고 일부를 수정하거나 추가한 내용입니다.
+    </p>
+</blockquote>
 
 ## 개요
 
@@ -14,7 +21,7 @@ ARM 아키텍처의 특징과 인스트럭션을 이해하고, 기초적인 리�
 
 1980년대 후반 개발된 ARM 아키텍처는 휴대폰, 자동차, 텔레비전 등 다양한 임베디드 장치에서 사용되고 있습니다. ARM 아키텍처는 ARM 홀딩스가 디자인한 후 다른 회사들에 라이센스를 판매하며, 애플, 퀄컴과 같은 파트너사는 라이센스를 구매하여 자신들의 장치에 사용할 프로세서에 적용합니다. 이들 프로세서는 모두 ARM 레퍼런스 매뉴얼에 정의된 기본적인 인스트럭션 집합과 메모리 모델을 구현하고 있습니다.
 
-![1.png](/images/arm-1-introduction/1.png)
+![1.png](/images/arm-reverse-engineering-basics/1.png)
 
 
 ## ARM 아키텍처의 특징
@@ -28,7 +35,7 @@ ARM은 RISC 아키텍처로, CISC 아키텍처인 x86/x64와는 몇 가지 다�
 
 ARM은 여러 가지의 서로 다른 특권 수준(privileged modes)을 제공하는데, 일단은 편의를 위해 User를 x86/64에서의 Ring 3, Supervisor를 Ring 0로 생각해도 좋습니다.
 
-![2.jpg](/images/arm-1-introduction/2.jpg)
+![2.jpg](/images/arm-reverse-engineering-basics/2.jpg)
 
 ARM 프로세서는 두 가지 상태(state), ARM과 Thumb으로 동작할 수 있습니다. 이 때 상태는 사용할 인스트럭션 집합과 관련이 있으며, 특권 수준과는 무관합니다. ARM 상태에서 인스트럭션의 길이는 항상 32비트이며, Thumb 상태에서는 16비트 또는 32비트입니다.
 
@@ -64,7 +71,7 @@ ARM은 현재 프로세서와 실행 흐름의 상태를 `CPSR` 레지스터에 
 - `T` (Thumb 비트) - Thumb 상태인 경우 1입니다.
 - `M` (Mode 필드) - 현재 특권 수준(e.g. User, Supervisor)을 의미합니다.
 
-![3.png](/images/arm-1-introduction/3.png)
+![3.png](/images/arm-reverse-engineering-basics/3.png)
 
 
 ## 보조 프로세서와 시스템 설정
@@ -196,7 +203,7 @@ LDM R6!, {R3,R4,R5}
 STMIA R6!, {R0,R1,R2}
 ```
 
-![4.png](/images/arm-1-introduction/4.png)
+![4.png](/images/arm-reverse-engineering-basics/4.png)
 
 `LDM` 과 `STM` 은 한번에 여러 값을 옮길 수 있어, 보통 블록 단위의 복사 등에 사용됩니다. (e.g. 복사할 길이를 컴파일 시점에 알고 있을 경우, `memcpy` 대신 사용할 수 있습니다) 또한 ARM 상태에서 함수의 시작과 끝에서도 사용되는데, 함수 프롤로그와 에필로그의 역할을 합니다.
 
@@ -232,7 +239,7 @@ PUSH {R0,R1,R2}
 POP {R3,R4,R5}
 ```
 
-![5.png](/images/arm-1-introduction/5.png)
+![5.png](/images/arm-reverse-engineering-basics/5.png)
 
 `PUSH` 와 `POP` 은 흔히 Thumb 상태에서 함수의 프롤로그와 에필로그로 사용됩니다.
 
@@ -560,7 +567,7 @@ MOV R0, R4
 BL unk_function
 ```
 
-![6.png](/images/arm-1-introduction/6.png)
+![6.png](/images/arm-reverse-engineering-basics/6.png)
 
 다음은 함수의 코드를 보고 빠르게 확인할 수 있는 사실들입니다.
 
@@ -675,6 +682,12 @@ BOOL unk_function(struct1 *a1, struct2 *a2, int a3, int a4) {
     return 1;
 }
 ```
+
+
+## 결론
+
+ARM 아키텍처는 RISC 아키텍처로 인스트럭션의 길이가 고정되어 있고, 메모리 접근에 load-store 모델을 사용합니다. 특히 조건부 실행이나 배럴 시프터와 같은 독특한 기능은 적은 개수의 인스트럭션으로도 다양한 코드를 표현할 수 있다는 장점이 있습니다. 범용 레지스터나 인스트럭션의 종류 등은 x86/x64 아키텍처와 차이를 보이나, 함수 호출과 분기의 원리, 구조체의 표현 등 근본적인 부분에서는 공통점을 찾을 수 있었습니다.
+
 
 ## 참고자료
 

@@ -6,6 +6,13 @@ tags:
 mathjax: true
 ---
 
+<blockquote class="callout-note">
+    <p>
+    <strong>유의사항</strong><br>
+    이 글은 Introduction to Algorithms 책의 내용을 학습 목적으로 정리하고 일부를 수정하거나 추가한 내용입니다.
+    </p>
+</blockquote>
+
 ## 개요
 
 이진 탐색 트리의 정의와 성질을 살펴보고 구현해 보겠습니다.
