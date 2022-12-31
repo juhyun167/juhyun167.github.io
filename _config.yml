@@ -124,6 +124,8 @@ markdown:
     typographer: true
     quotes: “”‘’
   plugins:
+    markdown-it-emoji:
+      shortcuts: {}
     markdown-it-link-preview:
       _parser: parser.use(require(pugs))
 
