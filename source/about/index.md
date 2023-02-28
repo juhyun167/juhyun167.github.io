@@ -13,7 +13,10 @@ categories: about
 
 ## Experience
 
-- **Cyber Operations Speacialist** (Aug. 2021 - Present)
+- **Security Research Intern** (Mar. 2023 - Present)
+    - Samsung Electronics
+
+- **Cyber Operations Speacialist** (Aug. 2021 - Feb. 2023)
 	- Republic of Korea Army
 
 - **Vulnerability Assessment Trainee** (Jul. 2020 - Mar. 2021)
@@ -25,7 +28,7 @@ categories: about
 
 - **B.S. in Computer Science** (Mar. 2018 - Present)
 	- Korea University, Seoul, Korea
-    - Cumulative GPA: 4.2/4.5
+    - Cumulative GPA: 4.13/4.5
 
 
 ## Projects
@@ -38,6 +41,7 @@ categories: about
 
 - **MIST Minister Prize** (2021)
     - Selected for KITRI Best of the Best 9th top 10 contestants. (prize reward 10M KRW)
+
 
 ## Vulnerability Disclosure
 
