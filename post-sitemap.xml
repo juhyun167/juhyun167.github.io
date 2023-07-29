@@ -9,88 +9,8 @@
 
 
     <url>
-        <loc>https://juhyun167.github.io/2022/06/08/binary-search-tree/</loc>
-        <lastmod>2023-02-28T03:51:54.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://juhyun167.github.io/2022/07/03/codegate22-arvm/</loc>
-        <lastmod>2023-02-28T03:51:54.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://juhyun167.github.io/2022/07/06/codegate22-isolated/</loc>
-        <lastmod>2023-02-28T03:51:54.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://juhyun167.github.io/2022/07/05/codegate22-vimt/</loc>
-        <lastmod>2023-02-28T03:51:54.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://juhyun167.github.io/2022/07/17/cpp-exception-handling/</loc>
-        <lastmod>2023-02-28T03:51:54.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://juhyun167.github.io/2022/06/09/kitri-bob-9-1/</loc>
-        <lastmod>2023-02-28T03:51:54.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://juhyun167.github.io/2022/06/18/kitri-bob-9-2/</loc>
-        <lastmod>2023-02-28T03:51:54.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://juhyun167.github.io/2022/08/28/line22-rolling/</loc>
-        <lastmod>2023-02-28T03:51:54.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://juhyun167.github.io/2022/07/30/line22-trust-code/</loc>
-        <lastmod>2023-02-28T03:51:54.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://juhyun167.github.io/2022/12/31/looking-back-on-2022/</loc>
-        <lastmod>2023-02-28T03:51:54.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://juhyun167.github.io/2022/07/02/arm-reverse-engineering-basics/</loc>
-        <lastmod>2023-02-28T03:51:54.921Z</lastmod>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -98,7 +18,87 @@
 
     <url>
         <loc>https://juhyun167.github.io/2022/11/27/binary-patching/</loc>
-        <lastmod>2023-02-28T03:51:54.921Z</lastmod>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://juhyun167.github.io/2022/06/08/binary-search-tree/</loc>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://juhyun167.github.io/2022/07/03/codegate22-arvm/</loc>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://juhyun167.github.io/2022/07/06/codegate22-isolated/</loc>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://juhyun167.github.io/2022/07/05/codegate22-vimt/</loc>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://juhyun167.github.io/2022/07/17/cpp-exception-handling/</loc>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://juhyun167.github.io/2022/06/09/kitri-bob-9-1/</loc>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://juhyun167.github.io/2022/06/18/kitri-bob-9-2/</loc>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://juhyun167.github.io/2022/08/28/line22-rolling/</loc>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://juhyun167.github.io/2022/07/30/line22-trust-code/</loc>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://juhyun167.github.io/2022/12/31/looking-back-on-2022/</loc>
+        <lastmod>2023-07-29T03:36:52.044Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
