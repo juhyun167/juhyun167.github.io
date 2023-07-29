@@ -13,10 +13,10 @@ categories: about
 
 ## Experience
 
-- **Security Research Intern** (Mar. 2023 - Present)
+- **Security Research Intern** (Mar. 2023 - Jun. 2023)
     - Samsung Electronics
 
-- **Cyber Operations Speacialist** (Aug. 2021 - Feb. 2023)
+- **Cyber Operations Specialist** (Aug. 2021 - Feb. 2023)
 	- Republic of Korea Army
 
 - **Vulnerability Assessment Trainee** (Jul. 2020 - Mar. 2021)
@@ -45,10 +45,10 @@ categories: about
 
 ## Vulnerability Disclosure
 
-- **[CVE-2021-27965](https://nvd.nist.gov/vuln/detail/CVE-2021-27965)**
+- **[CVE-2021-27965](https://nvd.nist.gov/vuln/detail/CVE-2021-27965) (collective work)**
     - Privilege escalation in MSI Dragon Center
 
-- **KVE-2020-1585, KVE-2020-1604**
+- **KVE-2020-1585, KVE-2020-1604 (collective work)**
     - Privilege escalation in T\* gaming software and N\* keyboard security solution. (Reported to KISA bug bounty)
 
 - **NBB-1705**
