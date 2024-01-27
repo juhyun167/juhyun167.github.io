@@ -2655,7 +2655,7 @@ mjx-container[display='true'] + br {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ffff9a;
+  background: #549052;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2932,6 +2932,9 @@ body {
 .post-body h5,
 .post-body h6 {
   margin: 40px 0 10px;
+}
+.post-body h3 {
+  font-size: 1.2em;
 }
 .post-body pre {
   tab-size: 4;
