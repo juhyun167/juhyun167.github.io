@@ -11,6 +11,13 @@ categories: about
 [@preview](https://github.com/juhyun167)
 
 
+## Education
+
+- **B.S. in Computer Science** (Mar. 2018 - Present)
+	- Korea University, Seoul, Korea
+    - Cumulative GPA: 4.17/4.5
+
+
 ## Experience
 
 - **Security Research Intern** (Mar. 2023 - Jun. 2023)
@@ -21,14 +28,16 @@ categories: about
 
 - **Vulnerability Assessment Trainee** (Jul. 2020 - Mar. 2021)
     - Best of the BEST 9th, KITRI
-	- Ranked in the top 10 contestants.
+	- Ranked in the top 10 contestants. (Hall of Fame)
 
 
-## Education
+## Publications
 
-- **B.S. in Computer Science** (Mar. 2018 - Present)
-	- Korea University, Seoul, Korea
-    - Cumulative GPA: 4.13/4.5
+### International Journal
+
+- **DTA: Run TrustZone TAs Outside the Secure World for Security Testing**
+    - **Juhyun Song**, Eunji Jo, and Jaehyu Kim
+    - IEEE Access, January 2024
 
 
 ## Projects
@@ -38,6 +47,9 @@ categories: about
 
 
 ## Honors and Awards
+
+- **FIESTA: Finantial Institutes' Event on Security Threat Analysis** (2023)
+    - 3rd place (Team xerophthalmia)
 
 - **MIST Minister Prize** (2021)
     - Selected for KITRI Best of the Best 9th top 10 contestants. (prize reward 10M KRW)
