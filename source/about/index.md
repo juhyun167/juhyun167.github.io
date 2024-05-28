@@ -31,6 +31,12 @@ categories: about
 	- Ranked in the top 10 contestants. (Hall of Fame)
 
 
+## Talks
+
+- **Towards Comprehensive Fuzzing of TrustZone TAs**
+    - .HACK Conference 2024, Seoul, Korea ([Slide](/uploads/talks/dothack_2024.pdf))
+
+
 ## Publications
 
 ### International Journal
