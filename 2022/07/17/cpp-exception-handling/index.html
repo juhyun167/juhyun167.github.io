@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://juhyun167.github.io/images/cpp-exception-handling/8.png">
 <meta property="og:image" content="https://juhyun167.github.io/images/cpp-exception-handling/9.png">
 <meta property="article:published_time" content="2022-07-17T22:49:43.000Z">
-<meta property="article:modified_time" content="2024-02-04T06:43:41.641Z">
+<meta property="article:modified_time" content="2024-05-28T04:22:23.083Z">
 <meta property="article:author" content="juhyun167 블로그">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://juhyun167.github.io/images/cpp-exception-handling/1.png">
@@ -259,7 +259,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-02-04 06:43:41" itemprop="dateModified" datetime="2024-02-04T06:43:41+00:00">2024-02-04</time>
+      <time title="Modified: 2024-05-28 04:22:23" itemprop="dateModified" datetime="2024-05-28T04:22:23+00:00">2024-05-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -426,7 +426,7 @@
 <p>C++ 소스 코드상에서 각각의 함수는 서로 다른 LSDA를 가집니다. LSDA는 헤더와 call-site 테이블, 액션 테이블로 이루어져 있습니다. Personality 루틴은 LSDA 헤더를 읽어 함수 코드 내에서 랜딩 패드의 시작 오프셋을 얻습니다. 그리고 call-site 테이블에서 예외가 발생한 주소에 해당하는 레코드를 찾아 랜딩 패드 내에서 분기해야 할 최종 오프셋을 얻으며, action 테이블에서 해당하는 레코드의 오프셋을 얻어 실행 흐름을 돌릴 목적지가 catch 블록인지 cleanup 코드인지 구별합니다.</p>
 <h2 id="itanium-c%2B%2B-abi" tabindex="-1">Itanium C++ ABI</h2>
 <p>런타임에 실제로 스택 되감기와 예외 처리를 수행하는 로직은 인텔이 제안한 아이테니엄 C++ ABI의 예외 처리 부분을 구현한 라이브러리 함수들입니다. 아이테니엄 C++ ABI는 스택 되감기를 구현하는 unwind 라이브러리와, unwind 라이브러리를 기반으로 예외 처리 구현을 위해 작성된 C++ ABI로 구성되어 있습니다. Unwind 라이브러리와 C++ ABI의 소스 코드는 각각 GCC 프로젝트의 <code>libgcc</code> , <code>libstdc++-v3</code> 경로에 위치합니다.</p>
-<p><div class="link-preview-widget"><a href="https://github.com/gcc-mirror/gcc" rel="noopener external nofollow noreferrer" target="_blank"><div class="link-preview-widget-title">GitHub - gcc-mirror/gcc</div><div class="link-preview-widget-description">Contribute to gcc-mirror/gcc development by creating an account on GitHub.</div><div class="link-preview-widget-url">GitHub</div></a><a class="link-preview-widget-image" href="https://github.com/gcc-mirror/gcc" rel="noopener external nofollow noreferrer" style="background-image: url('https://opengraph.githubassets.com/8b3d431e835f1fbc0893dbd0a5b708c8830a7411752796497b643bb13e1db005/gcc-mirror/gcc');" target="_blank"></a></div></p>
+<p><div class="link-preview-widget"><a href="https://github.com/gcc-mirror/gcc" rel="noopener external nofollow noreferrer" target="_blank"><div class="link-preview-widget-title">GitHub - gcc-mirror/gcc</div><div class="link-preview-widget-description">Contribute to gcc-mirror/gcc development by creating an account on GitHub.</div><div class="link-preview-widget-url">GitHub</div></a><a class="link-preview-widget-image" href="https://github.com/gcc-mirror/gcc" rel="noopener external nofollow noreferrer" style="background-image: url('https://opengraph.githubassets.com/ec487724a0dbfc4aadc63822a7ab6b9a0ca1e788832a80194d1e53bab3eac27e/gcc-mirror/gcc');" target="_blank"></a></div></p>
 <h3 id="unwind-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC" tabindex="-1">Unwind 라이브러리</h3>
 <p>Unwind 라이브러리에서 스택 되감기는 예외를 발생시키는 것으로 시작합니다. 예외 발생 시 예외 구조체가 전달되며, 라이브러리에서는 이를 다음의 두 단계에 걸쳐 처리합니다.</p>
 <ol>
