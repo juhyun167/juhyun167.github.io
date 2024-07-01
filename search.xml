@@ -750,7 +750,7 @@ Always SMiLEY :)</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> __fastcall __noreturn <span class="title function_">run</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> ppid, <span class="type">char</span> *code, <span class="type">unsigned</span> <span class="type">int</span> len, <span class="keyword">struct</span> context *context)</span>  <span class="comment">// 0xe2d</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  setup_seccomp(<span class="number">62</span>, <span class="number">0xC000003E</span>, <span class="number">1u</span>);</span><br><span class="line">  send_locked(ppid, context, CLEAN, <span class="number">0</span>);</span><br><span class="line">  pc = <span class="number">0</span>;</span><br><span class="line">  eflags = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> ( pc &lt; len )</span><br><span class="line">  &#123;</span><br><span class="line">    op = pc++;</span><br><span class="line">    <span class="keyword">switch</span> ( code[op] )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">/* ... opcode handlers ... */</span></span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        send(ppid, context, (<span class="keyword">enum</span> signal)<span class="number">9u</span>, <span class="number">0</span>);<span class="comment">// SIGKILL</span></span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  send(ppid, context, (<span class="keyword">enum</span> signal)<span class="number">9u</span>, <span class="number">0</span>);      <span class="comment">// SIGKILL</span></span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>setup_seccomp</code> 함수는 <code>prctl</code> 시스템 콜을 호출하여 다른 시스템 콜을 필터링하도록 하는데, seccomp-tools 도구를 사용하면 바이너리에 설정된 필터링 정책을 쉽게 분석할 수 있습니다.</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> __fastcall <span class="title function_">setup_seccomp</span><span class="params">(<span class="type">int</span> a1, <span class="type">int</span> a2, <span class="type">unsigned</span> __int16 a3)</span>  <span class="comment">// 0xc70</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">if</span> ( prctl(<span class="number">38</span>, <span class="number">1LL</span>, <span class="number">0LL</span>, <span class="number">0LL</span>, <span class="number">0LL</span>) )</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">&quot;prctl(NO_NEW_PRIVS)&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ( prctl(<span class="number">22</span>, <span class="number">2LL</span>, &amp;v3) )</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">&quot;prctl(PR_SET_SECCOMP)&quot;</span>);            <span class="comment">// prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER))</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><div class="link-preview-widget"><a href="https://github.com/david942j/seccomp-tools" rel="noopener" target="_blank"><div class="link-preview-widget-title">GitHub - david942j/seccomp-tools: Provide powerful tools for seccomp analysis</div><div class="link-preview-widget-description">Provide powerful tools for seccomp analysis. Contribute to david942j/seccomp-tools development by creating an account on GitHub.</div><div class="link-preview-widget-url">GitHub</div></a><a class="link-preview-widget-image" href="https://github.com/david942j/seccomp-tools" rel="noopener" style="background-image: url('https://opengraph.githubassets.com/6e46c0b9614491ee27e628c3a2f68246df3e6fd275be9539b4aead4f3ff75c4e/david942j/seccomp-tools');" target="_blank"></a></div></p>
+<p><div class="link-preview-widget"><a href="https://github.com/david942j/seccomp-tools" rel="noopener" target="_blank"><div class="link-preview-widget-title">GitHub - david942j/seccomp-tools: Provide powerful tools for seccomp analysis</div><div class="link-preview-widget-description">Provide powerful tools for seccomp analysis. Contribute to david942j/seccomp-tools development by creating an account on GitHub.</div><div class="link-preview-widget-url">GitHub</div></a><a class="link-preview-widget-image" href="https://github.com/david942j/seccomp-tools" rel="noopener" style="background-image: url('https://opengraph.githubassets.com/07c0d3784cdfc42fa23577c7b0cd792d0e3a50373568565ded588adc6f533df0/david942j/seccomp-tools');" target="_blank"></a></div></p>
 <p>다음과 같이 seccomp-tools 를 실행한 결과, <code>kill</code> 시스템 콜이 아니면 모두 필터링함을 알 수 있습니다. 따라서 자식 프로세스를 <code>execve</code> 등의 시스템 콜을 사용하여 익스플로잇하는 것은 불가능하며, 부모 프로세스를 익스플로잇하여 셸을 획득해야 함을 추측할 수 있습니다.</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ seccomp-tools dump ./isolated</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"> line  CODE  JT   JF      K</span><br><span class="line">=================================</span><br><span class="line"> 0000: 0x20 0x00 0x00 0x00000004  A = <span class="built_in">arch</span></span><br><span class="line"> 0001: 0x15 0x00 0x03 0xc000003e  <span class="keyword">if</span> (A != ARCH_X86_64) goto 0005</span><br><span class="line"> 0002: 0x20 0x00 0x00 0x00000000  A = sys_number</span><br><span class="line"> 0003: 0x15 0x00 0x01 0x0000003e  <span class="keyword">if</span> (A != <span class="built_in">kill</span>) goto 0005</span><br><span class="line"> 0004: 0x06 0x00 0x00 0x7fff0000  <span class="built_in">return</span> ALLOW</span><br><span class="line"> 0005: 0x06 0x00 0x00 0x00000001  <span class="built_in">return</span> KILL</span><br></pre></td></tr></table></figure>
 <p><code>run</code> 함수는 명령어 실행 및 <code>SIGKILL</code> 시그널 전송 등에 <code>send_locked</code> 와 <code>send</code> 두 가지 함수를 동시에 사용하고 있습니다. 먼저 <code>send</code> 함수를 살펴보면 <code>context-&gt;state</code> 를 <code>LOCKED</code> 로 설정하고, 인자 <code>arg</code> 를 <code>context-&gt;reg</code> 에 대입한 후 <code>kill</code> 시스템 콜을 호출하여 부모 프로세스에 시그널을 전송합니다.</p>
@@ -1027,7 +1027,7 @@ So I wrote this code and i have no idea why it...</div><div class="link-preview-
 <p>C++ 소스 코드상에서 각각의 함수는 서로 다른 LSDA를 가집니다. LSDA는 헤더와 call-site 테이블, 액션 테이블로 이루어져 있습니다. Personality 루틴은 LSDA 헤더를 읽어 함수 코드 내에서 랜딩 패드의 시작 오프셋을 얻습니다. 그리고 call-site 테이블에서 예외가 발생한 주소에 해당하는 레코드를 찾아 랜딩 패드 내에서 분기해야 할 최종 오프셋을 얻으며, action 테이블에서 해당하는 레코드의 오프셋을 얻어 실행 흐름을 돌릴 목적지가 catch 블록인지 cleanup 코드인지 구별합니다.</p>
 <h2 id="itanium-c%2B%2B-abi" tabindex="-1">Itanium C++ ABI</h2>
 <p>런타임에 실제로 스택 되감기와 예외 처리를 수행하는 로직은 인텔이 제안한 아이테니엄 C++ ABI의 예외 처리 부분을 구현한 라이브러리 함수들입니다. 아이테니엄 C++ ABI는 스택 되감기를 구현하는 unwind 라이브러리와, unwind 라이브러리를 기반으로 예외 처리 구현을 위해 작성된 C++ ABI로 구성되어 있습니다. Unwind 라이브러리와 C++ ABI의 소스 코드는 각각 GCC 프로젝트의 <code>libgcc</code> , <code>libstdc++-v3</code> 경로에 위치합니다.</p>
-<p><div class="link-preview-widget"><a href="https://github.com/gcc-mirror/gcc" rel="noopener" target="_blank"><div class="link-preview-widget-title">GitHub - gcc-mirror/gcc</div><div class="link-preview-widget-description">Contribute to gcc-mirror/gcc development by creating an account on GitHub.</div><div class="link-preview-widget-url">GitHub</div></a><a class="link-preview-widget-image" href="https://github.com/gcc-mirror/gcc" rel="noopener" style="background-image: url('https://opengraph.githubassets.com/ec487724a0dbfc4aadc63822a7ab6b9a0ca1e788832a80194d1e53bab3eac27e/gcc-mirror/gcc');" target="_blank"></a></div></p>
+<p><div class="link-preview-widget"><a href="https://github.com/gcc-mirror/gcc" rel="noopener" target="_blank"><div class="link-preview-widget-title">GitHub - gcc-mirror/gcc</div><div class="link-preview-widget-description">Contribute to gcc-mirror/gcc development by creating an account on GitHub.</div><div class="link-preview-widget-url">GitHub</div></a><a class="link-preview-widget-image" href="https://github.com/gcc-mirror/gcc" rel="noopener" style="background-image: url('https://opengraph.githubassets.com/c41480d6e5b42c99b3c125d4aaf7b225600952f6f52c451ff2903bccf4cefc48/gcc-mirror/gcc');" target="_blank"></a></div></p>
 <h3 id="unwind-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC" tabindex="-1">Unwind 라이브러리</h3>
 <p>Unwind 라이브러리에서 스택 되감기는 예외를 발생시키는 것으로 시작합니다. 예외 발생 시 예외 구조체가 전달되며, 라이브러리에서는 이를 다음의 두 단계에 걸쳐 처리합니다.</p>
 <ol>
@@ -1401,35 +1401,6 @@ So I wrote this code and i have no idea why it...</div><div class="link-preview-
       </categories>
   </entry>
   <entry>
-    <title>2022년을 돌아보며</title>
-    <url>/2022/12/31/looking-back-on-2022/</url>
-    <content><![CDATA[<h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
-<p>다섯 가지 주제를 통해 2022년 한 해를 돌아보았습니다.</p>
-<h2 id="%EA%B1%B4%EA%B0%95" tabindex="-1">💪 건강</h2>
-<p>체력과 근력이 확실히 좋아졌습니다. 2~3km 정도는 적당히 빠른 속도로 기분 좋게 뛸 수 있고, 아직 자주는 아니지만 달리기를 좋아하게 되었습니다. 그리고 상체 전반의 근육 쓰는 법을 익혔고 스스로 목표한 수준의 몸을 만들었습니다. 무엇보다 꾸준히 즐겁게 운동하는 습관이 생긴 것이 가장 뿌듯합니다.</p>
-<p>정신건강 부분에서는 스트레스를 덜 받는 법을 배우고 있는 것 같습니다. 특히 나의 관점에서 다른 사람의 행동이나 세상 돌아가는 일을 평가하는 것이 항상 옳지는 않을뿐더러, 불필요한 힘을 낭비하고 스트레스만 일으킨다는 사실을 깨달았습니다. 내년부터는 타인과 외부 환경에 대한 아쉬운 얘기를 줄이는 대신, 나 자신은 매일 조금씩 더 나아지고 있는지 먼저 생각하는 사람이 되려고 합니다.</p>
-<h2 id="%EC%A7%84%EB%A1%9C" tabindex="-1">👨‍💻 진로</h2>
-<p>현역 입대 자체는 다소 충동적이었지만, 병역 의무를 대부분 해결했습니다. 그러면서도 학기 중에는 늘 해야지 하고 시간을 들이지 못했던 소소한 목표들을 군 복무 중 이루게 되어 행복합니다. 전공 분야에서는 알고리즘을 여러 책으로 공부하면서 정렬, 탐색, 다양한 자료구조와 그래프 개념과 아주 친해졌습니다. 덤으로 <a href="https://solved.ac/profile/juhyun167">solved.ac</a> 플래티넘 티어도 달성했는데, 골드 1티어에서 마지막 문제를 푼 날은 랭크 게임의 승급전을 치르는 것처럼 쫄깃했던 기억이 납니다.</p>
-<p>보안 분야에서는 동아리원 한 분과 선의의 경쟁을 하다 보니 드림핵 <a href="https://dreamhack.io/users/891/wargame">랭킹</a>을 7위까지 올렸습니다. 고난도 문제를 연달아 풀다 보니 커널, 브라우저, 최신 웹 취약점을 열심히 공부했고, 새로운 지식과 인사이트를 많이 얻었습니다. 그리고 참 어이없게도 재학 중일 때보다 해킹대회에 더 많이 참가했습니다. 군인 신분으로 CCE 본선에 진출한 경험은 정말 신선했고, 아직도 그날의 분위기가 생생합니다. 약점을 보완해서 반드시 다시 도전하고 싶다는 자극이 되었습니다.</p>
-<h2 id="%EA%B2%BD%EC%A0%9C" tabindex="-1">💳 경제</h2>
-<p>스스로 사실상 금융 문맹에 가까웠음을 느꼈던 한 해였습니다. 성인으로서 가져야 할 경제와 금융 지식도 부족했고, 소비 습관도 합리적이지는 못했다고 생각합니다. 그래서 늦게나마 경제 지식에 관한 공부를 시작했습니다. 한국은행 경제교육실에서 발간한 <a href="https://www.bok.or.kr/portal/bbs/B0000249/view.do?nttId=10061816&amp;menuNo=200765&amp;pageIndex=1">알기 쉬운 경제이야기</a> 책으로 이제 발걸음을 뗀 단계지만, 재미를 느끼고 있습니다. 이 책이 무료인데도 계속 개정이 되고 있고, 정말 읽기 쉬우면서도 유익해서 놀랐습니다.</p>
-<p>당장 느낀 점은 경제 지식이 조금만 생겨도 자본주의 체제인 세상을 보는 관점이 바뀌고, 시야가 넓어진다는 것입니다. 그리고 앞으로의 삶에서 중장기 경제 계획은 필수적이고, 생애 주기별로 필요한 자금을 마련하기 위해서는 반드시 적절한 자산 운용이 필요함을 알게 되었습니다. 곧 전역하면 자취를 시작할 예정입니다. 어떤 것이 합리적인 의사 결정이고 소비인지 배웠으니, 실제로 연습해서 지출 통제를 실천할 좋은 기회라고 생각합니다.</p>
-<h2 id="%EB%8F%85%EC%84%9C" tabindex="-1">📚 독서</h2>
-<p>군 복무를 하면서 의외로 책 읽는 취미와 습관이 생겼습니다. 통념과는 달리 부대 도서관에는 생각보다 유익하고 다양하면서 최근에 나온 책들이 많았고, 덕분에 시간이 정말 잘 갔습니다. 도서관의 좋은 책들을 거의 다 읽을 때쯤 학교 전자도서관의 존재를 알았는데, 서점의 신간 베스트셀러 서가에 있는 책이 전자책으로 올라와 있는 걸 보고 입이 떡 벌어졌습니다.</p>
-<p>대학 입학 후 오랜만에 책을 읽으면서 확실히 스스로 깊이 생각하고 돌아보는 감각이 너무 무디어졌음을 느꼈습니다. 여러 분야를 읽다 보니 뉴스나 인터넷을 통해 알게 된 지식 중 실제로는 사실이 아닌 것들도 많았음을 알게 되었습니다. 예를 들어 스탠퍼드 교도소 실험이나 밀그램의 복종 실험을 다룬 칼럼을 보고 역시 인간의 본성은 악하다고 생각했던 신입생 때가 있었는데, 실제로는 계획된 조작 실험이라는 진술이 많음을 한 저널리스트의 <a href="https://product.kyobobook.co.kr/detail/S000001947556">책</a>을 읽고서야 알았습니다.</p>
-<h2 id="%EB%A7%88%EC%9D%8C%EA%B0%80%EC%A7%90" tabindex="-1">💕 마음가짐</h2>
-<p>말년에 풀어지는 것을 저 또한 완전히 피해 갈 수 없었습니다. 희한한 것이 군 복무 초반에는 5일 휴가를 나와도 시간이 아까워 학교 동아리방에서 워게임 문제를 풀었는데, 지금은 10일을 나와도 ‘말년이니까~’ 하면서 뒹굴뒹굴하고 있습니다. 그래도 컴퓨터는 지금까지 충분히 했고 나가면 질리도록 할 수 있으니, 운동과 독서 습관만 끝까지 붙들고 나와야겠습니다.</p>
-<p>그리고 사람이 너무 그리워졌습니다. 군 복무 전 만났던 친구들, 선배/후배님들, 같이 공부하면서 알게 된 분들과 생긴 크고 작은 인연이 얼마나 소중했는지를 절절히 느끼고 있습니다. 지금까지 관계 유지에 있어 너무 수동적으로 생각했던 것은 아닌지 돌아본 한 해가 되었습니다. 이전처럼 반갑고 익숙하게 만날 수 있었던 사람들이 정말 고마웠고, 그동안 내색을 못 해서 미안했습니다.</p>
-<h2 id="%EA%B2%B0%EB%A1%A0" tabindex="-1">결론</h2>
-<p>요즈음 내년의 나는 무엇을 하는 사람이 되어야 할지 고민하고 있는데, 처음으로 한 해를 돌아보는 시간을 가지니 어느 정도 테두리가 그려지면서 도움이 많이 되었습니다. 다가오는 내년은 나 자신과 올해 함께한 인연들, 그리고 고마운 분들이 각자 바라는 무언가에 조금씩, 꾸준히 가까워지는 시간이 되기를 기원합니다. 마지막으로 새해 복 많이 받으세요! 🧨</p>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
-]]></content>
-      <categories>
-        <category>Thoughts</category>
-      </categories>
-  </entry>
-  <entry>
     <title>[TetCTF 2024] Stress Release Service</title>
     <url>/2024/02/03/tet24-stress-release-service/</url>
     <content><![CDATA[<h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
@@ -1469,6 +1440,35 @@ So I wrote this code and i have no idea why it...</div><div class="link-preview-
       <categories>
         <category>Security</category>
         <category>CTF</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>2022년을 돌아보며</title>
+    <url>/2022/12/31/looking-back-on-2022/</url>
+    <content><![CDATA[<h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
+<p>다섯 가지 주제를 통해 2022년 한 해를 돌아보았습니다.</p>
+<h2 id="%EA%B1%B4%EA%B0%95" tabindex="-1">💪 건강</h2>
+<p>체력과 근력이 확실히 좋아졌습니다. 2~3km 정도는 적당히 빠른 속도로 기분 좋게 뛸 수 있고, 아직 자주는 아니지만 달리기를 좋아하게 되었습니다. 그리고 상체 전반의 근육 쓰는 법을 익혔고 스스로 목표한 수준의 몸을 만들었습니다. 무엇보다 꾸준히 즐겁게 운동하는 습관이 생긴 것이 가장 뿌듯합니다.</p>
+<p>정신건강 부분에서는 스트레스를 덜 받는 법을 배우고 있는 것 같습니다. 특히 나의 관점에서 다른 사람의 행동이나 세상 돌아가는 일을 평가하는 것이 항상 옳지는 않을뿐더러, 불필요한 힘을 낭비하고 스트레스만 일으킨다는 사실을 깨달았습니다. 내년부터는 타인과 외부 환경에 대한 아쉬운 얘기를 줄이는 대신, 나 자신은 매일 조금씩 더 나아지고 있는지 먼저 생각하는 사람이 되려고 합니다.</p>
+<h2 id="%EC%A7%84%EB%A1%9C" tabindex="-1">👨‍💻 진로</h2>
+<p>현역 입대 자체는 다소 충동적이었지만, 병역 의무를 대부분 해결했습니다. 그러면서도 학기 중에는 늘 해야지 하고 시간을 들이지 못했던 소소한 목표들을 군 복무 중 이루게 되어 행복합니다. 전공 분야에서는 알고리즘을 여러 책으로 공부하면서 정렬, 탐색, 다양한 자료구조와 그래프 개념과 아주 친해졌습니다. 덤으로 <a href="https://solved.ac/profile/juhyun167">solved.ac</a> 플래티넘 티어도 달성했는데, 골드 1티어에서 마지막 문제를 푼 날은 랭크 게임의 승급전을 치르는 것처럼 쫄깃했던 기억이 납니다.</p>
+<p>보안 분야에서는 동아리원 한 분과 선의의 경쟁을 하다 보니 드림핵 <a href="https://dreamhack.io/users/891/wargame">랭킹</a>을 7위까지 올렸습니다. 고난도 문제를 연달아 풀다 보니 커널, 브라우저, 최신 웹 취약점을 열심히 공부했고, 새로운 지식과 인사이트를 많이 얻었습니다. 그리고 참 어이없게도 재학 중일 때보다 해킹대회에 더 많이 참가했습니다. 군인 신분으로 CCE 본선에 진출한 경험은 정말 신선했고, 아직도 그날의 분위기가 생생합니다. 약점을 보완해서 반드시 다시 도전하고 싶다는 자극이 되었습니다.</p>
+<h2 id="%EA%B2%BD%EC%A0%9C" tabindex="-1">💳 경제</h2>
+<p>스스로 사실상 금융 문맹에 가까웠음을 느꼈던 한 해였습니다. 성인으로서 가져야 할 경제와 금융 지식도 부족했고, 소비 습관도 합리적이지는 못했다고 생각합니다. 그래서 늦게나마 경제 지식에 관한 공부를 시작했습니다. 한국은행 경제교육실에서 발간한 <a href="https://www.bok.or.kr/portal/bbs/B0000249/view.do?nttId=10061816&amp;menuNo=200765&amp;pageIndex=1">알기 쉬운 경제이야기</a> 책으로 이제 발걸음을 뗀 단계지만, 재미를 느끼고 있습니다. 이 책이 무료인데도 계속 개정이 되고 있고, 정말 읽기 쉬우면서도 유익해서 놀랐습니다.</p>
+<p>당장 느낀 점은 경제 지식이 조금만 생겨도 자본주의 체제인 세상을 보는 관점이 바뀌고, 시야가 넓어진다는 것입니다. 그리고 앞으로의 삶에서 중장기 경제 계획은 필수적이고, 생애 주기별로 필요한 자금을 마련하기 위해서는 반드시 적절한 자산 운용이 필요함을 알게 되었습니다. 곧 전역하면 자취를 시작할 예정입니다. 어떤 것이 합리적인 의사 결정이고 소비인지 배웠으니, 실제로 연습해서 지출 통제를 실천할 좋은 기회라고 생각합니다.</p>
+<h2 id="%EB%8F%85%EC%84%9C" tabindex="-1">📚 독서</h2>
+<p>군 복무를 하면서 의외로 책 읽는 취미와 습관이 생겼습니다. 통념과는 달리 부대 도서관에는 생각보다 유익하고 다양하면서 최근에 나온 책들이 많았고, 덕분에 시간이 정말 잘 갔습니다. 도서관의 좋은 책들을 거의 다 읽을 때쯤 학교 전자도서관의 존재를 알았는데, 서점의 신간 베스트셀러 서가에 있는 책이 전자책으로 올라와 있는 걸 보고 입이 떡 벌어졌습니다.</p>
+<p>대학 입학 후 오랜만에 책을 읽으면서 확실히 스스로 깊이 생각하고 돌아보는 감각이 너무 무디어졌음을 느꼈습니다. 여러 분야를 읽다 보니 뉴스나 인터넷을 통해 알게 된 지식 중 실제로는 사실이 아닌 것들도 많았음을 알게 되었습니다. 예를 들어 스탠퍼드 교도소 실험이나 밀그램의 복종 실험을 다룬 칼럼을 보고 역시 인간의 본성은 악하다고 생각했던 신입생 때가 있었는데, 실제로는 계획된 조작 실험이라는 진술이 많음을 한 저널리스트의 <a href="https://product.kyobobook.co.kr/detail/S000001947556">책</a>을 읽고서야 알았습니다.</p>
+<h2 id="%EB%A7%88%EC%9D%8C%EA%B0%80%EC%A7%90" tabindex="-1">💕 마음가짐</h2>
+<p>말년에 풀어지는 것을 저 또한 완전히 피해 갈 수 없었습니다. 희한한 것이 군 복무 초반에는 5일 휴가를 나와도 시간이 아까워 학교 동아리방에서 워게임 문제를 풀었는데, 지금은 10일을 나와도 ‘말년이니까~’ 하면서 뒹굴뒹굴하고 있습니다. 그래도 컴퓨터는 지금까지 충분히 했고 나가면 질리도록 할 수 있으니, 운동과 독서 습관만 끝까지 붙들고 나와야겠습니다.</p>
+<p>그리고 사람이 너무 그리워졌습니다. 군 복무 전 만났던 친구들, 선배/후배님들, 같이 공부하면서 알게 된 분들과 생긴 크고 작은 인연이 얼마나 소중했는지를 절절히 느끼고 있습니다. 지금까지 관계 유지에 있어 너무 수동적으로 생각했던 것은 아닌지 돌아본 한 해가 되었습니다. 이전처럼 반갑고 익숙하게 만날 수 있었던 사람들이 정말 고마웠고, 그동안 내색을 못 해서 미안했습니다.</p>
+<h2 id="%EA%B2%B0%EB%A1%A0" tabindex="-1">결론</h2>
+<p>요즈음 내년의 나는 무엇을 하는 사람이 되어야 할지 고민하고 있는데, 처음으로 한 해를 돌아보는 시간을 가지니 어느 정도 테두리가 그려지면서 도움이 많이 되었습니다. 다가오는 내년은 나 자신과 올해 함께한 인연들, 그리고 고마운 분들이 각자 바라는 무언가에 조금씩, 꾸준히 가까워지는 시간이 되기를 기원합니다. 마지막으로 새해 복 많이 받으세요! 🧨</p>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+]]></content>
+      <categories>
+        <category>Thoughts</category>
       </categories>
   </entry>
 </search>
