@@ -13,7 +13,7 @@ categories: about
 
 ## Education
 
-- **M.S. in Electrical Engineering** (Aug. 2024 - Present)
+- **M.S. in Electrical Engineering** (Sep. 2024 - Present)
     - Advisor: Insu Yun
 	- KAIST, Daejeon, Korea
 
