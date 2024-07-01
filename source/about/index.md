@@ -13,9 +13,12 @@ categories: about
 
 ## Education
 
-- **B.S. in Computer Science** (Mar. 2018 - Present)
+- **M.S. in Electrical Engineering** (Aug. 2024 - Present)
+    - Advisor: Insu Yun
+	- KAIST, Daejeon, Korea
+
+- **B.S. in Computer Science** (Mar. 2018 - Aug. 2024)
 	- Korea University, Seoul, Korea
-    - Cumulative GPA: 4.17/4.5
 
 
 ## Experience
@@ -71,3 +74,9 @@ categories: about
 
 - **NBB-1705**
     - Stored XSS in kin.naver.com (Reported to Naver bug bounty)
+
+
+## Certifications
+
+- **Craftsman Bartender** (2024)
+    - National Certification, HRDK, Korea
