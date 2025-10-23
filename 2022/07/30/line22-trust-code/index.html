@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
-
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -16,9 +15,9 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs2015","dark":"vs2015"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/searchdb.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="개요 chall.zip 문제 분석           주의사항     이 글의 내용을 이해하기 위해서는 C++ 예외 처리의 내부 구현에 대한 지식이 필요합니다.       64비트 x86_64 바이너리 trust_code 와 Dockerfile 등이 주어집니다. Dockerfile 을 비롯한 컨테이너 관련 파일은 원본 문제에는 없는 파일로, 대회 환경을 구현">
 <meta property="og:type" content="article">
@@ -29,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://juhyun167.github.io/images/line22-trust-code/1.png">
 <meta property="article:published_time" content="2022-07-30T23:07:19.000Z">
-<meta property="article:modified_time" content="2024-07-01T05:48:13.474Z">
+<meta property="article:modified_time" content="2025-10-23T06:55:00.906Z">
 <meta property="article:author" content="juhyun167 블로그">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://juhyun167.github.io/images/line22-trust-code/1.png">
@@ -38,24 +37,52 @@
 <link rel="canonical" href="https://juhyun167.github.io/2022/07/30/line22-trust-code/">
 
 
-
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://juhyun167.github.io/2022/07/30/line22-trust-code/","path":"2022/07/30/line22-trust-code/","title":"[LINE CTF 2022] trust_code"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>[LINE CTF 2022] trust_code | JUHYUN167</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NL1HJ159T"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-2NL1HJ159T","only_pageview":false}</script>
-  <script src="/js/third-party/analytics/google-analytics.js"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-2NL1HJ159T","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
 
 
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
 
 
 <!-- custom fonts -->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/sf-mono-webfont@1.0.0/stylesheet.min.css" rel="stylesheet">
 
 <!-- google search console -->
 <meta name="google-site-verification" content="pV2zNbKpqSdeajzc7IIefYq62vg-J9PCZfCvLKwnYF8" />
@@ -72,8 +99,8 @@
   <div class="headband"></div>
 
   <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
@@ -91,7 +118,7 @@
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -111,39 +138,33 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 <!-- load header custom script -->
 <script src="/scripts/header.js"></script>
 
-</div>
+</header>
         
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
   <aside class="sidebar">
 
     <div class="sidebar-inner sidebar-overview-active">
@@ -163,11 +184,11 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">juhyun167 블로그</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap site-overview-item animated">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
@@ -181,9 +202,9 @@
       </div>
   </nav>
 </div>
-
-
-<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/Data-Structures/">Data Structures</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Security/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/Reverse-Engineering/">Reverse Engineering</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thoughts/">Thoughts</a><span class="category-list-count">3</span></li></ul>
+<div class="category-list">
+  <ul class="category-list"></ul>
+</div>
 
 <!-- load sidebar custom script -->
 <script src="/scripts/sidebar.js"></script>
@@ -191,18 +212,12 @@
         </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
 
     
+  </aside>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+    </div>
 
     <div class="main-inner post posts-expand">
 
@@ -248,13 +263,6 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-07-01 05:48:13" itemprop="dateModified" datetime="2024-07-01T05:48:13+00:00">2024-07-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">In</span>
@@ -276,8 +284,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
+    <div class="post-body" itemprop="articleBody"><h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
 <p><a href="/uploads/line22-trust-code/chall.zip">chall.zip</a></p>
 <h2 id="%EB%AC%B8%EC%A0%9C-%EB%B6%84%EC%84%9D" tabindex="-1">문제 분석</h2>
 <blockquote class="callout-warning">
@@ -297,19 +304,19 @@
 <p>따라서 <code>main</code> 함수의 소스 코드는 사실 다음과 같아야 합니다.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        launch();</span><br><span class="line">    &#125; catch (<span class="type">const</span> <span class="built_in">std</span>::exception&amp; e) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;Sorry for the inconvenience, there was a problem while decrypting&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>launch</code> 함수는 <code>secret_key.txt</code> 파일의 내용을 읽어 배열 <code>buf</code> 에 저장합니다. 이후 <code>buf</code> 의 내용을 전역 배열 <code>secret_key</code> 에 대입한 후 <code>service</code> 함수를 호출합니다. <code>buf</code> 배열의 크기에서 <code>secret_key</code> 의 길이는 16바이트임을 알 수 있습니다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">launch</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> fd; <span class="comment">// [rsp+1Ch] [rbp-2Ch]</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">16</span>]; <span class="comment">// [rsp+30h] [rbp-18h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v2; <span class="comment">// [rsp+40h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v2 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  *(_OWORD *)buf = <span class="number">0LL</span>;</span><br><span class="line">  alarm(<span class="number">30u</span>);</span><br><span class="line">  signal(<span class="number">14</span>, alarm_handler);</span><br><span class="line">  setvbuf(<span class="built_in">stdin</span>, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stdout</span>, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  fd = open(<span class="string">&quot;secret_key.txt&quot;</span>, <span class="number">0</span>);</span><br><span class="line">  read(fd, buf, <span class="number">16uLL</span>);</span><br><span class="line">  close(fd);</span><br><span class="line">  *(_OWORD *)secret_key = *(_OWORD *)buf;</span><br><span class="line">  service();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">launch</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> fd; <span class="comment">// [rsp+1Ch] [rbp-2Ch]</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">16</span>]; <span class="comment">// [rsp+30h] [rbp-18h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v2; <span class="comment">// [rsp+40h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v2 = __readfsqword(<span class="number">0x28u</span>);</span><br><span class="line">  *(_OWORD *)buf = <span class="number">0LL</span>;</span><br><span class="line">  alarm(<span class="number">30u</span>);</span><br><span class="line">  signal(<span class="number">14</span>, alarm_handler);</span><br><span class="line">  setvbuf(<span class="built_in">stdin</span>, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stdout</span>, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  fd = open(<span class="string">&quot;secret_key.txt&quot;</span>, <span class="number">0</span>);</span><br><span class="line">  read(fd, buf, <span class="number">16uLL</span>);</span><br><span class="line">  close(fd);</span><br><span class="line">  *(_OWORD *)secret_key = *(_OWORD *)buf;</span><br><span class="line">  service();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>service</code> 함수는 배열 <code>buf</code> 에 iv를 입력받고, 동일하게 <code>buf</code> 의 내용을 전역 배열 <code>iv</code> 에 대입한 후 <code>loop</code> 함수를 호출합니다. 그런데 입력받는 길이가 배열의 크기보다 큰 32바이트로 스택 버퍼 오버플로우가 발생합니다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">service</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">16</span>]; <span class="comment">// [rsp+10h] [rbp-18h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v1; <span class="comment">// [rsp+20h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v1 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;iv&gt; &quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">32uLL</span>);                          <span class="comment">// buffer overflow!</span></span><br><span class="line">  *(_OWORD *)iv = *(_OWORD *)buf;</span><br><span class="line">  loop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">service</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">16</span>]; <span class="comment">// [rsp+10h] [rbp-18h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v1; <span class="comment">// [rsp+20h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v1 = __readfsqword(<span class="number">0x28u</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;iv&gt; &quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">32uLL</span>);                          <span class="comment">// buffer overflow!</span></span><br><span class="line">  *(_OWORD *)iv = *(_OWORD *)buf;</span><br><span class="line">  loop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>loop</code> 함수는 <code>loop_cont</code> 값이 참이면 <code>run</code> 함수를 반복하여 호출합니다.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">loop</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">while</span> ( loop_cont )</span><br><span class="line">    run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>run</code> 함수는 <code>read_code</code> 함수를 호출하여 <code>code</code> 포인터를 반환받습니다. 이후 <code>&amp;code[16]</code> 부터 32바이트를 <code>sc.code</code> 로 복사하고 <code>execute</code> 함수를 호출합니다. <code>sc</code> 는 <code>Shellcode</code> 타입의 객체로, 32바이트 크기의 배열인 <code>code</code> 를 유일한 필드로 가지고 있습니다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> __int64 <span class="title function_">run</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  __int128 v0; <span class="comment">// xmm0</span></span><br><span class="line">  <span class="type">char</span> *code; <span class="comment">// [rsp+18h] [rbp-30h]</span></span><br><span class="line">  Shellcode sc; <span class="comment">// [rsp+20h] [rbp-28h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v4; <span class="comment">// [rsp+40h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v4 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  code = read_code();</span><br><span class="line">  v0 = *((_OWORD *)code + <span class="number">1</span>);</span><br><span class="line">  *(_OWORD *)&amp;sc.code[<span class="number">16</span>] = *((_OWORD *)code + <span class="number">2</span>);</span><br><span class="line">  *(_OWORD *)sc.code = v0;</span><br><span class="line">  execute((<span class="type">unsigned</span> __int8 *)&amp;sc);</span><br><span class="line">  Shellcode::~Shellcode(&amp;sc);</span><br><span class="line">  <span class="keyword">return</span> __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> __int64 <span class="title function_">run</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  __int128 v0; <span class="comment">// xmm0</span></span><br><span class="line">  <span class="type">char</span> *code; <span class="comment">// [rsp+18h] [rbp-30h]</span></span><br><span class="line">  Shellcode sc; <span class="comment">// [rsp+20h] [rbp-28h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v4; <span class="comment">// [rsp+40h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v4 = __readfsqword(<span class="number">0x28u</span>);</span><br><span class="line">  code = read_code();</span><br><span class="line">  v0 = *((_OWORD *)code + <span class="number">1</span>);</span><br><span class="line">  *(_OWORD *)&amp;sc.code[<span class="number">16</span>] = *((_OWORD *)code + <span class="number">2</span>);</span><br><span class="line">  *(_OWORD *)sc.code = v0;</span><br><span class="line">  execute((<span class="type">unsigned</span> __int8 *)&amp;sc);</span><br><span class="line">  Shellcode::~Shellcode(&amp;sc);</span><br><span class="line">  <span class="keyword">return</span> __readfsqword(<span class="number">0x28u</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>read_code</code> 함수는 48바이트의 code를 배열 <code>buf</code> 에 입력받습니다. 이후 <code>buf</code> 를 인자로 하여 <code>decrypt</code> 함수를 호출하고 포인터를 반환받아 반환합니다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">read_code</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">48</span>]; <span class="comment">// [rsp+20h] [rbp-38h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v2; <span class="comment">// [rsp+50h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v2 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;code&gt; &quot;</span>);</span><br><span class="line">  <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="keyword">sizeof</span>(buf));</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">48uLL</span>);</span><br><span class="line">  <span class="keyword">return</span> decrypt((<span class="type">unsigned</span> __int8 *)buf);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">read_code</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">48</span>]; <span class="comment">// [rsp+20h] [rbp-38h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v2; <span class="comment">// [rsp+50h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v2 = __readfsqword(<span class="number">0x28u</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;code&gt; &quot;</span>);</span><br><span class="line">  <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="keyword">sizeof</span>(buf));</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">48uLL</span>);</span><br><span class="line">  <span class="keyword">return</span> decrypt((<span class="type">unsigned</span> __int8 *)buf);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>decrypt</code> 함수는 인자로 주어진 문자열을 <code>key</code> 와 <code>iv</code> 를 이용해 AES-CBC로 복호화합니다. 인자는 <code>read_code</code> 에서 입력받는 code이므로, 애초에 code는 암호문임을 알 수 있습니다. 복호화된 평문은 <code>out</code> 에 저장되는데, <code>out</code> 의 상위 16바이트가 <code>&quot;TRUST_CODE_ONLY!&quot;</code> 가 아니면 예외를 발생시키고 있습니다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *__fastcall <span class="title function_">decrypt</span><span class="params">(<span class="type">char</span> *in)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">std</span>::exception *exception; <span class="comment">// [rsp+8h] [rbp-120h]</span></span><br><span class="line">  <span class="type">char</span> *out; <span class="comment">// [rsp+18h] [rbp-110h]</span></span><br><span class="line">  <span class="type">char</span> key[<span class="number">248</span>]; <span class="comment">// [rsp+28h] [rbp-100h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v5; <span class="comment">// [rsp+120h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  out = (<span class="type">char</span> *)operator new[](<span class="number">48uLL</span>);</span><br><span class="line">  AES_set_decrypt_key((__int64)&amp;secret_key, <span class="number">128LL</span>, (<span class="type">int</span> *)key);</span><br><span class="line">  AES_cbc_encrypt((__int64)in, (__int64)out, <span class="number">48LL</span>, (__int64)key, (__int64)iv, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( <span class="built_in">strncmp</span>(out, <span class="string">&quot;TRUST_CODE_ONLY!&quot;</span>, <span class="number">16uLL</span>) )</span><br><span class="line">  &#123;</span><br><span class="line">    exception = (<span class="built_in">std</span>::exception *)__cxa_allocate_exception(<span class="number">8uLL</span>);</span><br><span class="line">    <span class="built_in">std</span>::exception::exception(exception);</span><br><span class="line">    __cxa_throw(</span><br><span class="line">      exception,</span><br><span class="line">      (<span class="keyword">struct</span> type_info *)&amp;`typeinfo <span class="keyword">for</span><span class="number">&#x27;</span><span class="built_in">std</span>::exception,</span><br><span class="line">      (<span class="type">void</span> (__fastcall *)(<span class="type">void</span> *))&amp;<span class="built_in">std</span>::exception::~exception);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *__fastcall <span class="title function_">decrypt</span><span class="params">(<span class="type">char</span> *in)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">std</span>::exception *exception; <span class="comment">// [rsp+8h] [rbp-120h]</span></span><br><span class="line">  <span class="type">char</span> *out; <span class="comment">// [rsp+18h] [rbp-110h]</span></span><br><span class="line">  <span class="type">char</span> key[<span class="number">248</span>]; <span class="comment">// [rsp+28h] [rbp-100h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v5; <span class="comment">// [rsp+120h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readfsqword(<span class="number">0x28u</span>);</span><br><span class="line">  out = (<span class="type">char</span> *)operator new[](<span class="number">48uLL</span>);</span><br><span class="line">  AES_set_decrypt_key((__int64)&amp;secret_key, <span class="number">128LL</span>, (<span class="type">int</span> *)key);</span><br><span class="line">  AES_cbc_encrypt((__int64)in, (__int64)out, <span class="number">48LL</span>, (__int64)key, (__int64)iv, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( <span class="built_in">strncmp</span>(out, <span class="string">&quot;TRUST_CODE_ONLY!&quot;</span>, <span class="number">16uLL</span>) )</span><br><span class="line">  &#123;</span><br><span class="line">    exception = (<span class="built_in">std</span>::exception *)__cxa_allocate_exception(<span class="number">8uLL</span>);</span><br><span class="line">    <span class="built_in">std</span>::exception::exception(exception);</span><br><span class="line">    __cxa_throw(</span><br><span class="line">      exception,</span><br><span class="line">      (<span class="keyword">struct</span> type_info *)&amp;`typeinfo <span class="keyword">for</span><span class="string">&#x27;std::exception,</span></span><br><span class="line"><span class="string">      (void (__fastcall *)(void *))&amp;std::exception::~exception);</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">  return out;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 <p><code>decrypt</code> 가 반환하는 <code>out</code> 은 그대로 <code>read_code</code> 의 반환값이 되어, <code>run</code> 함수에서 상위 16바이트를 제외한 나머지가 <code>sc.code</code> 로 복사됩니다. 이후 호출되는 <code>execute</code> 함수는 rwx 권한의 페이지를 할당하여 <code>sc.code</code> 의 내용을 복사하고 실행합니다. 이 때 <code>invalid_check</code> 함수에서 <code>sc.code</code> 를 필터링하는데, <code>\x0f</code> 또는 <code>\x05</code> 가 존재하지 않을 때만 실행을 허용합니다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> __fastcall <span class="title function_">execute</span><span class="params">(<span class="type">unsigned</span> __int8 *a1)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">void</span> (*addr)(<span class="type">void</span>); <span class="comment">// [rsp+8h] [rbp-20h]</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">8</span>]; <span class="comment">// [rsp+18h] [rbp-10h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v3; <span class="comment">// [rsp+20h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v3 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="type">unsigned</span> <span class="type">int</span>)invalid_check(a1) != <span class="number">-1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    addr = (<span class="type">void</span> (*)(<span class="type">void</span>))create_rwx(a1);</span><br><span class="line">    addr();</span><br><span class="line">    munmap(addr, <span class="number">0x1000</span>uLL);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;done?&gt; &quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">2uLL</span>);</span><br><span class="line">  <span class="keyword">if</span> ( buf[<span class="number">0</span>] == <span class="string">&#x27;y&#x27;</span> || buf[<span class="number">0</span>] == <span class="string">&#x27;Y&#x27;</span> )</span><br><span class="line">    loop_cont = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> __fastcall <span class="title function_">execute</span><span class="params">(<span class="type">unsigned</span> __int8 *a1)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">void</span> (*addr)(<span class="type">void</span>); <span class="comment">// [rsp+8h] [rbp-20h]</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">8</span>]; <span class="comment">// [rsp+18h] [rbp-10h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v3; <span class="comment">// [rsp+20h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v3 = __readfsqword(<span class="number">0x28u</span>);</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="type">unsigned</span> <span class="type">int</span>)invalid_check(a1) != <span class="number">-1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    addr = (<span class="type">void</span> (*)(<span class="type">void</span>))create_rwx(a1);</span><br><span class="line">    addr();</span><br><span class="line">    munmap(addr, <span class="number">0x1000u</span>LL);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;done?&gt; &quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">2uLL</span>);</span><br><span class="line">  <span class="keyword">if</span> ( buf[<span class="number">0</span>] == <span class="string">&#x27;y&#x27;</span> || buf[<span class="number">0</span>] == <span class="string">&#x27;Y&#x27;</span> )</span><br><span class="line">    loop_cont = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>이상의 내용을 정리하면 프로그램은 다음과 같이 동작합니다.</p>
 <ol>
 <li><code>iv</code> 와 AES-CBC로 암호화된 code를 입력받아 평문으로 복호화합니다.</li>
@@ -360,12 +367,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2022/07/17/cpp-exception-handling/" rel="prev" title="C++ 예외 처리의 구현">
-                  <i class="fa fa-chevron-left"></i> C++ 예외 처리의 구현
+                  <i class="fa fa-angle-left"></i> C++ 예외 처리의 구현
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2022/08/28/line22-rolling/" rel="next" title="[LINE CTF 2022] rolling">
-                  [LINE CTF 2022] rolling <i class="fa fa-chevron-right"></i>
+                  [LINE CTF 2022] rolling <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -384,47 +391,33 @@
 
   <footer class="footer">
     <div class="footer-inner">
-
-
 <div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class=""></i>
-  </span>
   <span class="author" itemprop="copyrightHolder">Juhyun Song</span>
+  &copy; <span itemprop="copyrightYear" id="copyright-year"></span>
 </div>
+<script>
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
 
     </div>
   </footer>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
 
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
-<script src="/js/third-party/search/local-search.js"></script>
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-
-
-
-
-  
-
-
-
-
-  
-
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
-
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"juhyun167","repo":"juhyun167.github.io","client_id":"97ef06bf938b3dfb0c5b","client_secret":"210c90c45a592282824bbc4312dbc74b3709bbea","admin_user":"juhyun167","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"44e47f487e5b825e710140ee2f8a7f15"}</script>
-<script src="/js/third-party/comments/gitalk.js"></script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"juhyun167","repo":"juhyun167.github.io","client_id":"97ef06bf938b3dfb0c5b","client_secret":"210c90c45a592282824bbc4312dbc74b3709bbea","admin_user":"juhyun167","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"44e47f487e5b825e710140ee2f8a7f15"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
 
 </body>
 </html>

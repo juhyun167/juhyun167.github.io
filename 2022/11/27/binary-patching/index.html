@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
-
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -16,9 +15,9 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs2015","dark":"vs2015"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/searchdb.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="개요 바이너리 패치의 의미와 방법을 살펴보고, 코드 수정과 삽입을 통해 취약점을 패치해 보겠습니다. 바이너리 패치 바이너리 패치(binary patching)란 바이너리의 내용을 수정하여 다르게 동작하도록 하는 과정을 의미합니다. 바이너리 패치는 소스 코드의 확보가 제한되는 바이너리를 대상으로 분석이나 연구, 또는 취약점을 보완할 필요가 있는 상황에서 유용">
 <meta property="og:type" content="article">
@@ -35,7 +34,7 @@
 <meta property="og:image" content="https://juhyun167.github.io/images/binary-patching/6.png">
 <meta property="og:image" content="https://juhyun167.github.io/images/binary-patching/7.png">
 <meta property="article:published_time" content="2022-11-27T09:20:03.000Z">
-<meta property="article:modified_time" content="2024-07-01T05:48:13.470Z">
+<meta property="article:modified_time" content="2025-10-23T06:55:00.905Z">
 <meta property="article:author" content="juhyun167 블로그">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://juhyun167.github.io/images/binary-patching/1.png">
@@ -44,24 +43,52 @@
 <link rel="canonical" href="https://juhyun167.github.io/2022/11/27/binary-patching/">
 
 
-
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://juhyun167.github.io/2022/11/27/binary-patching/","path":"2022/11/27/binary-patching/","title":"바이너리 패치"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>바이너리 패치 | JUHYUN167</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NL1HJ159T"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-2NL1HJ159T","only_pageview":false}</script>
-  <script src="/js/third-party/analytics/google-analytics.js"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-2NL1HJ159T","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
 
 
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
 
 
 <!-- custom fonts -->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/sf-mono-webfont@1.0.0/stylesheet.min.css" rel="stylesheet">
 
 <!-- google search console -->
 <meta name="google-site-verification" content="pV2zNbKpqSdeajzc7IIefYq62vg-J9PCZfCvLKwnYF8" />
@@ -78,8 +105,8 @@
   <div class="headband"></div>
 
   <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
@@ -97,7 +124,7 @@
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -117,39 +144,33 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 <!-- load header custom script -->
 <script src="/scripts/header.js"></script>
 
-</div>
+</header>
         
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
   <aside class="sidebar">
 
     <div class="sidebar-inner sidebar-overview-active">
@@ -169,11 +190,11 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">juhyun167 블로그</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap site-overview-item animated">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
@@ -187,9 +208,9 @@
       </div>
   </nav>
 </div>
-
-
-<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/Data-Structures/">Data Structures</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Security/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/Reverse-Engineering/">Reverse Engineering</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thoughts/">Thoughts</a><span class="category-list-count">3</span></li></ul>
+<div class="category-list">
+  <ul class="category-list"></ul>
+</div>
 
 <!-- load sidebar custom script -->
 <script src="/scripts/sidebar.js"></script>
@@ -197,18 +218,12 @@
         </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
 
     
+  </aside>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+    </div>
 
     <div class="main-inner post posts-expand">
 
@@ -254,13 +269,6 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-07-01 05:48:13" itemprop="dateModified" datetime="2024-07-01T05:48:13+00:00">2024-07-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">In</span>
@@ -282,8 +290,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
+    <div class="post-body" itemprop="articleBody"><h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
 <p>바이너리 패치의 의미와 방법을 살펴보고, 코드 수정과 삽입을 통해 취약점을 패치해 보겠습니다.</p>
 <h2 id="%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%ED%8C%A8%EC%B9%98" tabindex="-1">바이너리 패치</h2>
 <p>바이너리 패치(binary patching)란 바이너리의 내용을 수정하여 다르게 동작하도록 하는 과정을 의미합니다. 바이너리 패치는 소스 코드의 확보가 제한되는 바이너리를 대상으로 분석이나 연구, 또는 취약점을 보완할 필요가 있는 상황에서 유용합니다. 예를 들어 사물인터넷(IoT) 장치의 펌웨어에서 제조사가 패치하지 못한 취약점을 자체적으로 보완하여 사용하거나, 디버거를 탐지하면 종료하는 등 분석을 방해하는 악성 코드의 기능을 무력화하기 위해 바이너리 패치 기술을 사용할 수 있습니다.</p>
@@ -299,7 +306,7 @@
 <p>바이너리에 존재하는 off-by-one 버그를 헥스 에디터를 사용한 방법으로 패치해 보겠습니다. 압축 파일에서 <code>example1/main</code> 파일이 패치할 바이너리입니다. 바이너리를 실행하면 add, delete, show 등의 메뉴를 확인할 수 있고, 각각의 메뉴를 선택해 보면 사용자로부터 문자열을 입력받아 관리하고 보여주는 프로그램임을 짐작할 수 있습니다.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ./main</span><br><span class="line">1. add data</span><br><span class="line">2. delete data</span><br><span class="line">3. show data</span><br><span class="line">4. exit</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 <p>add 메뉴에 해당하는 <code>add_data</code> 함수를 디컴파일하면 다음과 같습니다. 11행에서 길이를 입력받고, 16보다 작거나 같으면 14행에서 20바이트 크기의 구조체를 할당한 후 오프셋 16에 길이를 저장합니다. 17행의 반복문에서는 입력받은 길이만큼 1바이트씩 문자를 입력받아 구조체의 오프셋 0에서부터 저장하는 것처럼 보입니다. 20행의 조건문은 입력받은 문자가 개행 문자면 널(null) 문자로 바꾼 후 반복문을 탈출하도록 합니다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">_DWORD *<span class="title function_">add_data</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf; <span class="comment">// [rsp+7h] [rbp-19h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> v2; <span class="comment">// [rsp+8h] [rbp-18h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> i; <span class="comment">// [rsp+Ch] [rbp-14h]</span></span><br><span class="line">  _DWORD *v4; <span class="comment">// [rsp+10h] [rbp-10h]</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v5; <span class="comment">// [rsp+18h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;length: &quot;</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">&quot;%u&quot;</span>, &amp;v2);</span><br><span class="line">  <span class="keyword">if</span> ( v2 &lt;= <span class="number">0x10</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v4 = <span class="built_in">malloc</span>(<span class="number">0x14</span>uLL);</span><br><span class="line">    v4[<span class="number">4</span>] = v2;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;contents: &quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= v2; ++i )</span><br><span class="line">    &#123;</span><br><span class="line">      read(<span class="number">0</span>, &amp;buf, <span class="number">1uLL</span>);</span><br><span class="line">      <span class="keyword">if</span> ( buf == <span class="string">&#x27;\n&#x27;</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        *((_BYTE *)v4 + (<span class="type">int</span>)i) = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">        <span class="keyword">return</span> v4;</span><br><span class="line">      &#125;</span><br><span class="line">      *((_BYTE *)v4 + (<span class="type">int</span>)i) = buf;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> v4;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;sorry, not enough space&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">_DWORD *<span class="title function_">add_data</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf; <span class="comment">// [rsp+7h] [rbp-19h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> v2; <span class="comment">// [rsp+8h] [rbp-18h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> i; <span class="comment">// [rsp+Ch] [rbp-14h]</span></span><br><span class="line">  _DWORD *v4; <span class="comment">// [rsp+10h] [rbp-10h]</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v5; <span class="comment">// [rsp+18h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readfsqword(<span class="number">0x28u</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;length: &quot;</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">&quot;%u&quot;</span>, &amp;v2);</span><br><span class="line">  <span class="keyword">if</span> ( v2 &lt;= <span class="number">0x10</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v4 = <span class="built_in">malloc</span>(<span class="number">0x14u</span>LL);</span><br><span class="line">    v4[<span class="number">4</span>] = v2;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;contents: &quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= v2; ++i )</span><br><span class="line">    &#123;</span><br><span class="line">      read(<span class="number">0</span>, &amp;buf, <span class="number">1uLL</span>);</span><br><span class="line">      <span class="keyword">if</span> ( buf == <span class="string">&#x27;\n&#x27;</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        *((_BYTE *)v4 + (<span class="type">int</span>)i) = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">        <span class="keyword">return</span> v4;</span><br><span class="line">      &#125;</span><br><span class="line">      *((_BYTE *)v4 + (<span class="type">int</span>)i) = buf;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> v4;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;sorry, not enough space&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>그런데 반복문의 탈출 조건을 잘 보면 <code>i &lt; v2</code> 가 아닌 <code>i &lt;= v2</code> 로, 길이만큼 입력받도록 한 개발자의 의도와는 달리 실제로는 한 바이트를 더 입력할 수 있습니다. 만약 허용되는 최대 길이인 16을 입력한 후 17바이트를 입력한다면, 마지막 바이트는 구조체의 오프셋 16에 저장되면서 해당 위치에 있는 길이 값을 아래 그림과 같이 덮어쓸 것입니다.</p>
 <p><img src="/images/binary-patching/2.png" alt="2.png"></p>
 <p>show 메뉴에 해당하는 <code>show_data</code> 함수를 보면 오프셋 16의 5행에서 반복문의 탈출 조건에 사용되고 있습니다. 반복문은 구조체의 내용을 1바이트씩 출력하므로, 길이 값이 모두 몇 바이트를 출력할지 결정하고 있는 것입니다. 위의 그림과 같이 길이 값이 16보다 큰 값으로 오염된 상태라면, 힙 메모리에 대한 out-of-bounds 읽기가 발생하여 메모리 주소가 노출되는 취약점으로까지 연계될 수 있습니다.</p>
@@ -406,7 +413,7 @@
 <h3 id="double-free-%EB%B2%84%EA%B7%B8-%ED%8C%A8%EC%B9%98%ED%95%98%EA%B8%B0" tabindex="-1">double free 버그 패치하기</h3>
 <p>이번에는 바이너리에 존재하는 double free 버그를 코드를 삽입하는 방법으로 패치해 보겠습니다. <code>example2/main</code> 파일이 패치할 바이너리이며, 핵심적인 로직은 이전의 <code>example1/main</code> 바이너리와 거의 차이가 없습니다.</p>
 <p><code>main</code> 함수를 보면 add 메뉴의 경우 22행에서 <code>add_data</code> 함수가 반환한 구조체 포인터를 <code>s[i]</code> 에 저장합니다. <code>s</code> 는 스택에 존재하는 배열이며, <code>i</code> 는 16행의 반복문에서 <code>s[i]</code> 가 <code>NULL</code> 인 인덱스를 자동으로 선택합니다. delete 메뉴에 해당하는 33행은 인덱스 <code>i</code> 를 입력받고, 16보다 작다면 <code>s[i]</code> 가 가리키는 구조체를 해제하기 위해 <code>delete_data</code> 함수를 호출합니다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl __noreturn <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> v3; <span class="comment">// [rsp+0h] [rbp-A0h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> i; <span class="comment">// [rsp+4h] [rbp-9Ch] BYREF</span></span><br><span class="line">  __int64 v5; <span class="comment">// [rsp+8h] [rbp-98h]</span></span><br><span class="line">  __int64 s[<span class="number">18</span>]; <span class="comment">// [rsp+10h] [rbp-90h] BYREF</span></span><br><span class="line"></span><br><span class="line">  s[<span class="number">17</span>] = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  setup(argc, argv, envp);</span><br><span class="line">  <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="number">0x80</span>uLL);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">      <span class="keyword">if</span> ( v3 == <span class="number">1</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">0xF</span> &amp;&amp; s[i]; ++i )</span><br><span class="line">          ;</span><br><span class="line">        <span class="keyword">if</span> ( i &lt;= <span class="number">0xF</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          v5 = add_data();</span><br><span class="line">          <span class="keyword">if</span> ( v5 )</span><br><span class="line">            s[i] = v5;</span><br><span class="line">        &#125;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v3 != <span class="number">2</span> )</span><br><span class="line">        &#123;</span><br><span class="line">LABEL_22:</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;byebye!&quot;</span>);</span><br><span class="line">          <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;index: &quot;</span>);</span><br><span class="line">        __isoc99_scanf(<span class="string">&quot;%u&quot;</span>, &amp;i);</span><br><span class="line">        <span class="keyword">if</span> ( i &gt; <span class="number">0xF</span> )</span><br><span class="line">LABEL_17:</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;sorry, there is no data&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">          delete_data(s[i]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl __noreturn <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> v3; <span class="comment">// [rsp+0h] [rbp-A0h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> i; <span class="comment">// [rsp+4h] [rbp-9Ch] BYREF</span></span><br><span class="line">  __int64 v5; <span class="comment">// [rsp+8h] [rbp-98h]</span></span><br><span class="line">  __int64 s[<span class="number">18</span>]; <span class="comment">// [rsp+10h] [rbp-90h] BYREF</span></span><br><span class="line"></span><br><span class="line">  s[<span class="number">17</span>] = __readfsqword(<span class="number">0x28u</span>);</span><br><span class="line">  setup(argc, argv, envp);</span><br><span class="line">  <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="number">0x80u</span>LL);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">      <span class="keyword">if</span> ( v3 == <span class="number">1</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">0xF</span> &amp;&amp; s[i]; ++i )</span><br><span class="line">          ;</span><br><span class="line">        <span class="keyword">if</span> ( i &lt;= <span class="number">0xF</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          v5 = add_data();</span><br><span class="line">          <span class="keyword">if</span> ( v5 )</span><br><span class="line">            s[i] = v5;</span><br><span class="line">        &#125;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v3 != <span class="number">2</span> )</span><br><span class="line">        &#123;</span><br><span class="line">LABEL_22:</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;byebye!&quot;</span>);</span><br><span class="line">          <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;index: &quot;</span>);</span><br><span class="line">        __isoc99_scanf(<span class="string">&quot;%u&quot;</span>, &amp;i);</span><br><span class="line">        <span class="keyword">if</span> ( i &gt; <span class="number">0xF</span> )</span><br><span class="line">LABEL_17:</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;sorry, there is no data&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">          delete_data(s[i]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>그런데 <code>delete_data</code> 함수는 단순히 <code>free</code> 함수를 호출하는 것 이외에 별다른 기능을 하지 않습니다. 또한 <code>main</code> 함수에서 <code>s[i]</code> 를 <code>NULL</code> 로 초기화하는 등의 조치를 하지 않고 있어, 해제한 힙 메모리를 다시 해제할 수 있는 double free 버그가 발생합니다. double free 버그를 악용하면 동적 메모리 할당자가 할당 시 임의 주소를 반환하도록 하는 프리미티브를 구성할 수 있습니다. 또한 경우에 따라 임의 읽기 및 쓰기나 코드 실행 취약점으로 연계할 수 있습니다.</p>
 <p>다음은 바이너리에서 delete 메뉴를 두 번 선택하고 동일한 인덱스를 입력한 결과입니다. 동적 메모리 할당자 내부에서 double free 버그의 발생을 탐지하여 실행이 강제로 종료되었음을 확인할 수 있습니다.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ ./main</span><br><span class="line">...</span><br><span class="line">1. add data</span><br><span class="line">2. delete data</span><br><span class="line">3. show data</span><br><span class="line">4. exit</span><br><span class="line">&gt; 2</span><br><span class="line">index: 0</span><br><span class="line">1. add data</span><br><span class="line">2. delete data</span><br><span class="line">3. show data</span><br><span class="line">4. exit</span><br><span class="line">&gt; 2</span><br><span class="line">index: 0</span><br><span class="line">free(): double free detected in tcache 2</span><br><span class="line">[1]    20241 IOT instruction  ./main</span><br></pre></td></tr></table></figure>
@@ -450,12 +457,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2022/08/28/line22-rolling/" rel="prev" title="[LINE CTF 2022] rolling">
-                  <i class="fa fa-chevron-left"></i> [LINE CTF 2022] rolling
+                  <i class="fa fa-angle-left"></i> [LINE CTF 2022] rolling
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2022/12/31/looking-back-on-2022/" rel="next" title="2022년을 돌아보며">
-                  2022년을 돌아보며 <i class="fa fa-chevron-right"></i>
+                  2022년을 돌아보며 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -474,47 +481,33 @@
 
   <footer class="footer">
     <div class="footer-inner">
-
-
 <div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class=""></i>
-  </span>
   <span class="author" itemprop="copyrightHolder">Juhyun Song</span>
+  &copy; <span itemprop="copyrightYear" id="copyright-year"></span>
 </div>
+<script>
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
 
     </div>
   </footer>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
 
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
-<script src="/js/third-party/search/local-search.js"></script>
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-
-
-
-
-  
-
-
-
-
-  
-
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
-
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"juhyun167","repo":"juhyun167.github.io","client_id":"97ef06bf938b3dfb0c5b","client_secret":"210c90c45a592282824bbc4312dbc74b3709bbea","admin_user":"juhyun167","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"266afa04544bf129e01135d02687bb7a"}</script>
-<script src="/js/third-party/comments/gitalk.js"></script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"juhyun167","repo":"juhyun167.github.io","client_id":"97ef06bf938b3dfb0c5b","client_secret":"210c90c45a592282824bbc4312dbc74b3709bbea","admin_user":"juhyun167","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"266afa04544bf129e01135d02687bb7a"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
 
 </body>
 </html>

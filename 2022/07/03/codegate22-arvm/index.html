@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
-
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -16,9 +15,9 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs2015","dark":"vs2015"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/searchdb.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="개요  Welcome! Here is my Emulator. It can use only human. Always SMiLEY :)  chall.zip 문제 분석 32비트 ARM 바이너리 app 과 Dockerfile , run.sh 등이 주어집니다. run.sh 파일에서 바이너리는 qemu-arm-static 으로 에뮬레이션하여 실행됨을 확인할 수 있습니">
 <meta property="og:type" content="article">
@@ -28,13 +27,12 @@
 <meta property="og:description" content="개요  Welcome! Here is my Emulator. It can use only human. Always SMiLEY :)  chall.zip 문제 분석 32비트 ARM 바이너리 app 과 Dockerfile , run.sh 등이 주어집니다. run.sh 파일에서 바이너리는 qemu-arm-static 으로 에뮬레이션하여 실행됨을 확인할 수 있습니">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-03T11:26:07.000Z">
-<meta property="article:modified_time" content="2024-07-01T05:48:13.474Z">
+<meta property="article:modified_time" content="2025-10-23T06:55:00.905Z">
 <meta property="article:author" content="juhyun167 블로그">
 <meta name="twitter:card" content="summary">
 
 
 <link rel="canonical" href="https://juhyun167.github.io/2022/07/03/codegate22-arvm/">
-
 
 
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://juhyun167.github.io/2022/07/03/codegate22-arvm/","path":"2022/07/03/codegate22-arvm/","title":"[Codegate CTF 2022] ARVM"}</script>
@@ -43,17 +41,46 @@
 <title>[Codegate CTF 2022] ARVM | JUHYUN167</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NL1HJ159T"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-2NL1HJ159T","only_pageview":false}</script>
-  <script src="/js/third-party/analytics/google-analytics.js"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-2NL1HJ159T","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
 
 
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
 
 
 <!-- custom fonts -->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/sf-mono-webfont@1.0.0/stylesheet.min.css" rel="stylesheet">
 
 <!-- google search console -->
 <meta name="google-site-verification" content="pV2zNbKpqSdeajzc7IIefYq62vg-J9PCZfCvLKwnYF8" />
@@ -70,8 +97,8 @@
   <div class="headband"></div>
 
   <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
@@ -89,7 +116,7 @@
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -109,39 +136,33 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 <!-- load header custom script -->
 <script src="/scripts/header.js"></script>
 
-</div>
+</header>
         
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
   <aside class="sidebar">
 
     <div class="sidebar-inner sidebar-overview-active">
@@ -161,11 +182,11 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">juhyun167 블로그</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap site-overview-item animated">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
@@ -179,9 +200,9 @@
       </div>
   </nav>
 </div>
-
-
-<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/Data-Structures/">Data Structures</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Security/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/Reverse-Engineering/">Reverse Engineering</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thoughts/">Thoughts</a><span class="category-list-count">3</span></li></ul>
+<div class="category-list">
+  <ul class="category-list"></ul>
+</div>
 
 <!-- load sidebar custom script -->
 <script src="/scripts/sidebar.js"></script>
@@ -189,18 +210,12 @@
         </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
 
     
+  </aside>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+    </div>
 
     <div class="main-inner post posts-expand">
 
@@ -246,13 +261,6 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-07-01 05:48:13" itemprop="dateModified" datetime="2024-07-01T05:48:13+00:00">2024-07-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">In</span>
@@ -274,8 +282,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
+    <div class="post-body" itemprop="articleBody"><h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
 <blockquote>
 <p>Welcome! Here is my Emulator. It can use only human.<br>
 Always SMiLEY :)</p>
@@ -287,7 +294,7 @@ Always SMiLEY :)</p>
 <p>바이너리를 실행하면 코드를 입력받고, 3가지의 메뉴가 주어집니다. 코드를 입력하고 '1. Run Code’를 선택하면 바이너리가 출력하는 Secret code를 똑같이 입력해야 하는데, 앞서 코드로 “111” 을 입력했더니 “Instruction 0xa31313131 is invalid” 메시지와 함께 종료됩니다.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ qemu-arm-static -L /usr/arm-linux-gnueabi ./app</span><br><span class="line">Running Emulator...</span><br><span class="line">Welcome Emulator</span><br><span class="line">Insert Your Code :&gt; 111</span><br><span class="line">1. Run Code</span><br><span class="line">2. View Code</span><br><span class="line">3. Edit Code</span><br><span class="line">:&gt; 1</span><br><span class="line">Before run, it has some captcha</span><br><span class="line">Secret code : 0x52bae0cd</span><br><span class="line">Code? :&gt; 0x52bae0cd</span><br><span class="line">Instruction 0xa313131 is invalid</span><br></pre></td></tr></table></figure>
 <p><code>main</code> 함수를 살펴보면 다음과 같습니다. 13행에서 <code>setup</code> 함수를 호출하여 필요한 구조체와 메모리를 할당하고, 17행에서 <code>edit_code</code> 함수를 호출하여 코드를 입력받습니다. 53행에서 호출하는 <code>check_code</code> 함수의 리턴값이 -1이 아니면 56~61행에서 입력한 코드를 실행하는데, <code>R0</code> 부터 <code>R12</code> 까지 모두 0으로 초기화하는 코드를 앞에 덧붙인 후 실행합니다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">void</span> *v0; <span class="comment">// r0</span></span><br><span class="line">  <span class="type">int</span> captcha; <span class="comment">// [sp+4h] [bp-30h] BYREF</span></span><br><span class="line">  <span class="type">int</span> input; <span class="comment">// [sp+8h] [bp-2Ch] BYREF</span></span><br><span class="line">  <span class="type">int</span> choice; <span class="comment">// [sp+Ch] [bp-28h]</span></span><br><span class="line">  <span class="type">int</span> fd; <span class="comment">// [sp+10h] [bp-24h]</span></span><br><span class="line">  <span class="type">void</span> *dest; <span class="comment">// [sp+14h] [bp-20h]</span></span><br><span class="line">  <span class="type">char</span> s[<span class="number">16</span>]; <span class="comment">// [sp+1Ch] [bp-18h] BYREF</span></span><br><span class="line">  <span class="type">void</span> *v8; <span class="comment">// [sp+2Ch] [bp-8h]</span></span><br><span class="line"></span><br><span class="line">  v8 = &amp;_stack_chk_guard;</span><br><span class="line">  <span class="keyword">if</span> ( setup() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">if</span> ( loading() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">if</span> ( edit_code() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    print_menu();</span><br><span class="line">    <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="keyword">sizeof</span>(s));</span><br><span class="line">    read(<span class="number">0</span>, s, <span class="number">16u</span>);</span><br><span class="line">    choice = atoi(s);</span><br><span class="line">    <span class="keyword">if</span> ( choice == <span class="number">1</span> )                          <span class="comment">// 1. Run Code</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> ( choice == <span class="number">2</span> )                          <span class="comment">// 2. View Code</span></span><br><span class="line">    &#123;</span><br><span class="line">      write(<span class="number">1</span>, em-&gt;code, <span class="number">4096u</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( choice == <span class="number">3</span> )                     <span class="comment">// 3. Edit Code</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( loading() == <span class="number">-1</span> )</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">      <span class="keyword">if</span> ( edit_code() == <span class="number">-1</span> )</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  captcha = <span class="number">0</span>;</span><br><span class="line">  fd = open(<span class="string">&quot;/dev/urandom&quot;</span>, <span class="number">2</span>);</span><br><span class="line">  read(fd, &amp;captcha, <span class="number">4u</span>);</span><br><span class="line">  close(fd);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Before run, it has some captcha&quot;</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Secret code : 0x%x\n&quot;</span>, captcha);</span><br><span class="line">  input = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Code? :&gt; &quot;</span>);</span><br><span class="line">  _isoc99_scanf(<span class="string">&quot;0x%x&quot;</span>, &amp;input);</span><br><span class="line">  <span class="keyword">if</span> ( captcha != input )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;You are Robot!&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( check_code() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Good! Now Execute Real Machine&quot;</span>);</span><br><span class="line">  dest = <span class="built_in">calloc</span>(<span class="number">1u</span>, <span class="number">0x1000</span>u);</span><br><span class="line">  <span class="built_in">memcpy</span>(dest, em-&gt;code, <span class="number">4096u</span>);</span><br><span class="line">  <span class="built_in">memset</span>(em-&gt;code, <span class="number">0</span>, <span class="number">4096u</span>);</span><br><span class="line">  <span class="built_in">memcpy</span>(em-&gt;code, &amp;clear_regs_code, <span class="number">52u</span>);      <span class="comment">// mov &#123;r0-r12&#125;, 0</span></span><br><span class="line">  v0 = <span class="built_in">memcpy</span>(em-&gt;code + <span class="number">52</span>, dest, <span class="number">4044u</span>);</span><br><span class="line">  ((<span class="type">void</span> (__fastcall *)(<span class="type">void</span> *))em-&gt;code)(v0);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">void</span> *v0; <span class="comment">// r0</span></span><br><span class="line">  <span class="type">int</span> captcha; <span class="comment">// [sp+4h] [bp-30h] BYREF</span></span><br><span class="line">  <span class="type">int</span> input; <span class="comment">// [sp+8h] [bp-2Ch] BYREF</span></span><br><span class="line">  <span class="type">int</span> choice; <span class="comment">// [sp+Ch] [bp-28h]</span></span><br><span class="line">  <span class="type">int</span> fd; <span class="comment">// [sp+10h] [bp-24h]</span></span><br><span class="line">  <span class="type">void</span> *dest; <span class="comment">// [sp+14h] [bp-20h]</span></span><br><span class="line">  <span class="type">char</span> s[<span class="number">16</span>]; <span class="comment">// [sp+1Ch] [bp-18h] BYREF</span></span><br><span class="line">  <span class="type">void</span> *v8; <span class="comment">// [sp+2Ch] [bp-8h]</span></span><br><span class="line"></span><br><span class="line">  v8 = &amp;_stack_chk_guard;</span><br><span class="line">  <span class="keyword">if</span> ( setup() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">if</span> ( loading() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">if</span> ( edit_code() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    print_menu();</span><br><span class="line">    <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="keyword">sizeof</span>(s));</span><br><span class="line">    read(<span class="number">0</span>, s, <span class="number">16u</span>);</span><br><span class="line">    choice = atoi(s);</span><br><span class="line">    <span class="keyword">if</span> ( choice == <span class="number">1</span> )                          <span class="comment">// 1. Run Code</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> ( choice == <span class="number">2</span> )                          <span class="comment">// 2. View Code</span></span><br><span class="line">    &#123;</span><br><span class="line">      write(<span class="number">1</span>, em-&gt;code, <span class="number">4096u</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( choice == <span class="number">3</span> )                     <span class="comment">// 3. Edit Code</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( loading() == <span class="number">-1</span> )</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">      <span class="keyword">if</span> ( edit_code() == <span class="number">-1</span> )</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  captcha = <span class="number">0</span>;</span><br><span class="line">  fd = open(<span class="string">&quot;/dev/urandom&quot;</span>, <span class="number">2</span>);</span><br><span class="line">  read(fd, &amp;captcha, <span class="number">4u</span>);</span><br><span class="line">  close(fd);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Before run, it has some captcha&quot;</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Secret code : 0x%x\n&quot;</span>, captcha);</span><br><span class="line">  input = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Code? :&gt; &quot;</span>);</span><br><span class="line">  _isoc99_scanf(<span class="string">&quot;0x%x&quot;</span>, &amp;input);</span><br><span class="line">  <span class="keyword">if</span> ( captcha != input )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;You are Robot!&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( check_code() == <span class="number">-1</span> )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Good! Now Execute Real Machine&quot;</span>);</span><br><span class="line">  dest = <span class="built_in">calloc</span>(<span class="number">1u</span>, <span class="number">0x1000u</span>);</span><br><span class="line">  <span class="built_in">memcpy</span>(dest, em-&gt;code, <span class="number">4096u</span>);</span><br><span class="line">  <span class="built_in">memset</span>(em-&gt;code, <span class="number">0</span>, <span class="number">4096u</span>);</span><br><span class="line">  <span class="built_in">memcpy</span>(em-&gt;code, &amp;clear_regs_code, <span class="number">52u</span>);      <span class="comment">// mov &#123;r0-r12&#125;, 0</span></span><br><span class="line">  v0 = <span class="built_in">memcpy</span>(em-&gt;code + <span class="number">52</span>, dest, <span class="number">4044u</span>);</span><br><span class="line">  ((<span class="type">void</span> (__fastcall *)(<span class="type">void</span> *))em-&gt;code)(v0);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>setup</code> 함수는 <code>emulator</code> 구조체 변수 <code>em</code> 과 <code>reg</code> 구조체, 각종 메모리를 할당합니다. <code>emulator</code> 구조체는 <code>mmap</code> 시스템 콜로 할당한 코드, 힙, 스택 역할을 하는 메모리의 주소와 <code>reg</code> 구조체 포인터를 멤버로 가집니다. <code>reg</code> 구조체는 범용 레지스터들과 <code>CPSR</code> 레지스터 역할을 하는 정수형 변수 17개를 멤버로 가집니다. 할당 이후 <code>em-&gt;reg-&gt;pc</code> , <code>em-&gt;reg-&gt;sp</code> 를 각각 <code>em-&gt;code</code> , <code>em-&gt;stack</code> 으로 초기화합니다.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">setup</span><span class="params">()</span> <span class="comment">// 0x1088c</span></span><br><span class="line">&#123;</span><br><span class="line">  emulator *v1; <span class="comment">// r4</span></span><br><span class="line">  emulator *v2; <span class="comment">// r4</span></span><br><span class="line">  emulator *v3; <span class="comment">// r4</span></span><br><span class="line">  emulator *v4; <span class="comment">// r4</span></span><br><span class="line"></span><br><span class="line">  setvbuf((FILE *)<span class="built_in">stdin</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  setvbuf((FILE *)<span class="built_in">stdout</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  em = (emulator *)<span class="built_in">calloc</span>(<span class="number">1u</span>, <span class="number">16u</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !em )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  v1 = em;</span><br><span class="line">  v1-&gt;code = (<span class="type">char</span> *)mmap((<span class="type">void</span> *)<span class="number">0x1000</span>, <span class="number">4096u</span>, <span class="number">7</span>, <span class="number">0x4022</span>, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !em-&gt;code )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  v2 = em;</span><br><span class="line">  v2-&gt;heap = (<span class="type">char</span> *)mmap((<span class="type">void</span> *)<span class="number">0x2000</span>, <span class="number">4096u</span>, <span class="number">3</span>, <span class="number">0x4022</span>, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !em-&gt;heap )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  v3 = em;</span><br><span class="line">  v3-&gt;<span class="built_in">stack</span> = (<span class="type">char</span> *)mmap((<span class="type">void</span> *)<span class="number">0x3000</span>, <span class="number">4096u</span>, <span class="number">3</span>, <span class="number">0x4022</span>, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !em-&gt;<span class="built_in">stack</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  v4 = em;</span><br><span class="line">  v4-&gt;reg = (<span class="keyword">struct</span> reg *)<span class="built_in">calloc</span>(<span class="number">1u</span>, <span class="number">68u</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !em-&gt;reg )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  em-&gt;reg-&gt;pc = (<span class="type">unsigned</span> <span class="type">int</span>)em-&gt;code;</span><br><span class="line">  em-&gt;reg-&gt;sp = (<span class="type">unsigned</span> <span class="type">int</span>)em-&gt;<span class="built_in">stack</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">emulator</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">reg</span> *<span class="title">reg</span>;</span></span><br><span class="line">  <span class="type">char</span> *<span class="built_in">stack</span>;</span><br><span class="line">  <span class="type">char</span> *code;</span><br><span class="line">  <span class="type">char</span> *heap;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">reg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> sp, lr, pc, cpsr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -312,7 +319,7 @@ Always SMiLEY :)</p>
 <p><code>update_zf_nf</code> 함수는 인자로 받은 연산 결과를 <code>update_zf</code> , <code>update_nf</code> 함수에 전달합니다.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">update_zf_nf</span><span class="params">(<span class="type">int</span> a1)</span>	<span class="comment">// 0x12d4c</span></span><br><span class="line">&#123;</span><br><span class="line">  update_zf(a1);</span><br><span class="line">  update_nf(a1);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>update_nf</code> 함수는 연산의 결과가 0이 아닐 경우 비트 연산을 통해 <code>em-&gt;reg-&gt;cpsr</code> 값의 bit 31에 1을 대입합니다. 이는 <code>CPSR</code> 레지스터의 <code>N</code> 비트에 해당하는데, 정의 상 <code>N</code> 비트는 결과가 음수인 경우(최상위 비트가 1인 경우) 1이어야 합니다. 따라서 <code>update_nf</code> 함수는 <code>em-&gt;reg-&gt;cpsr</code> 값을 실제 인스트럭션의 결과와 다르게 반영하고 있습니다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">update_nf</span><span class="params">(<span class="type">int</span> a1)</span>    <span class="comment">// 0x12ccc</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> ( a1 )</span><br><span class="line">    em-&gt;reg-&gt;cpsr |= <span class="number">0x80000000</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    em-&gt;reg-&gt;cpsr &amp;= <span class="number">0x70000000</span>u;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">update_nf</span><span class="params">(<span class="type">int</span> a1)</span>    <span class="comment">// 0x12ccc</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> ( a1 )</span><br><span class="line">    em-&gt;reg-&gt;cpsr |= <span class="number">0x80000000</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    em-&gt;reg-&gt;cpsr &amp;= <span class="number">0x70000000u</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>이를 이용해 다음과 같이 셀코드를 입력하고도 <code>check_code</code> 함수를 통과하여 실행하는 익스플로잇 시나리오를 구성할 수 있습니다. (단순 셸코드를 입력하면 <code>check_syscall</code> 함수에서 시스템 콜 번호를 필터링하여 종료합니다)</p>
 <ol>
 <li>산술 연산을 통해 <code>em-&gt;reg-&gt;cpsr</code> 의 <code>N</code> 비트가 1이 되도록 합니다. (잘못 반영된 결과입니다)</li>
@@ -346,12 +353,12 @@ Always SMiLEY :)</p>
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2022/07/02/arm-reverse-engineering-basics/" rel="prev" title="ARM 리버스 엔지니어링 기초">
-                  <i class="fa fa-chevron-left"></i> ARM 리버스 엔지니어링 기초
+                  <i class="fa fa-angle-left"></i> ARM 리버스 엔지니어링 기초
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2022/07/05/codegate22-vimt/" rel="next" title="[Codegate CTF 2022] VIMT">
-                  [Codegate CTF 2022] VIMT <i class="fa fa-chevron-right"></i>
+                  [Codegate CTF 2022] VIMT <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -370,47 +377,33 @@ Always SMiLEY :)</p>
 
   <footer class="footer">
     <div class="footer-inner">
-
-
 <div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class=""></i>
-  </span>
   <span class="author" itemprop="copyrightHolder">Juhyun Song</span>
+  &copy; <span itemprop="copyrightYear" id="copyright-year"></span>
 </div>
+<script>
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
 
     </div>
   </footer>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
 
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
-<script src="/js/third-party/search/local-search.js"></script>
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-
-
-
-
-  
-
-
-
-
-  
-
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
-
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"juhyun167","repo":"juhyun167.github.io","client_id":"97ef06bf938b3dfb0c5b","client_secret":"210c90c45a592282824bbc4312dbc74b3709bbea","admin_user":"juhyun167","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"a1d5e56fe02508eb308bb135c15035d2"}</script>
-<script src="/js/third-party/comments/gitalk.js"></script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"juhyun167","repo":"juhyun167.github.io","client_id":"97ef06bf938b3dfb0c5b","client_secret":"210c90c45a592282824bbc4312dbc74b3709bbea","admin_user":"juhyun167","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"a1d5e56fe02508eb308bb135c15035d2"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
 
 </body>
 </html>

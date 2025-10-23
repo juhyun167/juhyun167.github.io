@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
-
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -16,9 +15,9 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs2015","dark":"vs2015"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/searchdb.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="개요 C++의 예외 처리에 사용되는 try-catch 구문을 컴파일러 수준에서 어떻게 구현하고 있는지 살펴보겠습니다. 예외 처리 try-catch 구문 예외 처리(exception handling)는 프로그램의 실행 중 발생하는 비정상적인 상황에 대응하기 위한 방법론을 의미합니다. 예외 처리를 사용하는 프로그램은 보통 비정상 상황을 발견하고 예외를 일으키는">
 <meta property="og:type" content="article">
@@ -37,7 +36,7 @@
 <meta property="og:image" content="https://juhyun167.github.io/images/cpp-exception-handling/8.png">
 <meta property="og:image" content="https://juhyun167.github.io/images/cpp-exception-handling/9.png">
 <meta property="article:published_time" content="2022-07-17T22:49:43.000Z">
-<meta property="article:modified_time" content="2024-07-01T05:48:13.474Z">
+<meta property="article:modified_time" content="2025-10-23T06:55:00.906Z">
 <meta property="article:author" content="juhyun167 블로그">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://juhyun167.github.io/images/cpp-exception-handling/1.png">
@@ -46,24 +45,52 @@
 <link rel="canonical" href="https://juhyun167.github.io/2022/07/17/cpp-exception-handling/">
 
 
-
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://juhyun167.github.io/2022/07/17/cpp-exception-handling/","path":"2022/07/17/cpp-exception-handling/","title":"C++ 예외 처리의 구현"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>C++ 예외 처리의 구현 | JUHYUN167</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NL1HJ159T"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-2NL1HJ159T","only_pageview":false}</script>
-  <script src="/js/third-party/analytics/google-analytics.js"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-2NL1HJ159T","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
 
 
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
 
 
 <!-- custom fonts -->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/sf-mono-webfont@1.0.0/stylesheet.min.css" rel="stylesheet">
 
 <!-- google search console -->
 <meta name="google-site-verification" content="pV2zNbKpqSdeajzc7IIefYq62vg-J9PCZfCvLKwnYF8" />
@@ -80,8 +107,8 @@
   <div class="headband"></div>
 
   <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
@@ -99,7 +126,7 @@
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -119,39 +146,33 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 <!-- load header custom script -->
 <script src="/scripts/header.js"></script>
 
-</div>
+</header>
         
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
   <aside class="sidebar">
 
     <div class="sidebar-inner sidebar-overview-active">
@@ -171,11 +192,11 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">juhyun167 블로그</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap site-overview-item animated">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
@@ -189,9 +210,9 @@
       </div>
   </nav>
 </div>
-
-
-<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/Data-Structures/">Data Structures</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Security/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/Reverse-Engineering/">Reverse Engineering</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thoughts/">Thoughts</a><span class="category-list-count">3</span></li></ul>
+<div class="category-list">
+  <ul class="category-list"></ul>
+</div>
 
 <!-- load sidebar custom script -->
 <script src="/scripts/sidebar.js"></script>
@@ -199,18 +220,12 @@
         </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
 
     
+  </aside>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+    </div>
 
     <div class="main-inner post posts-expand">
 
@@ -256,13 +271,6 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-07-01 05:48:13" itemprop="dateModified" datetime="2024-07-01T05:48:13+00:00">2024-07-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">In</span>
@@ -284,8 +292,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
+    <div class="post-body" itemprop="articleBody"><h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
 <p>C++의 예외 처리에 사용되는 try-catch 구문을 컴파일러 수준에서 어떻게 구현하고 있는지 살펴보겠습니다.</p>
 <h2 id="%EC%98%88%EC%99%B8-%EC%B2%98%EB%A6%AC" tabindex="-1">예외 처리</h2>
 <h3 id="try-catch-%EA%B5%AC%EB%AC%B8" tabindex="-1">try-catch 구문</h3>
@@ -426,7 +433,7 @@
 <p>C++ 소스 코드상에서 각각의 함수는 서로 다른 LSDA를 가집니다. LSDA는 헤더와 call-site 테이블, 액션 테이블로 이루어져 있습니다. Personality 루틴은 LSDA 헤더를 읽어 함수 코드 내에서 랜딩 패드의 시작 오프셋을 얻습니다. 그리고 call-site 테이블에서 예외가 발생한 주소에 해당하는 레코드를 찾아 랜딩 패드 내에서 분기해야 할 최종 오프셋을 얻으며, action 테이블에서 해당하는 레코드의 오프셋을 얻어 실행 흐름을 돌릴 목적지가 catch 블록인지 cleanup 코드인지 구별합니다.</p>
 <h2 id="itanium-c%2B%2B-abi" tabindex="-1">Itanium C++ ABI</h2>
 <p>런타임에 실제로 스택 되감기와 예외 처리를 수행하는 로직은 인텔이 제안한 아이테니엄 C++ ABI의 예외 처리 부분을 구현한 라이브러리 함수들입니다. 아이테니엄 C++ ABI는 스택 되감기를 구현하는 unwind 라이브러리와, unwind 라이브러리를 기반으로 예외 처리 구현을 위해 작성된 C++ ABI로 구성되어 있습니다. Unwind 라이브러리와 C++ ABI의 소스 코드는 각각 GCC 프로젝트의 <code>libgcc</code> , <code>libstdc++-v3</code> 경로에 위치합니다.</p>
-<p><div class="link-preview-widget"><a href="https://github.com/gcc-mirror/gcc" rel="noopener external nofollow noreferrer" target="_blank"><div class="link-preview-widget-title">GitHub - gcc-mirror/gcc</div><div class="link-preview-widget-description">Contribute to gcc-mirror/gcc development by creating an account on GitHub.</div><div class="link-preview-widget-url">GitHub</div></a><a class="link-preview-widget-image" href="https://github.com/gcc-mirror/gcc" rel="noopener external nofollow noreferrer" style="background-image: url('https://opengraph.githubassets.com/a96282e2e145d7525e5d04f0ad954e292a35cff365fe7854969789fbcf087bf8/gcc-mirror/gcc');" target="_blank"></a></div></p>
+<p><div class="link-preview-widget"><a href="https://github.com/gcc-mirror/gcc" rel="noopener external nofollow noreferrer" target="_blank"><div class="link-preview-widget-title">GitHub - gcc-mirror/gcc</div><div class="link-preview-widget-description">Contribute to gcc-mirror/gcc development by creating an account on GitHub.</div><div class="link-preview-widget-url">GitHub</div></a><a class="link-preview-widget-image" href="https://github.com/gcc-mirror/gcc" rel="noopener external nofollow noreferrer" style="background-image: url('https://opengraph.githubassets.com/9425a5c2560a37dfca48da65a1935fcfde60b57a25566f209af1ee86846bf59e/gcc-mirror/gcc');" target="_blank"></a></div></p>
 <h3 id="unwind-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC" tabindex="-1">Unwind 라이브러리</h3>
 <p>Unwind 라이브러리에서 스택 되감기는 예외를 발생시키는 것으로 시작합니다. 예외 발생 시 예외 구조체가 전달되며, 라이브러리에서는 이를 다음의 두 단계에 걸쳐 처리합니다.</p>
 <ol>
@@ -446,7 +453,7 @@
 <p><code>_Unwind_Context</code> 는 특정 프레임에서 레지스터들의 값과 CFA, 리턴 주소 등 스택 되감기를 위해 필요한 정보들을 나타내는 구조체입니다. <code>reg</code> 배열은 호출 프레임 테이블에서 R1, … , R16 레지스터의 값에 해당합니다. <code>cfa</code> 와 <code>ra</code> 필드는 각각 CFA와 리턴 주소를 가리킵니다. <code>lsda</code> 필드에는 런타임에 LSDA의 주소를 찾아 대입합니다.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* This is the register and unwind state for a particular frame.  This</span></span><br><span class="line"><span class="comment">   provides the information necessary to unwind up past a frame and return</span></span><br><span class="line"><span class="comment">   to its caller.  */</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">_Unwind_Context</span> &#123;</span><br><span class="line">    _Unwind_Context_Reg_Val reg[__LIBGCC_DWARF_FRAME_REGISTERS__ + <span class="number">1</span>];</span><br><span class="line">    <span class="type">void</span> *cfa;</span><br><span class="line">    <span class="type">void</span> *ra;</span><br><span class="line">    <span class="type">void</span> *lsda;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">dwarf_eh_bases</span> bases;</span><br><span class="line">    <span class="comment">/* Signal frame context.  */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SIGNAL_FRAME_BIT ((~(_Unwind_Word)0 &gt;&gt; 1) + 1)</span></span><br><span class="line">    <span class="comment">/* Context which has version/args_size/by_value fields.  */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EXTENDED_CONTEXT_BIT ((~(_Unwind_Word)0 &gt;&gt; 2) + 1)</span></span><br><span class="line">    <span class="comment">/* Bit reserved on AArch64, return address has been signed with A or B</span></span><br><span class="line"><span class="comment">       key.  */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> RA_SIGNED_BIT ((~(_Unwind_Word)0 &gt;&gt; 3) + 1)</span></span><br><span class="line">    _Unwind_Word flags;</span><br><span class="line">    <span class="comment">/* 0 for now, can be increased when further fields are added to</span></span><br><span class="line"><span class="comment">       struct _Unwind_Context.  */</span></span><br><span class="line">    _Unwind_Word version;</span><br><span class="line">    _Unwind_Word args_size;</span><br><span class="line">    <span class="type">char</span> by_value[__LIBGCC_DWARF_FRAME_REGISTERS__ + <span class="number">1</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>이외에도 CIE와 FDE의 인스트럭션을 해석하여 구성한 호출 프레임 테이블의 행을 나타내는 <code>_Unwind_FrameState</code> 구조체가 있습니다. 아래 정의에서 <code>reg</code> 배열은 R1, … , RN 레지스터들의 값을 복원해야 하는지, 복원한다면 CFA와 오프셋을 기준으로 복원하는지, 다른 레지스터의 값으로 복원하는지 등의 방법을 나타냅니다. <code>cfa_offset</code> 과 <code>cfa_reg</code> 필드는 CFA를 정의하는 레지스터와 오프셋을 나타냅니다. <code>personality</code> 필드에는 런타임에 CIE의 <code>augmentation</code> 필드를 읽고 personality 루틴의 주소를 대입합니다.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* The result of interpreting the frame unwind info for a frame.</span></span><br><span class="line"><span class="comment">   This is all symbolic at this point, as none of the values can</span></span><br><span class="line"><span class="comment">   be resolved until the target pc is located.  */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* Each register save state can be described in terms of a CFA slot,</span></span><br><span class="line"><span class="comment">     another register, or a location expression.  */</span></span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">frame_state_reg_info</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">struct</span> &#123;</span><br><span class="line">      <span class="keyword">union</span> &#123;</span><br><span class="line">	_Unwind_Word reg;</span><br><span class="line">	_Unwind_Sword offset;</span><br><span class="line">	<span class="type">const</span> <span class="type">unsigned</span> <span class="type">char</span> *exp;</span><br><span class="line">      &#125; loc;</span><br><span class="line">      <span class="keyword">enum</span> &#123;</span><br><span class="line">	REG_UNSAVED,</span><br><span class="line">	REG_SAVED_OFFSET,</span><br><span class="line">	REG_SAVED_REG,</span><br><span class="line">	REG_SAVED_EXP,</span><br><span class="line">	REG_SAVED_VAL_OFFSET,</span><br><span class="line">	REG_SAVED_VAL_EXP,</span><br><span class="line">	REG_UNDEFINED</span><br><span class="line">      &#125; how;</span><br><span class="line">    &#125; reg[__LIBGCC_DWARF_FRAME_REGISTERS__+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Used to implement DW_CFA_remember_state.  */</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">frame_state_reg_info</span> *prev;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* The CFA can be described in terms of a reg+offset or a</span></span><br><span class="line"><span class="comment">       location expression.  */</span></span><br><span class="line">    _Unwind_Sword cfa_offset;</span><br><span class="line">    _Unwind_Word cfa_reg;</span><br><span class="line">    <span class="type">const</span> <span class="type">unsigned</span> <span class="type">char</span> *cfa_exp;</span><br><span class="line">    <span class="keyword">enum</span> &#123;</span><br><span class="line">      CFA_UNSET,</span><br><span class="line">      CFA_REG_OFFSET,</span><br><span class="line">      CFA_EXP</span><br><span class="line">    &#125; cfa_how;</span><br><span class="line">  &#125; regs;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* The PC described by the current frame state.  */</span></span><br><span class="line">  <span class="type">void</span> *pc;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* The information we care about from the CIE/FDE.  */</span></span><br><span class="line">  _Unwind_Personality_Fn personality;</span><br><span class="line">  _Unwind_Sword data_align;</span><br><span class="line">  _Unwind_Word code_align;</span><br><span class="line">  _Unwind_Word retaddr_column;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">char</span> fde_encoding;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">char</span> lsda_encoding;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">char</span> saw_z;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">char</span> signal_frame;</span><br><span class="line">  <span class="type">void</span> *eh_ptr;</span><br><span class="line">&#125; _Unwind_FrameState;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* The result of interpreting the frame unwind info for a frame.</span></span><br><span class="line"><span class="comment">   This is all symbolic at this point, as none of the values can</span></span><br><span class="line"><span class="comment">   be resolved until the target pc is located.  */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* Each register save state can be described in terms of a CFA slot,</span></span><br><span class="line"><span class="comment">     another register, or a location expression.  */</span></span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">frame_state_reg_info</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">struct</span> &#123;</span><br><span class="line">      <span class="keyword">union</span> &#123;</span><br><span class="line">	_Unwind_Word reg;</span><br><span class="line">	_Unwind_Sword offset;</span><br><span class="line">	<span class="type">const</span> <span class="type">unsigned</span> <span class="type">char</span> *exp;</span><br><span class="line">      &#125; loc;</span><br><span class="line">      <span class="keyword">enum</span> &#123;</span><br><span class="line">	REG_UNSAVED,</span><br><span class="line">	REG_SAVED_OFFSET,</span><br><span class="line">	REG_SAVED_REG,</span><br><span class="line">	REG_SAVED_EXP,</span><br><span class="line">	REG_SAVED_VAL_OFFSET,</span><br><span class="line">	REG_SAVED_VAL_EXP,</span><br><span class="line">	REG_UNDEFINED</span><br><span class="line">      &#125; how;</span><br><span class="line">    &#125; reg[__LIBGCC_DWARF_FRAME_REGISTERS__<span class="number">+1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Used to implement DW_CFA_remember_state.  */</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">frame_state_reg_info</span> *prev;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* The CFA can be described in terms of a reg+offset or a</span></span><br><span class="line"><span class="comment">       location expression.  */</span></span><br><span class="line">    _Unwind_Sword cfa_offset;</span><br><span class="line">    _Unwind_Word cfa_reg;</span><br><span class="line">    <span class="type">const</span> <span class="type">unsigned</span> <span class="type">char</span> *cfa_exp;</span><br><span class="line">    <span class="keyword">enum</span> &#123;</span><br><span class="line">      CFA_UNSET,</span><br><span class="line">      CFA_REG_OFFSET,</span><br><span class="line">      CFA_EXP</span><br><span class="line">    &#125; cfa_how;</span><br><span class="line">  &#125; regs;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* The PC described by the current frame state.  */</span></span><br><span class="line">  <span class="type">void</span> *pc;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* The information we care about from the CIE/FDE.  */</span></span><br><span class="line">  _Unwind_Personality_Fn personality;</span><br><span class="line">  _Unwind_Sword data_align;</span><br><span class="line">  _Unwind_Word code_align;</span><br><span class="line">  _Unwind_Word retaddr_column;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">char</span> fde_encoding;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">char</span> lsda_encoding;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">char</span> saw_z;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">char</span> signal_frame;</span><br><span class="line">  <span class="type">void</span> *eh_ptr;</span><br><span class="line">&#125; _Unwind_FrameState;</span><br></pre></td></tr></table></figure>
 <p>이제 Unwind 라이브러리에서 예외를 처리하는 함수들이 어떻게 구현되어 있는지 살펴보겠습니다. 라이브러리에서 반환값이 있는 대부분의 함수는 <code>_Unwind_Reason_Code</code> 열거형을 반환합니다. 각각의 값들은 합수의 성공 및 실패 여부, 스택 되감기를 계속 수행해야 하는지 등을 나타냅니다.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* The unwind interface uses reason codes in several contexts to</span></span><br><span class="line"><span class="comment">   identify the reasons for failures or other actions.  */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span></span><br><span class="line">&#123;</span><br><span class="line">  _URC_NO_REASON = <span class="number">0</span>,</span><br><span class="line">  _URC_FOREIGN_EXCEPTION_CAUGHT = <span class="number">1</span>,</span><br><span class="line">  _URC_FATAL_PHASE2_ERROR = <span class="number">2</span>,</span><br><span class="line">  _URC_FATAL_PHASE1_ERROR = <span class="number">3</span>,</span><br><span class="line">  _URC_NORMAL_STOP = <span class="number">4</span>,</span><br><span class="line">  _URC_END_OF_STACK = <span class="number">5</span>,</span><br><span class="line">  _URC_HANDLER_FOUND = <span class="number">6</span>,</span><br><span class="line">  _URC_INSTALL_CONTEXT = <span class="number">7</span>,</span><br><span class="line">  _URC_CONTINUE_UNWIND = <span class="number">8</span></span><br><span class="line">&#125; _Unwind_Reason_Code;</span><br></pre></td></tr></table></figure>
 <p><code>_Unwind_RaiseException</code> 함수는 <code>_Unwind_Exception</code> 구조체를 받아 예외를 일으키는 함수입니다. 10행은 <code>this_context</code> 와 <code>cur_context</code> 를 현재 스택 프레임의 내용으로 초기화합니다. 15행은 search 단계에 해당하는 반복문으로, personality 루틴이 랜딩 패드를 찾아낸 경우에만 탈출할 수 있습니다. 20행은 <code>cur_context</code> 프레임에 해당하는 CIE와 FDE를 읽고 <code>_Unwind_FrameState</code> 구조체 <code>fs</code> 를 초기화하는 내장 함수를 호출합니다. 32행은 personality 루틴이 있다면 호출합니다. 42행은 <code>fs</code> 를 반영하여 <code>cur_context</code> 가 이전 프레임의 내용을 나타내도록 합니다.</p>
@@ -551,12 +558,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2022/07/06/codegate22-isolated/" rel="prev" title="[Codegate CTF 2022] Isolated">
-                  <i class="fa fa-chevron-left"></i> [Codegate CTF 2022] Isolated
+                  <i class="fa fa-angle-left"></i> [Codegate CTF 2022] Isolated
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2022/07/30/line22-trust-code/" rel="next" title="[LINE CTF 2022] trust_code">
-                  [LINE CTF 2022] trust_code <i class="fa fa-chevron-right"></i>
+                  [LINE CTF 2022] trust_code <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -575,47 +582,33 @@
 
   <footer class="footer">
     <div class="footer-inner">
-
-
 <div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class=""></i>
-  </span>
   <span class="author" itemprop="copyrightHolder">Juhyun Song</span>
+  &copy; <span itemprop="copyrightYear" id="copyright-year"></span>
 </div>
+<script>
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
 
     </div>
   </footer>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
 
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
-<script src="/js/third-party/search/local-search.js"></script>
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-
-
-
-
-  
-
-
-
-
-  
-
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
-
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"juhyun167","repo":"juhyun167.github.io","client_id":"97ef06bf938b3dfb0c5b","client_secret":"210c90c45a592282824bbc4312dbc74b3709bbea","admin_user":"juhyun167","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"3dad1a461fb5f738b0d84fa07f691f2d"}</script>
-<script src="/js/third-party/comments/gitalk.js"></script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"juhyun167","repo":"juhyun167.github.io","client_id":"97ef06bf938b3dfb0c5b","client_secret":"210c90c45a592282824bbc4312dbc74b3709bbea","admin_user":"juhyun167","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"3dad1a461fb5f738b0d84fa07f691f2d"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
 
 </body>
 </html>
