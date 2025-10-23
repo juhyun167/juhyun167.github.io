@@ -1242,7 +1242,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #58ffbf;
+  background: #c77aff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2675,9 +2675,27 @@ header.header {
   background: #0b0b0b;
 }
 .sidebar-toggle {
-  background: none;
-  height: 22px;
-  width: 18px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #303030 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: all 0.2s ease;
+}
+@media (max-width: 767px) {
+  .sidebar-toggle {
+    padding: 12px;
+    border-radius: 10px;
+  }
+}
+.sidebar-toggle:hover {
+  background: linear-gradient(135deg, #151515 0%, #404040 100%);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.sidebar-toggle span,
+.sidebar-toggle .toggle-line {
+  background: #fff;
 }
 .site-author-name {
   font-size: 1.3rem;
