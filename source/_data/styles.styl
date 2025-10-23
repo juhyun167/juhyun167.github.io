@@ -107,9 +107,26 @@ $sidebar-list-height = 2.8em
   background: $sidebar-bg-color
 
 .sidebar-toggle
-  background: none
-  height: 22px
-  width: 18px
+  background: linear-gradient(135deg, #0a0a0a 0%, #303030 100%)
+  backdrop-filter: blur(10px)
+  -webkit-backdrop-filter: blur(10px)
+  border-radius: 8px
+  padding: 8px
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+  transition: all 0.2s ease
+
+  +mobile()
+    padding: 12px
+    border-radius: 10px
+
+  &:hover
+    background: linear-gradient(135deg, #151515 0%, #404040 100%)
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4)
+
+// Hamburger icon lines
+.sidebar-toggle span,
+.sidebar-toggle .toggle-line
+  background: white
 
 .site-author-name
   font-size: 1.3rem
