@@ -27,7 +27,7 @@
 <meta property="og:description" content="Juhyun Song (송주현) juhyun167 - Overviewjuhyun167 has 6 repositories available. Follow their code on GitHub.GitHub Education   M.S. in Electrical Engineering (Sep. 2024 - Present)  Advisor: Insu Yun KAI">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-08T22:07:20.000Z">
-<meta property="article:modified_time" content="2025-10-23T07:16:30.733Z">
+<meta property="article:modified_time" content="2025-10-23T07:32:24.458Z">
 <meta property="article:author" content="juhyun167 블로그">
 <meta name="twitter:card" content="summary">
 
@@ -363,6 +363,41 @@
 </ul>
 </li>
 </ul>
+<script>
+// Tooltip touch support for Safari
+document.addEventListener('DOMContentLoaded', function() {
+  const tooltips = document.querySelectorAll('.tooltip-wrapper');
+
+  tooltips.forEach(function(tooltip) {
+    // Make tooltip focusable for keyboard and touch
+    tooltip.setAttribute('tabindex', '0');
+
+    // Handle touch events for mobile Safari
+    tooltip.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+
+      // Hide all other tooltips
+      tooltips.forEach(function(t) {
+        if (t !== tooltip) {
+          t.classList.remove('tooltip-active');
+        }
+      });
+
+      // Toggle current tooltip
+      tooltip.classList.toggle('tooltip-active');
+    }, { passive: false });
+  });
+
+  // Close tooltip when clicking outside
+  document.addEventListener('touchstart', function(e) {
+    if (!e.target.closest('.tooltip-wrapper')) {
+      tooltips.forEach(function(t) {
+        t.classList.remove('tooltip-active');
+      });
+    }
+  });
+});
+</script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
 
