@@ -87,3 +87,39 @@ categories: about
 
 - **Craftsman Bartender** (2024)
     - National Certification, HRDK, Korea
+
+<script>
+// Tooltip touch support for Safari
+document.addEventListener('DOMContentLoaded', function() {
+  const tooltips = document.querySelectorAll('.tooltip-wrapper');
+
+  tooltips.forEach(function(tooltip) {
+    // Make tooltip focusable for keyboard and touch
+    tooltip.setAttribute('tabindex', '0');
+
+    // Handle touch events for mobile Safari
+    tooltip.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+
+      // Hide all other tooltips
+      tooltips.forEach(function(t) {
+        if (t !== tooltip) {
+          t.classList.remove('tooltip-active');
+        }
+      });
+
+      // Toggle current tooltip
+      tooltip.classList.toggle('tooltip-active');
+    }, { passive: false });
+  });
+
+  // Close tooltip when clicking outside
+  document.addEventListener('touchstart', function(e) {
+    if (!e.target.closest('.tooltip-wrapper')) {
+      tooltips.forEach(function(t) {
+        t.classList.remove('tooltip-active');
+      });
+    }
+  });
+});
+</script>

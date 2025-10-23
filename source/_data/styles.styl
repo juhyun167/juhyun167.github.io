@@ -107,21 +107,51 @@ $sidebar-list-height = 2.8em
   background: $sidebar-bg-color
 
 .sidebar-toggle
-  background: linear-gradient(135deg, #0a0a0a 0%, #303030 100%)
+  background: rgba(0, 0, 0, 0.6)
   backdrop-filter: blur(10px)
   -webkit-backdrop-filter: blur(10px)
   border-radius: 8px
   padding: 8px
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
   transition: all 0.2s ease
+  -webkit-tap-highlight-color: transparent
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  outline: none
+  user-select: none
+  -webkit-user-select: none
 
   +mobile()
+    background: linear-gradient(135deg, #0a0a0a 0%, #303030 100%)
     padding: 12px
     border-radius: 10px
+    transform: translateY(20px)
 
   &:hover
-    background: linear-gradient(135deg, #151515 0%, #404040 100%)
+    background: rgba(0, 0, 0, 0.8)
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4)
+
+    +mobile()
+      background: linear-gradient(135deg, #151515 0%, #404040 100%)
+
+  &:focus
+    outline: none
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+
+  &:active
+    outline: none
+
+  *
+    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+
+// Remove gradient when sidebar is active (X button)
+.sidebar-active .sidebar-toggle
+  +mobile()
+    background: rgba(0, 0, 0, 0.6)
+
+  &:hover
+    +mobile()
+      background: rgba(0, 0, 0, 0.8)
 
 // Hamburger icon lines
 .sidebar-toggle span,
@@ -557,6 +587,7 @@ body
   display: inline-block
   cursor: help
   margin-left: 0.25rem
+  -webkit-tap-highlight-color: transparent
 
 .tooltip-text
   visibility: hidden
@@ -587,9 +618,19 @@ body
     border-style: solid
     border-color: #1e2127 transparent transparent transparent
 
-.tooltip-wrapper:hover .tooltip-text
+// Show tooltip on hover (desktop) and on active/focus (Safari mobile)
+.tooltip-wrapper:hover .tooltip-text,
+.tooltip-wrapper:active .tooltip-text,
+.tooltip-wrapper:focus .tooltip-text,
+.tooltip-wrapper.tooltip-active .tooltip-text
   visibility: visible
   opacity: 1
+
+// Improve Safari touch support
+.tooltip-wrapper
+  outline: none
+  -webkit-user-select: none
+  user-select: none
 
 // ─────────────────────────────────────────────────────────────────────────
 // Blockquotes & Callouts
