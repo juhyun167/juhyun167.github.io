@@ -21,10 +21,10 @@ minify: true
 custom_file_path:
   head: source/_data/head.njk
   header: source/_data/header.njk
-  sidebar: source/_data/sidebar.njk
+  sidebar: source/_data/sidebar.ejs
   #postMeta: source/_data/post-meta.njk
   #postBodyEnd: source/_data/post-body-end.njk
-  #footer: source/_data/footer.njk
+  footer: source/_data/footer.njk
   #bodyEnd: source/_data/body-end.njk
   variable: source/_data/variables.styl
   #mixin: source/_data/mixins.styl
@@ -214,7 +214,7 @@ footer:
     color: "#ff0000"
 
   # If not defined, `author` from Hexo `_config.yml` will be used.
-  copyright: Juhyun Song
+  copyright: false
 
   # Powered by Hexo & NexT
   powered: false
@@ -248,7 +248,7 @@ post_meta:
   item_text: true
   created_at: true
   updated_at:
-    enable: true
+    enable: false
     another_day: true
   categories: true
 
@@ -434,7 +434,7 @@ font:
   # Global font settings used for all elements inside <body>.
   global:
     external: false
-    family: Pretendard
+    family: Inter, Pretendard
     size:
 
   # Font settings for site title (.site-title).
@@ -457,7 +457,7 @@ font:
   # Font settings for <code> and code blocks.
   codes:
     external: false
-    family: Roboto Mono, Pretendard
+    family: SF Mono
 
 
 # ---------------------------------------------------------------

@@ -4,9 +4,7 @@ date: 2022-06-08 22:07:20
 categories: about
 ---
 
-# 송주현 (juhyun167)
-
-[https://github.com/juhyun167](https://github.com/juhyun167)
+# Juhyun Song (송주현)
 
 [@preview](https://github.com/juhyun167)
 
@@ -31,49 +29,58 @@ categories: about
 
 - **Vulnerability Assessment Trainee** (Jul. 2020 - Mar. 2021)
     - Best of the BEST 9th, KITRI
-	- Ranked in the top 10 contestants. (Hall of Fame)
+	- Ranked in top 10 among all contestants (Hall of Fame)
 
 
 ## Talks
 
 - **Towards Comprehensive Fuzzing of TrustZone TAs**
-    - .HACK Conference 2024, Seoul, Korea ([Slide](/uploads/talks/dothack_2024.pdf))
+    - .HACK Conference 2024, Seoul, Korea [<i class="fa-solid fa-file-pdf"></i>](/uploads/talks/dothack_2024.pdf)
 
 
 ## Publications
+
+### International Conference
+
+- **CROSS-X: Generalized and Stable Cross-Cache Attack on the Linux Kernel**
+    - Dong-ok Kim<span class="tooltip-wrapper"><i class="fa-solid fa-circle-info"></i><span class="tooltip-text">Equal Contribution</span></span>, **Juhyun Song<span class="tooltip-wrapper"><i class="fa-solid fa-circle-info"></i><span class="tooltip-text">Equal Contribution</span></span>**, and Insu Yun
+    - ACM Conference on Computer and Communications Security (CCS) 2025 [<i class="fa-solid fa-globe"></i>](https://github.com/juhyun167/CROSS-X)
 
 ### International Journal
 
 - **DTA: Run TrustZone TAs Outside the Secure World for Security Testing**
     - **Juhyun Song**, Eunji Jo, and Jaehyu Kim
-    - IEEE Access, January 2024
+    - IEEE Access, vol. 12, pp. 16715-16727, 2024 [<i class="fa-solid fa-globe"></i>](https://github.com/juhyun167/dta)
 
 
 ## Projects
 
 - **Fuzzing I/O communications in Windows device drivers** (Sep. 2020 - Dec. 2020)
-    - Contributed to [Kronl](https://kronl.github.io/docs/) fuzzer development and found 20+ vulnerabilities.
+    - Contributed to fuzzer and exploit development, reported 20+ vulnerabilities [<i class="fa-solid fa-globe"></i>](https://kronl.github.io/docs/)
 
 
 ## Honors and Awards
 
-- **FIESTA: Finantial Institutes' Event on Security Threat Analysis** (2023)
-    - 3rd place (Team xerophthalmia)
+- **HACKSIUM BUSAN Hacking Competition** (2025)
+    - 4th place award (Team 핵쉬움)
+
+- **FIESTA: Financial Institutes' Event on Security Threat Analysis** (2023)
+    - 3rd place award (Team xerophthalmia)
 
 - **MIST Minister Prize** (2021)
-    - Selected for KITRI Best of the Best 9th top 10 contestants. (prize reward 10M KRW)
+    - Awarded to top 10 contestants of KITRI Best of the Best 9th (10M KRW)
 
 
 ## Vulnerability Disclosure
 
 - **[CVE-2021-27965](https://nvd.nist.gov/vuln/detail/CVE-2021-27965) (collective work)**
-    - Privilege escalation in MSI Dragon Center
+    - Privilege escalation vulnerability in MSI Dragon Center
 
 - **KVE-2020-1585, KVE-2020-1604 (collective work)**
-    - Privilege escalation in T\* gaming software and N\* keyboard security solution. (Reported to KISA bug bounty)
+    - Privilege escalation vulnerabilities in gaming software and keyboard security solution (Reported to KISA bug bounty)
 
 - **NBB-1705**
-    - Stored XSS in kin.naver.com (Reported to Naver bug bounty)
+    - Stored XSS vulnerability in kin.naver.com (Reported to Naver bug bounty)
 
 
 ## Certifications

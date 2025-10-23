@@ -1,44 +1,72 @@
-/* force dark mode */
+// ============================================================================
+// Custom Styles for Hexo NexT Theme
+// ============================================================================
+// This file contains all custom styling overrides for the blog theme.
+// Organized into logical sections for easy maintenance.
+// ============================================================================
+
+
+// ============================================================================
+// 1. CSS Variables & Theme Configuration
+// ============================================================================
+// Root-level CSS variables for theme colors and dark mode configuration
+
 :root
+  // Background Colors
   --body-bg-color: #000
   --content-bg-color: #333
   --card-bg-color: #555
+  --menu-item-bg-color: #555
+  --theme-color: #222
+
+  // Text Colors
   --text-color: #ccc
   --blockquote-color: #bbb
   --link-color: #ccc
   --link-hover-color: #eee
   --brand-color: #ddd
   --brand-hover-color: #ddd
+
+  // Table Colors
   --table-row-odd-bg-color: #282828
   --table-row-hover-bg-color: #363636
-  --menu-item-bg-color: #555
-  --theme-color: #222
+
+  // Button Colors
   --btn-default-bg: #222
   --btn-default-color: #ccc
   --btn-default-border-color: #555
   --btn-default-hover-bg: #666
   --btn-default-hover-color: #ccc
   --btn-default-hover-border-color: #666
+
+  // Code Highlighting
   --highlight-background: #1e1e1e
   --highlight-foreground: #dcdcdc
   --highlight-gutter-background: #313131
   --highlight-gutter-foreground: #c9c9c9
+
+  // Force dark mode
   color-scheme: dark
-  
+
+  // Image opacity adjustments for dark mode
   img
     opacity: 0.75
 
   img:hover
     opacity: 0.9
 
+  // Keep iframe content in light mode
   iframe
     color-scheme: light
 
 
-/* header */
+// ============================================================================
+// 2. Header Styles
+// ============================================================================
+// Custom logo, site title, and navigation styles
 
 .header-inner
-  padding-top: 70px
+  padding-top: 4.375rem
 
 .custom-logo-image
   background: none
@@ -46,23 +74,34 @@
   max-width: 300px
 
   +tablet-mobile()
-	  display: block
+    display: block
 
   &:hover
-      cursor: pointer
+    cursor: pointer
 
+// Hide default site title and subtitle (using custom logo instead)
+.site-title,
+.site-subtitle
+  display: none
 
-.site-title, .site-subtitle
+// Hide navigation elements
+.site-nav,
+.site-nav-right,
+.site-nav-toggle
   display: none
 
 
-/* sidebar */
+// ============================================================================
+// 3. Sidebar Styles
+// ============================================================================
+// Sidebar colors, layout, and interactive elements
 
-$sidebar-bg-color           = #0b0b0b
-$sidebar-bg-color-hover     = #171717
-$sidebar-color              = #b4b4b4
-$sidebar-list-border-color  = #1f1f1f
-$sidebar-list-height        = 2.8em
+// Sidebar color variables
+$sidebar-bg-color = #0b0b0b
+$sidebar-bg-color-hover = #171717
+$sidebar-color = #b4b4b4
+$sidebar-list-border-color = #1f1f1f
+$sidebar-list-height = 2.8em
 
 .sidebar
   background: $sidebar-bg-color
@@ -73,149 +112,220 @@ $sidebar-list-height        = 2.8em
   width: 18px
 
 .site-author-name
-  font-size: 1.3em
+  font-size: 1.3rem
   cursor: pointer
 
 .site-state-wrap
-  margin-bottom: 10px
+  margin-bottom: 0.625rem
+
+// Hide site state and author sections
+.site-state-wrap,
+.site-author
+  display: none
+
+// ─────────────────────────────────────────────────────────────────────────
+// Category List Styles
+// ─────────────────────────────────────────────────────────────────────────
 
 .new-category-list
-  padding-inline-start: 35px    
-  padding-inline-end: 10px    
-  cursor: pointer    
+  padding-inline-start: 2.188rem
+  padding-inline-end: 0.625rem
+  cursor: pointer
 
   li
-    list-style-type: none    
-    text-align: left    
-    line-height: $sidebar-list-height  
+    list-style-type: none
+    text-align: left
+    line-height: $sidebar-list-height
     border-bottom: 1px solid $sidebar-list-border-color
 
     button
-      border: none    
+      border: none
       height: $sidebar-list-height
-      width: $sidebar-list-height     
-      background: none    
-      color: $sidebar-color    
-      cursor: pointer    
+      width: $sidebar-list-height
+      background: none
+      color: $sidebar-color
+      cursor: pointer
 
 .new-category-list-link
-  border-bottom: none      
+  border-bottom: none
   color: $sidebar-color !important
-  flex-grow: 1  
+  flex-grow: 1
 
   span
-    font-size: .8em    
-    color: #4e4e4e    
+    font-size: 0.8rem
+    color: #4e4e4e
 
+.new-category-list-container
+  display: flex
+  align-items: center
+
+  img
+    margin-left: 0
+
+  &:hover
+    background: $sidebar-bg-color-hover
+
+.last-index-list-item
+  border-bottom: 0 !important
+
+// Child category styles
 .child-category-list
   padding-inline-start: 0
   padding-inline-end: 0
   border-top: 1px solid $sidebar-list-border-color
 
   li
-    padding-inline-start: 0    
-    border: none    
+    padding-inline-start: 0
+    border: none
 
     i
-      color: $sidebar-color   
-      font-size: .9em    
-      padding-inline-end: 10px    
+      color: $sidebar-color
+      font-size: 0.9rem
+      padding-inline-end: 0.625rem
 
-.new-category-list-container
-  display: flex    
-  align-items: center    
-  
-  img
-    margin-left: 0
-
-  &:hover
-    background: $sidebar-bg-color-hover
-    
-.last-index-list-item
-  border-bottom: 0 !important    
-
+// Social icons
 .social-icon
-  display: inline    
-  height: 13px    
-  width: 13px    
-  margin-right: 5px    
-  border-radius: 3.5px     
+  display: inline
+  height: 13px
+  width: 13px
+  margin-right: 5px
+  border-radius: 3.5px
 
 .sidebar-active
   padding-left: 0
 
-$search-button-color				= #181818;
+// ─────────────────────────────────────────────────────────────────────────
+// Search Button & Popup
+// ─────────────────────────────────────────────────────────────────────────
+
+$search-button-color = #181818
+$search-popup-bg = #1e2127
+$search-text-color = #D6DADF
+$search-meta-color = #8b92a0
 
 .search-button
   background-color: $search-button-color
   border: 1px solid $search-button-color !important
   border-radius: 5px
-  margin-inline-start: 35px
-  margin-inline-end: 10px
+  margin-inline-start: 2.188rem
+  margin-inline-end: 0.625rem
   height: $sidebar-list-height - 0.1em
   display: flex
   align-items: center
-  padding-inline-start: 15px
-  margin-top: 70px
-  margin-bottom: 20px
-
-.site-state-wrap, .site-author
-  display: none
+  padding-inline-start: 0.938rem
+  margin-top: 4.375rem
+  margin-bottom: 1.25rem
 
 .search-popup
-  background-color: $search-button-color
+  background-color: $search-popup-bg !important
+  padding-top: 0.625rem !important
 
 .search-result-container
-  background-color: $search-button-color
+  background-color: $search-popup-bg !important
 
   hr
     background-image: none
+    border-color: #2d3139 !important
 
-.search-popup p.search-result 
+.search-popup p.search-result
   border-bottom: 0
 
-.search-input
-  color: $search-button-color
+// Unify all search-related container backgrounds
+.local-search-header,
+.search-header,
+.search-input-wrapper,
+.search-input-container,
+.search-input-field-container
+  background-color: $search-popup-bg !important
+  border: none !important
 
-// collapsible wrapper
-// https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css
+.search-input
+  background-color: $search-popup-bg !important
+  color: $search-text-color !important
+  border: none !important
+  box-shadow: none !important
+
+  &::placeholder
+    color: #5c6370 !important
+
+  &:focus
+    border: none !important
+    box-shadow: none !important
+    outline: none !important
+
+// Search result items
+.search-result-list
+  background-color: $search-popup-bg !important
+
+  li
+    background-color: $search-popup-bg !important
+    border-bottom: 1px solid #2d3139 !important
+
+    &:hover
+      background-color: #262a31 !important
+
+// Search result title
+.search-result-title
+  color: $search-text-color !important
+  font-weight: 600 !important
+
+// Search result preview text
+.search-result-preview
+  color: $search-meta-color !important
+
+// Result count text
+.search-stats
+  color: $search-meta-color !important
+
+// ─────────────────────────────────────────────────────────────────────────
+// Collapsible Wrapper (Animated Category Collapse)
+// ─────────────────────────────────────────────────────────────────────────
+// Source: https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css
+
 .collapsible-wrapper
-  display: flex    
-  overflow: hidden    
+  display: flex
+  overflow: hidden
+  will-change: max-height
+  backface-visibility: hidden
 
   &:after
-    content: ''    
-    height: 50px    
-    transition: height 0.2s linear, max-height 0s 0.2s linear    
-    max-height: 0px    
+    content: ''
+    height: 3.125rem
+    transition: height 0.2s cubic-bezier(0.4, 0, 0.2, 1), max-height 0s 0.2s cubic-bezier(0.4, 0, 0.2, 1)
+    max-height: 0
 
 .collapsible
-  transition: margin-bottom 0.2s cubic-bezier(0, 0, 0, 1)    
-  margin-bottom: 0    
-  max-height: 1000000px    
-  width: 100%    
+  transition: margin-bottom 0.2s cubic-bezier(0.4, 0, 0.2, 1)
+  margin-bottom: 0
+  max-height: 62500rem
+  width: 100%
+  backface-visibility: hidden
 
 .collapsible-wrapper.collapsed > .collapsible
-  margin-bottom: -2000px    
-  transition: margin-bottom 0.2s cubic-bezier(1, 0, 1, 1),
-              visibility 0s 0.2s, max-height 0s 0.2s    
-  visibility: hidden    
-  max-height: 0    
+  margin-bottom: -125rem
+  transition: margin-bottom 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0s 0.2s, max-height 0s 0.2s
+  visibility: hidden
+  max-height: 0
 
 .collapsible-wrapper.collapsed:after
-  height: 0    
-  transition: height 0.2s linear    
-  max-height: 50px    
+  height: 0
+  transition: height 0.2s cubic-bezier(0.4, 0, 0.2, 1)
+  max-height: 3.125rem
 
 
-/* body */
+// ============================================================================
+// 4. Body & Layout
+// ============================================================================
+// General body styles and layout configurations
 
 body
-  line-height: 1.75    
+  line-height: 1.75
 
 .main-inner
-  margin-top: -30px
+  margin-top: -1.875rem
 
+// Sidebar dimmer overlay
 .sidebar-dimmer
   background: black
   display: block
@@ -233,206 +343,366 @@ body
     opacity: .7
     visibility: visible
 
+// ─────────────────────────────────────────────────────────────────────────
+// Performance Optimizations - GPU-Accelerated Animations
+// ─────────────────────────────────────────────────────────────────────────
 
-/* header */
+// Override sidebar animation to use transform instead of left (GPU-accelerated)
+.sidebar
+  transform: translateX(-320px) translateZ(0)
+  left: 0 !important
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important
+  will-change: transform
+  backface-visibility: hidden
 
-.site-nav, .site-nav-right, .site-nav-toggle
-  display: none
+.sidebar-active .sidebar
+  transform: translateX(0) translateZ(0)
+
+// Optimize search popup animation
+.search-popup
+  will-change: transform, opacity
+  backface-visibility: hidden
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease !important
+
+.search-pop-overlay
+  will-change: opacity
+  transition: visibility 0.3s, opacity 0.3s ease !important
 
 
-/* posts */
+// ============================================================================
+// 5. Post Content Styles
+// ============================================================================
+// Styling for blog post titles, metadata, and content
+
+// ─────────────────────────────────────────────────────────────────────────
+// Post Title & Metadata
+// ─────────────────────────────────────────────────────────────────────────
 
 .posts-expand .post-title
-  font-size: 1.9em
-  font-weight: bold    
+  font-size: 1.9rem
+  font-weight: bold
 
   +mobile()
-    font-size: 1.65em
+    font-size: 1.65rem
 
 .post-meta-item time
-  border: 0 !important    
+  border: 0 !important
 
 .post-meta-item span a
-  border: 0 !important    
+  border: 0 !important
 
-.post-meta-item-icon, .post-meta-item-text
-  display: none    
+// Hide metadata icons and text labels
+.post-meta-item-icon,
+.post-meta-item-text
+  display: none
+
+// Remove vertical bar separator between metadata items but keep spacing
+:not(.post-meta-break) + .post-meta-item::before
+  content: none !important
+
+.post-meta-item:not(:first-child)
+  margin-left: 1em
+
+// Increase font size of date and category metadata
+.post-meta-item
+  font-size: 1rem
+
+// Add top spacing above post metadata
+.post-meta
+  margin-top: 1rem
+
+// Remove space before comma in categories
+.post-meta-item span + .symbol
+  margin-left: -0.25em
+
+.post-nav
+  margin-top: 3rem
+
+// ─────────────────────────────────────────────────────────────────────────
+// Post Body Content
+// ─────────────────────────────────────────────────────────────────────────
 
 .post-body
   line-height: 1.8
 
+  // Heading styles
   h1, h2, h3, h4, h5, h6
-    margin: 40px 0 10px
+    margin: 2.5rem 0 0.5rem
+
+  h1
+    font-size: 1.9rem
+
+  h2
+    font-size: 1.5rem
 
   h3
-    font-size: 1.2em
+    font-size: 1.2rem
 
+  // Code block styles
   pre
     tab-size: 4
-    font-size: 0.9em
-    padding-top: 15px !important
-    padding-bottom: 15px !important
+    font-size: 0.8rem
+    padding-top: 0.938rem !important
+    padding-bottom: 0.938rem !important
+    border-radius: 8px
+    // Disable ligatures for code (e.g., -> stays as -> not ⟶)
+    font-variant-ligatures: none
+    font-feature-settings: "liga" 0, "calt" 0
 
-  code
-    background: none
-    color: #59ca87
+  // Inline code (not in code blocks)
+  code:not(pre code)
+    background: #1e2127
+    color: #96b8b7
+    padding: 0.125rem 0.375rem
+    border-radius: 3px
+    font-size: 0.875rem
+    vertical-align: baseline
+    // Disable ligatures for inline code
+    font-variant-ligatures: none
+    font-feature-settings: "liga" 0, "calt" 0
 
+// Reduce spacing between h2 and h3
 @css {
-	.post-body h2 + h3 {
-		margin-top: 0px;
-	}
+  .post-body h2 + h3 {
+    margin-top: 0px;
+  }
 }
 
+// ─────────────────────────────────────────────────────────────────────────
+// Lists
+// ─────────────────────────────────────────────────────────────────────────
+
 .post-body ul
-  margin-block-start: 0.5em
-  margin-block-end: 0.5em
-  padding-inline-start: 20px
+  margin-block-start: 0.5rem
+  margin-block-end: 0.5rem
+  padding-inline-start: 1.25rem
 
 .post-body ul li ul
   margin-block-start: 0 !important
-  margin-block-end: 0.2em !important
+  margin-block-end: 0.2rem !important
+
+// Reduce spacing between nested list and next top-level item
+.post-body li:has(ul)
+  margin-bottom: -0.5rem
 
 .post-body ol
-  margin-block-start: 0.5em
-  margin-block-end: 0.5em
-  padding-inline-start: 20px
+  margin-block-start: 0.5rem
+  margin-block-end: 0.5rem
+  padding-inline-start: 1.625rem
 
 .post-body ol li ul
   margin-block-start: 0 !important
-  margin-block-end: 0.2em !important
+  margin-block-end: 0.2rem !important
 
+// List spacing adjustments
 @css {
-	.post-body p + ol {
-		margin-top: -15px;
-	}
+  .post-body p + ol {
+    margin-top: -0.938rem;
+  }
 
   .post-body p + ul {
-		margin-top: -15px;
-	}
+    margin-top: -0.938rem;
+  }
 
   .post-body ul + p img {
-		margin-top: 15px;
-	}
+    margin-top: 0.938rem;
+  }
 
   .post-body ul + .table-container {
-		margin-top: 10px;
-	}
+    margin-top: 0.625rem;
+  }
 }
 
 .post-body li p
   margin-bottom: 0
 
-.post-nav
-  margin-top: 3em
+// Image opacity override for post body
+:root img
+  opacity: 1
+
+.post-body img
+  border-radius: 8px
+
+// Font Awesome icon links (no underline)
+.post-body a .fa-solid,
+.post-body a .fa-regular,
+.post-body a .fa-brands
+  text-decoration: none
+
+.post-body a:has(.fa-solid),
+.post-body a:has(.fa-regular),
+.post-body a:has(.fa-brands)
+  border-bottom: none
+
+// Tooltip for info icons
+.tooltip-wrapper
+  position: relative
+  display: inline-block
+  cursor: help
+  margin-left: 0.25rem
+
+.tooltip-text
+  visibility: hidden
+  opacity: 0
+  position: absolute
+  bottom: 125%
+  left: 50%
+  transform: translateX(-50%)
+  background-color: #1e2127
+  color: #D6DADF
+  padding: 0.375rem 0.625rem
+  border-radius: 4px
+  white-space: nowrap
+  font-size: 0.9rem
+  font-weight: bold
+  transition: opacity 0.2s ease, visibility 0.2s ease
+  z-index: 100
+  pointer-events: none
+
+  // Arrow pointing down
+  &:after
+    content: ''
+    position: absolute
+    top: 100%
+    left: 50%
+    transform: translateX(-50%)
+    border-width: 0.313rem
+    border-style: solid
+    border-color: #1e2127 transparent transparent transparent
+
+.tooltip-wrapper:hover .tooltip-text
+  visibility: visible
+  opacity: 1
+
+// ─────────────────────────────────────────────────────────────────────────
+// Blockquotes & Callouts
+// ─────────────────────────────────────────────────────────────────────────
 
 .post-body blockquote
-  background-color: #0e0e0e
+  position: relative
+  background-color: #181818
   border-left: 0
-  padding: 18px 18px 18px 44px
-  margin-bottom: 20px
+  padding: 0.1rem 1.125rem 1.125rem 2.75rem
+  margin-bottom: 1.25rem
+  border-radius: 8px
 
+// Default blockquote icon (quote)
 .post-body blockquote:before
   position: absolute
   content: "\f10d"
   font: var(--fa-font-solid)
-  font-size: 1.1em
-  margin-top: 5px
-  margin-left: -27px
+  font-size: 1.1rem
+  top: 1.6rem
+  left: 1.125rem
   color: #555 !important
+  line-height: 1
 
+// Note callout icon (lightbulb)
 .post-body .callout-note:before
   position: absolute
   content: "\e0b7"
   font: var(--fa-font-solid)
-  font-size: 1.1em
-  margin-top: 5px
-  margin-left: -27px
+  font-size: 1.1rem
+  top: 1.6rem
+  left: 1.125rem
   color: #555 !important
+  line-height: 1
 
+// Warning callout icon (fire)
 .post-body .callout-warning:before
   position: absolute
   content: "\f7e4"
   font: var(--fa-font-solid)
-  font-size: 1.1em
-  margin-top: 5px
-  margin-left: -27px
+  font-size: 1.1rem
+  top: 1.6rem
+  left: 1.125rem
   color: #555 !important
+  line-height: 1
 
 .post-body blockquote p:last-of-type
   margin-bottom: 0
 
-.post-body table
-  font-size: 1em
+// ─────────────────────────────────────────────────────────────────────────
+// Tables
+// ─────────────────────────────────────────────────────────────────────────
 
-.post-body th, td 
+.post-body table
+  font-size: 1rem
+
+.post-body th,
+td
   border-style: solid
   border-width: 1px
   border-color: rgba(221, 221, 221, 0.5)
-  padding: 6px 9px 6px 9px
+  padding: 0.375rem 0.563rem
 
-.post-body thead tr  
+.post-body thead tr
   background: #191919
 
-  th 
+  th
     border-bottom: 0
 
-.post-body tbody tr 
+.post-body tbody tr
   background: var(--body-bg-color)
 
-.hljs-comment, .hljs-quote
+// Normalize comment styles from highlight.js
+.hljs-comment,
+.hljs-quote
   font-style: normal
 
-:root img
-  opacity: 1
-
-// markdown-it-link-preview
-// https://github.com/junkawa/markdown-it-link-preview
+// ─────────────────────────────────────────────────────────────────────────
+// Link Preview Widget
+// ─────────────────────────────────────────────────────────────────────────
+// Plugin: markdown-it-link-preview
+// Source: https://github.com/junkawa/markdown-it-link-preview
 
 .link-preview-widget
   display: table
   width: 100%
   background: #181818
+  border-radius: 8px
+  overflow: hidden
 
   &:hover
     filter: brightness(1.1)
 
 .link-preview-widget-title
-  font-size: 1.2em
+  font-size: 1.2rem
   font-weight: 700
   line-height: 1.3
   display: -webkit-box
   overflow: hidden
-  margin-bottom: 8px
+  margin-bottom: 0.5rem
   word-break: break-all
   -webkit-box-orient: vertical
   -webkit-line-clamp: 2
 
 .link-preview-widget-description
-  font-size: 0.9em
+  font-size: 0.9rem
   font-style: normal
   line-height: 1.4
   display: -webkit-box
   overflow: hidden
-  max-height: 3em
-  margin-bottom: 4px
+  max-height: 3rem
+  margin-bottom: 0.25rem
   word-break: break-all
   color: #787c7b
   -webkit-box-orient: vertical
   -webkit-line-clamp: 2
 
 .link-preview-widget-url
-  font-size: 0.8em
+  font-size: 0.8rem
   font-style: normal
   line-height: 1.5
   display: block
-  margin-top: 7px
+  margin-top: 0.438rem
   margin-bottom: 0
   color: #6c6f6e
 
 .link-preview-widget > a
   display: table-cell
   flex-direction: column
-  padding: 16px
+  padding: 1rem
   cursor: pointer
   border: 0
   vertical-align: middle
@@ -454,21 +724,27 @@ body
   background-size: cover
   -webkit-box-flex: 0
   flex: 0
-  
+
   +mobile()
     width: 40%
 
 
-/* pages */
+// ============================================================================
+// 6. Category Pages
+// ============================================================================
+// Styles for category archive pages
 
 .category .collection-header small
   display: none
 
 
-/* comments */
+// ============================================================================
+// 7. Comments (Gitalk)
+// ============================================================================
+// Styling for Gitalk comment system
 
-$gitalk-color					= #ccc
-$gitalk-textarea-color			= #181818
+$gitalk-color = #ccc
+$gitalk-textarea-color = #181818
 
 .gt-container
   a
@@ -480,16 +756,18 @@ $gitalk-textarea-color			= #181818
   .gt-svg svg
     fill: $gitalk-color !important
 
-  .gt-header-textarea, .gt-header-preview
+  .gt-header-textarea,
+  .gt-header-preview
     background-color: $gitalk-textarea-color !important
     color: $gitalk-color !important
-    font-family: Pretendard !important
+    font-family: Inter, Pretendard !important
 
   .gt-btn
     background-color: $gitalk-textarea-color !important
     color: $gitalk-color !important
 
-  .gt-btn-login, .gt-btn-public
+  .gt-btn-login,
+  .gt-btn-public
     border: 1px solid $gitalk-textarea-color !important
 
   .gt-btn-preview
@@ -504,26 +782,30 @@ $gitalk-textarea-color			= #181818
     background-color: $gitalk-textarea-color !important
     border: 1px solid $gitalk-textarea-color !important
     border-radius: 5px !important
-    
-	&:hover
+
+    &:hover
       -webkit-box-shadow: none !important
       -moz-box-shadow: none !important
       box-shadow: none !important
 
 .gt-container .gt-comments .gt-comment-body
   color: $gitalk-color !important
-  font-family: Pretendard !important
+  font-family: Inter, Pretendard !important
 
 
-/* frontpage */
+// ============================================================================
+// 8. Front Page
+// ============================================================================
+// Hero section with background image on homepage
 
 .frontpage-slider
   flex-direction: row
   flex-wrap: wrap
   height: 60vh
-  margin-top: -70px
+  margin-top: -4.375rem
 
-.frontpage-slider > h1, .frontpage-slider > p
+.frontpage-slider > h1,
+.frontpage-slider > p
   display: flex
   align-items: center
   flex-direction: column
@@ -532,22 +814,22 @@ $gitalk-textarea-color			= #181818
 
 .frontpage-slider > h1
   justify-content: end
-  font-size: 2.2em
-  color: white;
+  font-size: 2.2rem
+  color: white
   padding-bottom: 2px
   letter-spacing: 0.1rem
 
   +mobile()
-    font-size: 1.8em
+    font-size: 1.8rem
 
 .frontpage-slider > p
   color: rgba(255, 255, 255, 0.7)
   justify-content: start
   font-weight: bold
-  font-size: 1em
+  font-size: 1rem
 
   +mobile()
-    font-size: 0.9em
+    font-size: 0.9rem
 
 .frontpage-background
   position: absolute
@@ -561,22 +843,177 @@ $gitalk-textarea-color			= #181818
   background-image: url("/images/frontpage/background.jpg")
 
 
-/* footer */
+// ============================================================================
+// 9. Footer
+// ============================================================================
+// Sticky footer configuration
 
 footer
   position: sticky
   top: 100vh
 
 
-/* search */
+// ============================================================================
+// 10. Search
+// ============================================================================
+// Search keyword highlighting styles
 
 mark.search-keyword:not(.post-body mark.search-keyword)
-  background: 0 
+  background: 0
   color: #f1b855
   border: 0
   font-weight: bold
 
 .post-body mark.search-keyword
-  background: 0 
+  background: 0
   color: #f1b855
   border: 0
+
+
+// ============================================================================
+// 11. Code Highlighting - Cursor Dark Midnight Theme
+// ============================================================================
+// Custom syntax highlighting theme matching Cursor Dark Midnight
+// Colors sourced from official Cursor Dark Midnight VSCode theme
+//
+// Color Palette:
+//   Background:  #1e2127 (editor.background)
+//   Foreground:  #D6DADF (editor.foreground)
+//   Comments:    #616E88 (muted gray)
+//   Keywords:    #81A1C1 (blue)
+//   Types:       #8FBCBB (cyan)
+//   Strings:     #A3BE8C (green)
+//   Numbers:     #B48EAD (purple)
+//   Functions:   #88C0D0 (light blue)
+// ============================================================================
+
+// ─────────────────────────────────────────────────────────────────────────
+// Base Colors
+// ─────────────────────────────────────────────────────────────────────────
+
+.post-body figure.highlight
+  background: #1e2127 !important
+  border-radius: 8px
+  overflow: hidden
+
+.post-body figure.highlight pre,
+.post-body figure.highlight .code,
+.post-body figure.highlight table
+  background: #1e2127 !important
+  color: #D6DADF !important
+
+.post-body figure.highlight .gutter
+  background: #1e2127 !important
+
+.post-body figure.highlight .gutter .line
+  color: #4c566a !important
+
+.post-body figure.highlight td,
+.post-body figure.highlight .line,
+.post-body figure.highlight code
+  color: #D6DADF !important
+  background: transparent !important
+
+// ─────────────────────────────────────────────────────────────────────────
+// Syntax Highlighting
+// ─────────────────────────────────────────────────────────────────────────
+
+// Comments - Gray with italic
+.post-body figure.highlight .hljs-comment
+  color: #616E88 !important
+  font-style: italic !important
+
+// Keywords - Blue (const, let, var, function, if, return, class, etc.)
+.post-body figure.highlight .hljs-keyword,
+.post-body figure.highlight .hljs-selector-tag,
+.post-body figure.highlight .hljs-section,
+.post-body figure.highlight .hljs-built_in
+  color: #81A1C1 !important
+
+// Storage Types - Cyan (int, void, char, unsigned, etc.)
+.post-body figure.highlight .hljs-type,
+.post-body figure.highlight .hljs-class .hljs-title
+  color: #8FBCBB !important
+
+// Strings - Green
+.post-body figure.highlight .hljs-string,
+.post-body figure.highlight .hljs-title.class_,
+.post-body figure.highlight .hljs-title.class_.inherited__
+  color: #A3BE8C !important
+
+// Numbers - Purple
+.post-body figure.highlight .hljs-number,
+.post-body figure.highlight .hljs-literal
+  color: #B48EAD !important
+
+// Functions - Light Blue
+.post-body figure.highlight .hljs-title.function_,
+.post-body figure.highlight .hljs-title.function,
+.post-body figure.highlight .hljs-function .hljs-title
+  color: #88C0D0 !important
+
+// Attributes and Properties - Cyan
+.post-body figure.highlight .hljs-attr,
+.post-body figure.highlight .hljs-attribute,
+.post-body figure.highlight .hljs-property
+  color: #8FBCBB !important
+
+// Variables and Parameters - Light Gray
+.post-body figure.highlight .hljs-variable,
+.post-body figure.highlight .hljs-params,
+.post-body figure.highlight .hljs-name
+  color: #D6DADF !important
+
+// Meta and Preprocessor - Cyan
+.post-body figure.highlight .hljs-meta,
+.post-body figure.highlight .hljs-meta .hljs-keyword,
+.post-body figure.highlight .hljs-meta .hljs-string
+  color: #8FBCBB !important
+
+// Operators - Blue
+.post-body figure.highlight .hljs-operator
+  color: #81A1C1 !important
+
+// Punctuation - Light Gray
+.post-body figure.highlight .hljs-punctuation
+  color: #D6DADF !important
+
+// Symbols and Special - Cyan
+.post-body figure.highlight .hljs-symbol,
+.post-body figure.highlight .hljs-bullet,
+.post-body figure.highlight .hljs-link
+  color: #8FBCBB !important
+
+// Regular Expressions - Yellow
+.post-body figure.highlight .hljs-regexp
+  color: #EBCB8B !important
+
+// Decorators - Orange
+.post-body figure.highlight .hljs-decorator,
+.post-body figure.highlight .hljs-meta.decorator
+  color: #D08770 !important
+
+// Doctags and Special - Cyan
+.post-body figure.highlight .hljs-doctag,
+.post-body figure.highlight .hljs-template-tag,
+.post-body figure.highlight .hljs-template-variable
+  color: #8FBCBB !important
+
+// Tags - Blue
+.post-body figure.highlight .hljs-tag,
+.post-body figure.highlight .hljs-tag .hljs-name
+  color: #81A1C1 !important
+
+// Deletions and Additions (for diffs) - Red and Green
+.post-body figure.highlight .hljs-deletion
+  color: #BF616A !important
+
+.post-body figure.highlight .hljs-addition
+  color: #A3BE8C !important
+
+// Emphasis - Italic and Bold
+.post-body figure.highlight .hljs-emphasis
+  font-style: italic !important
+
+.post-body figure.highlight .hljs-strong
+  font-weight: bold !important

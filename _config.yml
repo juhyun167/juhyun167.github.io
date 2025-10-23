@@ -107,10 +107,9 @@ deploy:
 # Search services
 ## https://theme-next.js.org/docs/third-party-services/search-services.html
 search:
-  path: search.xml
+  path: searchdb.json
   field: post
   content: true
-  format: html
   
 # hexo-renderer-markdown
 ## https://github.com/niemingzhao/hexo-renderer-markdown
@@ -146,12 +145,12 @@ nofollow:
     - 'exclude1.com'
     - 'exclude2.com'
 
-# hexo-generator-seo-friendly-sitemap
-## https://github.com/ludoviclefevre/hexo-generator-seo-friendly-sitemap
+# hexo-generator-sitemap
+## https://github.com/hexojs/hexo-generator-sitemap
 sitemap:
   path: sitemap.xml
-  tag: false
-  category: false
+  tags: false
+  categories: false
 
 # hexo-generator-feed
 ## https://github.com/hexojs/hexo-generator-feed

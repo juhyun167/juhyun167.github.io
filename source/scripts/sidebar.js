@@ -2,39 +2,40 @@ function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-// construct list of categories 
-let category_list = [{ name: "About", href: "/about/", count: 1 }]
-let ul_elem = document.getElementsByClassName("category-list")[0];
-
-for (let i = 0; i < ul_elem.children.length; i++) {
-    let li_elem = ul_elem.children[i];
-    let a_elem = li_elem.getElementsByClassName("category-list-link")[0];
-    
-    let name = a_elem.innerText;
-    let href = a_elem.href;
-    let count = li_elem.getElementsByTagName("span")[0].innerText;
-    let has_child = li_elem.getElementsByClassName("category-list-child")[0] !== undefined;
-
-    if (has_child) {
-        let child_category_list = [];
-        let child_ul_elem = li_elem.getElementsByClassName("category-list-child")[0];
-
-        for (let j = 0; j < child_ul_elem.children.length; j++) {
-            let child_li_elem = child_ul_elem.children[j];
-            let child_a_elem = child_li_elem.getElementsByClassName("category-list-link")[0];
-
-            let child_name = child_a_elem.innerText;
-            let child_href = child_a_elem.href;
-            let child_count = child_li_elem.getElementsByTagName("span")[0].innerText;
-
-            child_category_list.push({ name: child_name, href: child_href, count: child_count });
-        }
-
-        category_list.push({ name, href, count, child_category_list });
-    } else {
-        category_list.push({ name, href, count });
-    }
+// add link to site author name
+let p_elem = document.getElementsByClassName("site-author-name")[0];
+p_elem.onclick = () => {
+	location.href = "/";
 }
+
+// add search button on sidebar (must be created early so local-search.js can attach handler)
+let search_a_elem = document.createElement("a");
+search_a_elem.setAttribute("role", "button");
+search_a_elem.setAttribute("class", "popup-trigger search-button");
+
+let search_i_elem = document.createElement("i");
+search_i_elem.setAttribute("class", "fa fa-search fa-fw");
+
+search_a_elem.appendChild(search_i_elem);
+
+let site_state_wrap = document.getElementsByClassName("site-state-wrap")[0];
+insertAfter(search_a_elem, site_state_wrap);
+
+// Load categories dynamically from generated JSON
+fetch('/data/categories.json')
+  .then(response => response.json())
+  .then(categories => {
+    // Add "About" to the beginning
+    let category_list = [{ name: "About", href: "/about/", count: 1 }, ...categories];
+    let ul_elem = document.getElementsByClassName("category-list")[0];
+
+    buildCategoryList(category_list, ul_elem);
+  })
+  .catch(error => {
+    console.error('Error loading categories:', error);
+  });
+
+function buildCategoryList(category_list, ul_elem) {
 
 // build a new element for list of categories
 let new_ul_elem = document.createElement("ul");
@@ -165,22 +166,4 @@ for (let i = 0; i < social_list.length; i++) {
 }
 
 insertAfter(social_ul_elem, new_ul_elem);
-
-// add link to site author name
-let p_elem = document.getElementsByClassName("site-author-name")[0];
-p_elem.onclick = () => {
-	location.href = "/";
 }
-
-// add search button on sidebar
-let a_elem = document.createElement("a");
-a_elem.setAttribute("role", "button");
-a_elem.setAttribute("class", "popup-trigger search-button");
-
-let i_elem = document.createElement("i");
-i_elem.setAttribute("class", "fa fa-search fa-fw");
-
-a_elem.appendChild(i_elem);
-
-let site_state_wrap = document.getElementsByClassName("site-state-wrap")[0];
-insertAfter(a_elem, site_state_wrap);

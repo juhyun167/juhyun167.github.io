@@ -2,14 +2,348 @@
 title:
 comments: false
 ---
+<style>
+	#fade-title {
+		opacity: 0;
+		animation: fadeIn 0.3s ease-in forwards;
+		animation-delay: 0.05s;
+		font-size: 2.2rem;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	#fade-text {
+		opacity: 0;
+		animation: fadeIn 0.3s ease-in forwards;
+		animation-delay: 0.3s;
+		font-size: 1.1rem;
+		text-align: center;
+	}
+
+	.quote-hover {
+		cursor: help;
+	}
+
+	.quote-tooltip {
+		position: fixed;
+		visibility: hidden;
+		opacity: 0;
+		background-color: #1e2127;
+		color: #D6DADF;
+		padding: 0.375rem 0.625rem;
+		border-radius: 4px;
+		white-space: nowrap;
+		font-size: 0.9rem;
+		font-weight: bold;
+		transition: opacity 0.2s ease, visibility 0.2s ease;
+		z-index: 1000;
+		pointer-events: none;
+		transform: translate(-50%, -100%);
+		margin-top: -10px;
+	}
+
+	.quote-tooltip::after {
+		content: '';
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		border-width: 0.313rem;
+		border-style: solid;
+		border-color: #1e2127 transparent transparent transparent;
+	}
+
+	.quote-tooltip.show {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes cardReveal {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.blog-cards-container {
+		max-width: 1200px;
+		margin: 0 auto 3rem;
+		padding: 0 2rem;
+	}
+
+	.frontpage-slider {
+		height: 32vh !important;
+	}
+
+	.blog-cards-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5rem;
+		margin-top: 3rem;
+	}
+
+	.blog-card {
+		background: linear-gradient(135deg, #0a0a0a 0%, #303030 100%);
+		border-radius: 12px;
+		padding: 1.5rem;
+		text-decoration: none;
+		color: inherit;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		transition: transform 0.2s, background 0.3s;
+		position: relative;
+		overflow: hidden;
+		border: none;
+		outline: none;
+		box-shadow: none;
+		opacity: 0;
+		transform: translateY(30px);
+		animation: cardReveal 0.3s ease-out forwards;
+	}
+
+	.blog-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg,
+			transparent 0%,
+			rgba(255, 255, 255, 0.1) 50%,
+			transparent 100%);
+		transition: left 0.5s ease;
+		pointer-events: none;
+	}
+
+	.blog-card::after {
+		content: '';
+		position: absolute;
+		top: -50%;
+		left: -50%;
+		width: 200%;
+		height: 200%;
+		background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		pointer-events: none;
+	}
+
+	.blog-card:hover {
+		transform: translateY(-4px);
+		background: linear-gradient(135deg, #151515 0%, #404040 100%);
+		box-shadow: none;
+		outline: none;
+	}
+
+	.blog-card:hover::before {
+		left: 100%;
+	}
+
+	.blog-card:hover::after {
+		opacity: 1;
+	}
+
+	.blog-card-title {
+		font-size: 1.3rem;
+		font-weight: bold;
+		color: #fff;
+		margin-bottom: 1.5rem;
+		line-height: 1.3;
+	}
+
+	.blog-card-footer {
+		margin-top: auto;
+	}
+
+	.blog-card-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.blog-card-tag {
+		background: #2a2a2a;
+		color: #aaa;
+		padding: 0.25rem 0.75rem;
+		border-radius: 4px;
+		font-size: 0.85rem;
+	}
+
+	.blog-card-meta {
+		color: #666;
+		font-size: 0.9rem;
+	}
+
+	/* Responsive styles for mobile devices */
+	@media screen and (max-width: 480px) {
+		#fade-title {
+			font-size: 1.3rem;
+			line-height: 1.4;
+		}
+
+		#fade-text {
+			font-size: 0.85rem;
+			line-height: 1.5;
+		}
+
+		.blog-cards-container {
+			padding: 0 1rem;
+		}
+
+		.blog-cards-grid {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+	}
+
+	@media screen and (min-width: 481px) and (max-width: 768px) {
+		#fade-title {
+			font-size: 1.5rem;
+		}
+
+		#fade-text {
+			font-size: 0.95rem;
+		}
+	}
+</style>
 <div class="frontpage-slider">
-	<h1>안녕하세요, 송주현입니다.</h1>
-	<p>개발과 보안을 공부하고 운동을 좋아하는 사람입니다.</p>
+	<h1 id="fade-title"><span class="quote-hover" data-tooltip="fade-title-tooltip">천행건(天行健), 군자이자강불식(君子以自強不息)</span></h1>
+	<p id="fade-text"><span class="quote-hover" data-tooltip="fade-text-tooltip">As Heaven moves with strength, the gentleman makes himself strong and never rests.</span></p>
 </div>
+<div class="quote-tooltip" id="fade-title-tooltip">『주역(周易)』 건괘(乾卦)</div>
+<div class="quote-tooltip" id="fade-text-tooltip">The Book of Changes, Hexagram 1</div>
 <div class="frontpage-background">
-	
+
+</div>
+
+<div class="blog-cards-container">
+	<div class="blog-cards-grid" id="blog-cards-grid">
+		<!-- Cards will be loaded here -->
+	</div>
 </div>
 
 <script type="text/javascript">
 	document.title = "JUHYUN167";
+
+	// Tooltip functionality for quote elements
+	const quoteHovers = document.querySelectorAll('.quote-hover');
+	let currentTooltip = null;
+
+	function showTooltip(e) {
+		const tooltipId = e.currentTarget.getAttribute('data-tooltip');
+		currentTooltip = document.getElementById(tooltipId);
+		if (currentTooltip) {
+			currentTooltip.style.left = e.clientX + 'px';
+			currentTooltip.style.top = e.clientY + 'px';
+			currentTooltip.classList.add('show');
+		}
+	}
+
+	function hideTooltip() {
+		if (currentTooltip) {
+			currentTooltip.classList.remove('show');
+			currentTooltip = null;
+		}
+	}
+
+	quoteHovers.forEach(element => {
+		element.addEventListener('mouseenter', showTooltip);
+		element.addEventListener('mousemove', showTooltip);
+		element.addEventListener('mouseleave', hideTooltip);
+	});
+
+	// Load blog posts from searchdb.json
+	window.addEventListener('load', function() {
+		const grid = document.getElementById('blog-cards-grid');
+
+		// Add About card first
+		const aboutCard = document.createElement('a');
+		aboutCard.href = '/about/';
+		aboutCard.className = 'blog-card';
+		aboutCard.style.animationDelay = '0.4s';
+		aboutCard.innerHTML = `
+			<div class="blog-card-title">About</div>
+			<div class="blog-card-footer">
+				<div class="blog-card-tags">
+					<span class="blog-card-tag">About</span>
+				</div>
+				<div class="blog-card-meta">Profile</div>
+			</div>
+		`;
+		grid.appendChild(aboutCard);
+
+		// Fetch posts from searchdb.json
+		fetch('/searchdb.json')
+			.then(response => response.json())
+			.then(data => {
+				// Filter and sort posts (exclude About page)
+				const posts = data
+					.filter(item => item.url && !item.url.includes('/about/'))
+					.sort((a, b) => {
+						// Extract dates from URLs and sort by date descending
+						const dateA = a.url.match(/\/(\d{4})\/(\d{2})\/(\d{2})\//);
+						const dateB = b.url.match(/\/(\d{4})\/(\d{2})\/(\d{2})\//);
+
+						if (dateA && dateB) {
+							const timeA = new Date(`${dateA[1]}-${dateA[2]}-${dateA[3]}`).getTime();
+							const timeB = new Date(`${dateB[1]}-${dateB[2]}-${dateB[3]}`).getTime();
+							return timeB - timeA; // Descending order (latest first)
+						}
+						return 0;
+					})
+					.slice(0, 5); // Get first 5 posts
+
+				posts.forEach((post, index) => {
+					const card = document.createElement('a');
+					card.href = post.url;
+					card.className = 'blog-card';
+					card.style.animationDelay = `${0.4 + (index + 1) * 0.08}s`;
+
+					// Parse categories from the post
+					let categoriesHtml = '';
+					if (post.categories && post.categories.length > 0) {
+						const categoryTags = post.categories
+							.map(cat => `<span class="blog-card-tag">${cat}</span>`)
+							.join('');
+						categoriesHtml = `<div class="blog-card-tags">${categoryTags}</div>`;
+					}
+
+					// Extract date from URL (format: /YYYY/MM/DD/post-name/)
+					let dateStr = '';
+					const urlMatch = post.url.match(/\/(\d{4})\/(\d{2})\/(\d{2})\//);
+					if (urlMatch) {
+						dateStr = `${urlMatch[1]}-${urlMatch[2]}-${urlMatch[3]}`;
+					}
+
+					card.innerHTML = `
+						<div class="blog-card-title">${post.title || 'Untitled'}</div>
+						<div class="blog-card-footer">
+							${categoriesHtml}
+							<div class="blog-card-meta">${dateStr}</div>
+						</div>
+					`;
+
+					grid.appendChild(card);
+				});
+			})
+			.catch(error => {
+				console.error('Error loading posts:', error);
+			});
+	});
 </script>
