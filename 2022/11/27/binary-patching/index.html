@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://juhyun167.github.io/images/binary-patching/6.png">
 <meta property="og:image" content="https://juhyun167.github.io/images/binary-patching/7.png">
 <meta property="article:published_time" content="2022-11-27T09:20:03.000Z">
-<meta property="article:modified_time" content="2025-10-23T07:32:24.457Z">
+<meta property="article:modified_time" content="2025-10-24T03:13:34.523Z">
 <meta property="article:author" content="juhyun167 블로그">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://juhyun167.github.io/images/binary-patching/1.png">
@@ -297,7 +297,7 @@
 <h3 id="%EB%B0%A9%EB%B2%95%EB%A1%A0" tabindex="-1">방법론</h3>
 <p>바이너리 패치는 바이너리의 동작을 얼마나 변형할 것인지에 따라 다양한 방법을 사용할 수 있습니다. 아주 사소한 버그를 수정하거나, 일부 코드를 무력화하는 등 기존의 동작을 조금 변형하는 정도라면 헥스 에디터를 이용하여 해당하는 인스트럭션을 수정하는 것으로도 충분합니다. 그러나 특정 함수의 동작 자체를 수정하거나, 원하는 코드를 추가적으로 실행하는 등 변형의 정도가 큰 경우에는 코드를 삽입하기 위한 다양한 방법을 사용해야 합니다.</p>
 <p>이 글에서는 예제 바이너리에 존재하는 두 가지 취약점을 패치하는 상황을 가정하고, 헥스 에디터를 이용한 간단한 수정과 코드를 삽입하여 패치하는 방법을 모두 연습해 보겠습니다. 실습에 사용할 바이너리는 다음 링크에서 내려받을 수 있습니다.<br>
-<a href="/uploads/binary-patching/example.zip">example.zip</a></p>
+<a href="/uploads/binary-patching/example.zip"><i class="fa-solid fa-file"></i> example.zip</a></p>
 <h2 id="%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%88%98%EC%A0%95%EC%9D%98-%EA%B2%BD%EC%9A%B0" tabindex="-1">간단한 수정의 경우</h2>
 <p>바이너리의 동작을 조금만 변형하는 간단한 수정의 경우, 헥스 에디터를 사용하는 방법이 직관적이고 간편합니다. 헥스 에디터를 사용하는 방법은 기초적인 도구만으로도 간편하게 패치를 할 수 있다는 장점이 있습니다. 패치의 과정은 먼저 디스어셈블러를 이용해 패치할 코드와 위치를 확인한 후, 헥스 에디터로 바이너리를 열고 해당 위치의 인스트럭션을 원하는 인스트럭션으로 덮어씁니다. 아래 그림은 헥스 에디터를 사용하여 특정 함수의 호출을 무력화하는 간단한 수정의 예시를 나타내고 있습니다.</p>
 <p><img src="/images/binary-patching/1.png" alt="1.png"></p>

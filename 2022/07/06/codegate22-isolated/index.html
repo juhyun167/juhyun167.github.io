@@ -19,17 +19,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs2015","dark":"vs2015"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/searchdb.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="개요  Simple VM, But isloated.  chall.zip 문제 분석 64비트 x86_64 바이너리 isolated 와 Dockerfile 등이 주어집니다. 바이너리는 심볼이 strip되어 있고, Canary, NX, PIE 보호 기법이 적용되어 있습니다. 1234567$ checksec isolated[*] &#x27;&#x2F;home&#x2F;user&#x2F;st">
+    <meta name="description" content="개요  Simple VM, But isloated.   chall.zip 문제 분석 64비트 x86_64 바이너리 isolated 와 Dockerfile 등이 주어집니다. 바이너리는 심볼이 strip되어 있고, Canary, NX, PIE 보호 기법이 적용되어 있습니다. 1234567$ checksec isolated[*] &#x27;&#x2F;home&#x2F;user&#x2F;s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Codegate CTF 2022] Isolated">
 <meta property="og:url" content="https://juhyun167.github.io/2022/07/06/codegate22-isolated/index.html">
 <meta property="og:site_name" content="JUHYUN167">
-<meta property="og:description" content="개요  Simple VM, But isloated.  chall.zip 문제 분석 64비트 x86_64 바이너리 isolated 와 Dockerfile 등이 주어집니다. 바이너리는 심볼이 strip되어 있고, Canary, NX, PIE 보호 기법이 적용되어 있습니다. 1234567$ checksec isolated[*] &#x27;&#x2F;home&#x2F;user&#x2F;st">
+<meta property="og:description" content="개요  Simple VM, But isloated.   chall.zip 문제 분석 64비트 x86_64 바이너리 isolated 와 Dockerfile 등이 주어집니다. 바이너리는 심볼이 strip되어 있고, Canary, NX, PIE 보호 기법이 적용되어 있습니다. 1234567$ checksec isolated[*] &#x27;&#x2F;home&#x2F;user&#x2F;s">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://juhyun167.github.io/images/codegate22-isolated/1.png">
 <meta property="og:image" content="https://juhyun167.github.io/images/codegate22-isolated/2.png">
 <meta property="article:published_time" content="2022-07-06T23:25:37.000Z">
-<meta property="article:modified_time" content="2025-10-23T07:32:24.457Z">
+<meta property="article:modified_time" content="2025-10-24T03:13:34.523Z">
 <meta property="article:author" content="juhyun167 블로그">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://juhyun167.github.io/images/codegate22-isolated/1.png">
@@ -289,7 +289,7 @@
 <blockquote>
 <p>Simple VM, But isloated.</p>
 </blockquote>
-<p><a href="/uploads/codegate22-isolated/chall.zip">chall.zip</a></p>
+<p><a href="/uploads/codegate22-isolated/chall.zip"><i class="fa-solid fa-file"></i> chall.zip</a></p>
 <h2 id="%EB%AC%B8%EC%A0%9C-%EB%B6%84%EC%84%9D" tabindex="-1">문제 분석</h2>
 <p>64비트 x86_64 바이너리 <code>isolated</code> 와 <code>Dockerfile</code> 등이 주어집니다. 바이너리는 심볼이 strip되어 있고, Canary, NX, PIE 보호 기법이 적용되어 있습니다.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ checksec isolated</span><br><span class="line">[*] <span class="string">&#x27;/home/user/study/ctf/codegate22/isolated/isolated&#x27;</span></span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    Canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      PIE enabled</span><br></pre></td></tr></table></figure>

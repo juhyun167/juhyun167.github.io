@@ -19,16 +19,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"juhyun167.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs2015","dark":"vs2015"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/searchdb.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="개요 chall.zip 문제 분석           주의사항     이 글의 내용을 이해하기 위해서는 C++ 예외 처리의 내부 구현에 대한 지식이 필요합니다.       64비트 x86_64 바이너리 trust_code 와 Dockerfile 등이 주어집니다. Dockerfile 을 비롯한 컨테이너 관련 파일은 원본 문제에는 없는 파일로, 대회 환경을 구현">
+    <meta name="description" content="개요  chall.zip 문제 분석           주의사항     이 글의 내용을 이해하기 위해서는 C++ 예외 처리의 내부 구현에 대한 지식이 필요합니다.       64비트 x86_64 바이너리 trust_code 와 Dockerfile 등이 주어집니다. Dockerfile 을 비롯한 컨테이너 관련 파일은 원본 문제에는 없는 파일로, 대회 환경을 구">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[LINE CTF 2022] trust_code">
 <meta property="og:url" content="https://juhyun167.github.io/2022/07/30/line22-trust-code/index.html">
 <meta property="og:site_name" content="JUHYUN167">
-<meta property="og:description" content="개요 chall.zip 문제 분석           주의사항     이 글의 내용을 이해하기 위해서는 C++ 예외 처리의 내부 구현에 대한 지식이 필요합니다.       64비트 x86_64 바이너리 trust_code 와 Dockerfile 등이 주어집니다. Dockerfile 을 비롯한 컨테이너 관련 파일은 원본 문제에는 없는 파일로, 대회 환경을 구현">
+<meta property="og:description" content="개요  chall.zip 문제 분석           주의사항     이 글의 내용을 이해하기 위해서는 C++ 예외 처리의 내부 구현에 대한 지식이 필요합니다.       64비트 x86_64 바이너리 trust_code 와 Dockerfile 등이 주어집니다. Dockerfile 을 비롯한 컨테이너 관련 파일은 원본 문제에는 없는 파일로, 대회 환경을 구">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://juhyun167.github.io/images/line22-trust-code/1.png">
 <meta property="article:published_time" content="2022-07-30T23:07:19.000Z">
-<meta property="article:modified_time" content="2025-10-23T07:32:24.458Z">
+<meta property="article:modified_time" content="2025-10-24T03:13:34.524Z">
 <meta property="article:author" content="juhyun167 블로그">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://juhyun167.github.io/images/line22-trust-code/1.png">
@@ -285,7 +285,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><h2 id="%EA%B0%9C%EC%9A%94" tabindex="-1">개요</h2>
-<p><a href="/uploads/line22-trust-code/chall.zip">chall.zip</a></p>
+<p><a href="/uploads/line22-trust-code/chall.zip"><i class="fa-solid fa-file"></i> chall.zip</a></p>
 <h2 id="%EB%AC%B8%EC%A0%9C-%EB%B6%84%EC%84%9D" tabindex="-1">문제 분석</h2>
 <blockquote class="callout-warning">
     <p>
