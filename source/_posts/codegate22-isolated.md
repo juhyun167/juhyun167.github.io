@@ -9,7 +9,7 @@ categories: [Security, CTF]
 
 > Simple VM, But isloated.
 
-[chall.zip](/uploads/codegate22-isolated/chall.zip)
+[<i class="fa-solid fa-file"></i> chall.zip](/uploads/codegate22-isolated/chall.zip)
 
 
 ## 문제 분석

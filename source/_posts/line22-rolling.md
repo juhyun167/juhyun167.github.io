@@ -9,7 +9,7 @@ categories: [Security, CTF]
 
 > what you know about rolling?
 
-[rolling.apk](/uploads/line22-rolling/rolling.apk)
+[<i class="fa-solid fa-file"></i> rolling.apk](/uploads/line22-rolling/rolling.apk)
 
 
 ## 문제 분석

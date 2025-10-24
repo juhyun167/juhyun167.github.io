@@ -10,7 +10,7 @@ categories: [Security, CTF]
 > Welcome! Here is my Emulator. It can use only human.
 > Always SMiLEY :)
 
-[chall.zip](/uploads/codegate22-arvm/chall.zip)
+[<i class="fa-solid fa-file"></i> chall.zip](/uploads/codegate22-arvm/chall.zip)
 
 
 ## 문제 분석

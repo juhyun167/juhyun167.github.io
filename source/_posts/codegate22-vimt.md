@@ -9,7 +9,7 @@ categories: [Security, CTF]
 
 > Monkeys help you
 
-[chall.zip](/uploads/codegate22-vimt/chall.zip)
+[<i class="fa-solid fa-file"></i> chall.zip](/uploads/codegate22-vimt/chall.zip)
 
 
 ## 문제 분석

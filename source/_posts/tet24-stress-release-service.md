@@ -9,7 +9,7 @@ categories: [Security, CTF]
 
 > For a better New Year, we are introducing a service that can help you reduce stress.
 
-[chall.zip](/uploads/tet24-stress-release-service/chall.zip)
+[<i class="fa-solid fa-file"></i> chall.zip](/uploads/tet24-stress-release-service/chall.zip)
 
 
 ## 문제 분석

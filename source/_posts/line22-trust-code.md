@@ -7,7 +7,7 @@ categories: [Security, CTF]
 
 ## 개요
 
-[chall.zip](/uploads/line22-trust-code/chall.zip)
+[<i class="fa-solid fa-file"></i> chall.zip](/uploads/line22-trust-code/chall.zip)
 
 
 ## 문제 분석
