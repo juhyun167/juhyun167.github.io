@@ -34,6 +34,9 @@ categories: about
 
 ## Talks
 
+- **Stabilizing Linux Cross-Cache Attacks**
+    - .HACK Conference 2026, Seoul, Korea
+
 - **Towards Comprehensive Fuzzing of TrustZone TAs**
     - .HACK Conference 2024, Seoul, Korea [<i class="fa-solid fa-file-pdf"></i>](/uploads/talks/dothack_2024.pdf)
 
