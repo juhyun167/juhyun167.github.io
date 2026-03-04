@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://juhyun167.github.io/images/codegate22-vimt/8.png">
 <meta property="og:image" content="https://juhyun167.github.io/images/codegate22-vimt/9.png">
 <meta property="article:published_time" content="2022-07-05T22:33:02.000Z">
-<meta property="article:modified_time" content="2025-10-24T03:13:34.523Z">
+<meta property="article:modified_time" content="2026-03-04T08:46:11.640Z">
 <meta property="article:author" content="juhyun167 블로그">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://juhyun167.github.io/images/codegate22-vimt/1.png">
@@ -336,7 +336,7 @@
 <p><div class="link-preview-widget"><a href="https://stackoverflow.com/questions/71759099/where-does-gcc-find-printf-my-code-worked-without-any-include" rel="noopener external nofollow noreferrer" target="_blank"><div class="link-preview-widget-title">Where does GCC find printf ? My code worked without any #include</div><div class="link-preview-widget-description">I am a C beginner so I tried to hack around the stuff.
 I read stdio.h and I found this line:
 extern int printf (const char *__restrict __format, ...);
-So I wrote this code and i have no idea why it...</div><div class="link-preview-widget-url">Stack Overflow</div></a><a class="link-preview-widget-image" href="https://stackoverflow.com/questions/71759099/where-does-gcc-find-printf-my-code-worked-without-any-include" rel="noopener external nofollow noreferrer" style="background-image: url('https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon@2.png?v=73d79a89bded');" target="_blank"></a></div></p>
+So I wrote this code and i have no idea why it...</div><div class="link-preview-widget-url">Stack Overflow</div></a><a class="link-preview-widget-image" href="https://stackoverflow.com/questions/71759099/where-does-gcc-find-printf-my-code-worked-without-any-include" rel="noopener external nofollow noreferrer" style="background-image: url('https://stackoverflow.com/Content/Sites/stackoverflow/Img/apple-touch-icon@2.png?v=0f0cab681579');" target="_blank"></a></div></p>
 <p>다음은 위의 트릭을 사용하여 작성한 셸을 실행하는 41바이트의 C 코드입니다.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">main() &#123;setuid(<span class="number">0</span>);execve(<span class="string">&quot;/bin/sh&quot;</span>,<span class="number">0</span>,<span class="number">0</span>);&#125;</span><br></pre></td></tr></table></figure>
 <p>이 코드를 앞서 사용한 8번 입력 후 “set y 0” 커맨드를 실행하는 방법으로 입력한 후 <code>map</code> 배열의 상태는 다음과 같습니다. 커서는 <code>map[0][41]</code> 에 위치하고 있으며, <code>map[0]</code> 의 코드 뒷부분, <code>map[1]</code> 에 거쳐 랜덤한 문자들이 많이 남아있는 상황입니다.</p>
