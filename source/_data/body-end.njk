@@ -1,0 +1,34 @@
+<svg class="liquid-glass-filters" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="liquid-glass-refract" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.016 0.024" numOctaves="2" seed="7" result="liquidNoise" />
+      <feGaussianBlur in="liquidNoise" stdDeviation="0.35" result="softLiquidNoise" />
+      <feDisplacementMap in="SourceGraphic" in2="softLiquidNoise" scale="12" xChannelSelector="R" yChannelSelector="G" result="refracted" />
+      <feColorMatrix in="refracted" type="saturate" values="1.12" result="saturatedRefracted" />
+      <feComponentTransfer in="saturatedRefracted">
+        <feFuncA type="identity" />
+      </feComponentTransfer>
+    </filter>
+  </defs>
+</svg>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var css = window.CSS;
+    var supportsBackdrop = !!(css && css.supports && (
+      css.supports('backdrop-filter', 'blur(1px)') ||
+      css.supports('-webkit-backdrop-filter', 'blur(1px)')
+    ));
+    var ua = navigator.userAgent;
+    var chromium = /\b(Chrome|Chromium|Edg)\//.test(ua) && !/\b(OPR|Firefox)\//.test(ua);
+    var supportsSvgBackdrop = !!(css && css.supports && (
+      css.supports('backdrop-filter', 'url("#liquid-glass-refract")') ||
+      css.supports('-webkit-backdrop-filter', 'url("#liquid-glass-refract")')
+    ));
+
+    root.classList.add(supportsBackdrop && (supportsSvgBackdrop || chromium)
+      ? 'liquid-filter-ok'
+      : 'liquid-filter-no');
+  })();
+</script>

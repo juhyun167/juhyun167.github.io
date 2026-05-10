@@ -61,7 +61,179 @@
 
 
 // ============================================================================
-// 2. Header Styles
+// 2. Liquid Glass Material System
+// ============================================================================
+// Shared material primitives used by the custom theme surfaces. The default
+// path is stable frosted glass; SVG refraction is enabled only via a body-end
+// capability class in supported Chromium browsers.
+
+liquid-glass-base($radius = 12px, $border_alpha = 0.1)
+  position: relative
+  background: linear-gradient(135deg,
+              rgba(255, 255, 255, 0.08) 0%,
+              rgba(255, 255, 255, 0.05) 50%,
+              rgba(255, 255, 255, 0.03) 100%)
+  backdrop-filter: blur(30px) saturate(160%)
+  -webkit-backdrop-filter: blur(30px) saturate(160%)
+  border: 1px solid rgba(255, 255, 255, $border_alpha)
+  border-radius: $radius
+  overflow: hidden
+
+liquid-glass-base-important($radius = 12px, $border_alpha = 0.1)
+  position: relative !important
+  background: linear-gradient(135deg,
+              rgba(255, 255, 255, 0.08) 0%,
+              rgba(255, 255, 255, 0.05) 50%,
+              rgba(255, 255, 255, 0.03) 100%) !important
+  backdrop-filter: blur(30px) saturate(160%) !important
+  -webkit-backdrop-filter: blur(30px) saturate(160%) !important
+  border: 1px solid rgba(255, 255, 255, $border_alpha) !important
+  border-radius: $radius !important
+  overflow: hidden !important
+
+liquid-glass-quiet($radius = 8px)
+  position: relative
+  background: linear-gradient(135deg,
+              rgba(255, 255, 255, 0.02) 0%,
+              rgba(255, 255, 255, 0.015) 50%,
+              rgba(255, 255, 255, 0.01) 100%)
+  backdrop-filter: blur(30px) saturate(160%)
+  -webkit-backdrop-filter: blur(30px) saturate(160%)
+  border: 1px solid rgba(255, 255, 255, 0.04)
+  border-radius: $radius
+  overflow: hidden
+
+liquid-glass-medium($radius = 8px)
+  position: relative
+  background: linear-gradient(135deg,
+              rgba(255, 255, 255, 0.08) 0%,
+              rgba(255, 255, 255, 0.05) 50%,
+              rgba(255, 255, 255, 0.03) 100%)
+  backdrop-filter: blur(20px) saturate(140%)
+  -webkit-backdrop-filter: blur(20px) saturate(140%)
+  border-radius: $radius
+  overflow: hidden
+
+liquid-glass-soft($radius = 6px)
+  position: relative
+  background: linear-gradient(135deg,
+              rgba(255, 255, 255, 0.05) 0%,
+              rgba(255, 255, 255, 0.03) 50%,
+              rgba(255, 255, 255, 0.02) 100%)
+  backdrop-filter: blur(15px) saturate(130%)
+  -webkit-backdrop-filter: blur(15px) saturate(130%)
+  border-radius: $radius
+  overflow: hidden
+
+liquid-glass-shadow()
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
+              inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+              0 8px 24px rgba(0, 0, 0, 0.4),
+              0 2px 8px rgba(0, 0, 0, 0.3)
+
+liquid-glass-shadow-important()
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
+              inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+              0 8px 24px rgba(0, 0, 0, 0.4),
+              0 2px 8px rgba(0, 0, 0, 0.3) !important
+
+liquid-glass-soft-shadow()
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1),
+              inset 0 -1px 1px rgba(0, 0, 0, 0.15)
+
+liquid-glass-tooltip-shadow()
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
+              inset 0 -1px 1px rgba(0, 0, 0, 0.4),
+              0 8px 24px rgba(0, 0, 0, 0.6),
+              0 2px 8px rgba(0, 0, 0, 0.5)
+
+liquid-glass-highlight-before($radius = 12px, $alpha = 0.05)
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    height: 50%
+    background: linear-gradient(180deg,
+                rgba(255, 255, 255, $alpha) 0%,
+                rgba(255, 255, 255, 0) 100%)
+    border-radius: $radius $radius 0 0
+    pointer-events: none
+    z-index: 1
+
+liquid-glass-highlight-after($radius = 12px, $alpha = 0.05)
+  &::after
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    height: 50%
+    background: linear-gradient(180deg,
+                rgba(255, 255, 255, $alpha) 0%,
+                rgba(255, 255, 255, 0) 100%)
+    border-radius: $radius $radius 0 0
+    pointer-events: none
+    z-index: 1
+
+liquid-glass-highlight-before-important($radius = 12px, $alpha = 0.05)
+  &::before
+    content: '' !important
+    position: absolute !important
+    top: 0 !important
+    left: 0 !important
+    right: 0 !important
+    height: 50% !important
+    background: linear-gradient(180deg,
+                rgba(255, 255, 255, $alpha) 0%,
+                rgba(255, 255, 255, 0) 100%) !important
+    border-radius: $radius $radius 0 0 !important
+    pointer-events: none !important
+    z-index: 1 !important
+
+liquid-glass-hover()
+  &:hover
+    background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.12) 0%,
+                rgba(255, 255, 255, 0.08) 50%,
+                rgba(255, 255, 255, 0.05) 100%)
+    border-color: rgba(255, 255, 255, 0.15)
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                inset 0 -2px 3px rgba(0, 0, 0, 0.3),
+                0 8px 24px rgba(0, 0, 0, 0.4),
+                0 2px 8px rgba(0, 0, 0, 0.3)
+
+liquid-glass-hover-important()
+  &:hover
+    background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.06) 50%,
+                rgba(255, 255, 255, 0.04) 100%) !important
+    border-color: rgba(255, 255, 255, 0.12) !important
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.25),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.25),
+                0 6px 16px rgba(0, 0, 0, 0.4) !important
+
+.glass-surface
+  liquid-glass-base()
+  liquid-glass-shadow()
+  liquid-glass-highlight-before()
+
+.glass-surface--interactive
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, transform 0.2s ease
+  liquid-glass-hover()
+
+.glass-surface--compact
+  liquid-glass-quiet(8px)
+  liquid-glass-tooltip-shadow()
+
+.glass-surface--refract
+  isolation: isolate
+  contain: paint
+
+// ============================================================================
+// 3. Header Styles
 // ============================================================================
 // Custom logo, site title, and navigation styles
 
@@ -105,6 +277,7 @@ $sidebar-list-height = 2.8em
 
 .sidebar
   background: $sidebar-bg-color
+  font-size: 0.9em
 
 .sidebar-toggle
   background: rgba(0, 0, 0, 0.6)
@@ -122,38 +295,13 @@ $sidebar-list-height = 2.8em
 
   +mobile()
     // Liquid Glass design with increased size
+    liquid-glass-base(16px)
     position: fixed
-    background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.08) 0%,
-                rgba(255, 255, 255, 0.05) 50%,
-                rgba(255, 255, 255, 0.03) 100%)
-    backdrop-filter: blur(30px) saturate(160%)
-    -webkit-backdrop-filter: blur(30px) saturate(160%)
-    border: 1px solid rgba(255, 255, 255, 0.1)
-    border-radius: 16px
     padding: 16px
-    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
-                inset 0 -1px 2px rgba(0, 0, 0, 0.2),
-                0 8px 24px rgba(0, 0, 0, 0.4),
-                0 2px 8px rgba(0, 0, 0, 0.3)
+    liquid-glass-shadow()
     transform: translateY(20px) scale(1.15)
     transform-origin: top left
-    overflow: hidden
-
-    // Add light reflection effect
-    &::before
-      content: ''
-      position: absolute
-      top: 0
-      left: 0
-      right: 0
-      height: 50%
-      background: linear-gradient(180deg,
-                  rgba(255, 255, 255, 0.05) 0%,
-                  rgba(255, 255, 255, 0) 100%)
-      border-radius: 16px 16px 0 0
-      pointer-events: none
-      z-index: 1
+    liquid-glass-highlight-before(16px)
 
   &:hover
     background: rgba(0, 0, 0, 0.8)
@@ -266,7 +414,7 @@ $sidebar-list-height = 2.8em
   display: flex
   align-items: center
   position: relative
-  transition: all 0.2s ease
+  transition: background 0.2s ease, box-shadow 0.2s ease
   border-radius: 6px
 
   img
@@ -279,12 +427,7 @@ $sidebar-list-height = 2.8em
     z-index: 2
 
   &:hover
-    background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.08) 0%,
-                rgba(255, 255, 255, 0.05) 50%,
-                rgba(255, 255, 255, 0.03) 100%)
-    backdrop-filter: blur(20px) saturate(140%)
-    -webkit-backdrop-filter: blur(20px) saturate(140%)
+    liquid-glass-medium(6px)
     box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15),
                 inset 0 -1px 1px rgba(0, 0, 0, 0.2)
 
@@ -343,15 +486,8 @@ $search-text-color = #D6DADF
 $search-meta-color = #8b92a0
 
 .search-button
-  position: relative
-  background: linear-gradient(135deg,
-              rgba(255, 255, 255, 0.08) 0%,
-              rgba(255, 255, 255, 0.05) 50%,
-              rgba(255, 255, 255, 0.03) 100%)
-  backdrop-filter: blur(30px) saturate(160%)
-  -webkit-backdrop-filter: blur(30px) saturate(160%)
+  liquid-glass-base(8px)
   border: 1px solid rgba(255, 255, 255, 0.1) !important
-  border-radius: 8px
   margin-inline-start: 2.188rem
   margin-inline-end: 0.625rem
   height: $sidebar-list-height - 0.1em
@@ -365,7 +501,6 @@ $search-meta-color = #8b92a0
               0 4px 12px rgba(0, 0, 0, 0.3)
   transition: all 0.2s ease
   cursor: pointer
-  overflow: hidden
 
   // Add light reflection effect
   &:after
@@ -393,21 +528,13 @@ $search-meta-color = #8b92a0
                 0 6px 16px rgba(0, 0, 0, 0.4)
 
 .search-popup
-  position: relative
-  background: linear-gradient(135deg,
-              rgba(255, 255, 255, 0.08) 0%,
-              rgba(255, 255, 255, 0.05) 50%,
-              rgba(255, 255, 255, 0.03) 100%) !important
-  backdrop-filter: blur(30px) saturate(160%) !important
-  -webkit-backdrop-filter: blur(30px) saturate(160%) !important
+  liquid-glass-base-important(12px)
   border: 1px solid rgba(255, 255, 255, 0.1) !important
-  border-radius: 12px !important
   padding-top: 0.625rem !important
   box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
               inset 0 -1px 2px rgba(0, 0, 0, 0.2),
               0 12px 48px rgba(0, 0, 0, 0.6),
               0 4px 16px rgba(0, 0, 0, 0.4) !important
-  overflow: hidden
 
   // Add light reflection effect
   &:after
@@ -545,6 +672,24 @@ body
 .main-inner
   margin-top: -1.875rem
 
+post-content-width()
+  width: 505px
+
+  +mobile()
+    width: auto
+
+  +desktop-large()
+    width: 589px
+
+  +desktop-largest()
+    width: 660px
+
+.main-inner.post
+  post-content-width()
+
+html:has(link[rel="canonical"][href$="/about/"]) .main-inner.page
+  post-content-width()
+
 // Sidebar dimmer overlay
 .sidebar-dimmer
   background: black
@@ -625,7 +770,7 @@ body
 
 // Increase font size of date and category metadata
 .post-meta-item
-  font-size: 1rem
+  font-size: 0.9rem
 
 // Add top spacing above post metadata
 .post-meta
@@ -638,12 +783,29 @@ body
 .post-nav
   margin-top: 3rem
 
+.post-nav-item a
+  font-size: 0.8em
+
 // ─────────────────────────────────────────────────────────────────────────
 // Post Body Content
 // ─────────────────────────────────────────────────────────────────────────
 
 .post-body
-  line-height: 1.8
+  font-size: 0.9rem
+  line-height: 1.7
+
+  p
+    margin: 1.15rem 0
+
+  p + p
+    margin-top: 1.45rem
+
+  p:has(> img),
+  p:has(> a > img)
+    margin: 1.7rem 0
+
+  figure.highlight
+    margin: 1.6rem 0
 
   // Heading styles
   h1, h2, h3, h4, h5, h6
@@ -653,15 +815,16 @@ body
     font-size: 1.9rem
 
   h2
-    font-size: 1.5rem
+    font-size: 1.3rem
 
   h3
-    font-size: 1.2rem
+    font-size: 1.1rem
 
   // Code block styles
   pre
     tab-size: 4
-    font-size: 0.8rem
+    font-size: 0.7rem
+    line-height: 1.4
     padding-top: 0.938rem !important
     padding-bottom: 0.938rem !important
     border-radius: 8px
@@ -675,7 +838,7 @@ body
     color: #96b8b7
     padding: 0.125rem 0.375rem
     border-radius: 3px
-    font-size: 0.875rem
+    font-size: 0.75rem
     vertical-align: baseline
     // Disable ligatures for inline code
     font-variant-ligatures: none
@@ -694,16 +857,19 @@ body
 
 .post-body ul
   margin-block-start: 0.5rem
-  margin-block-end: 0.5rem
+  margin-block-end: 2rem
   padding-inline-start: 1.25rem
 
 .post-body ul li ul
   margin-block-start: 0 !important
-  margin-block-end: 0.2rem !important
+  margin-block-end: 0.6rem !important
 
 // Reduce spacing between nested list and next top-level item
 .post-body li:has(ul)
   margin-bottom: -0.5rem
+
+.post-body ol > li:has(ul):last-child
+  margin-bottom: 0
 
 .post-body ol
   margin-block-start: 0.5rem
@@ -712,16 +878,16 @@ body
 
 .post-body ol li ul
   margin-block-start: 0 !important
-  margin-block-end: 0.2rem !important
+  margin-block-end: 0.6rem !important
 
 // List spacing adjustments
 @css {
   .post-body p + ol {
-    margin-top: -0.938rem;
+    // margin-top: -0.938rem;
   }
 
   .post-body p + ul {
-    margin-top: -0.938rem;
+    // margin-top: -0.938rem;
   }
 
   .post-body ul + p img {
@@ -769,42 +935,20 @@ body
   bottom: 125%
   left: 50%
   transform: translateX(-50%)
-  background: linear-gradient(135deg,
-              rgba(255, 255, 255, 0.02) 0%,
-              rgba(255, 255, 255, 0.015) 50%,
-              rgba(255, 255, 255, 0.01) 100%)
-  backdrop-filter: blur(30px) saturate(160%)
-  -webkit-backdrop-filter: blur(30px) saturate(160%)
-  border: 1px solid rgba(255, 255, 255, 0.04)
+  liquid-glass-quiet(8px)
+  position: absolute
   color: #D6DADF
   padding: 0.5rem 0.75rem
-  border-radius: 8px
   white-space: nowrap
   font-size: 0.9rem
   font-weight: bold
   transition: opacity 0.2s ease, visibility 0.2s ease
   z-index: 100
   pointer-events: none
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08),
-              inset 0 -1px 1px rgba(0, 0, 0, 0.4),
-              0 8px 24px rgba(0, 0, 0, 0.6),
-              0 2px 8px rgba(0, 0, 0, 0.5)
-  overflow: hidden
+  liquid-glass-tooltip-shadow()
 
   // Light reflection effect
-  &:before
-    content: ''
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    height: 50%
-    background: linear-gradient(180deg,
-                rgba(255, 255, 255, 0.02) 0%,
-                rgba(255, 255, 255, 0) 100%)
-    border-radius: 8px 8px 0 0
-    pointer-events: none
-    z-index: 1
+  liquid-glass-highlight-before(8px, 0.02)
 
   // Arrow pointing down
   &:after
@@ -837,38 +981,16 @@ body
 // ─────────────────────────────────────────────────────────────────────────
 
 .post-body blockquote
-  position: relative
-  background: linear-gradient(135deg,
-              rgba(255, 255, 255, 0.08) 0%,
-              rgba(255, 255, 255, 0.05) 50%,
-              rgba(255, 255, 255, 0.03) 100%)
-  backdrop-filter: blur(30px) saturate(160%)
-  -webkit-backdrop-filter: blur(30px) saturate(160%)
+  liquid-glass-base(12px)
   border-left: 0
   border: 1px solid rgba(255, 255, 255, 0.1)
   padding: 0.115rem 1.125rem 1.125rem 2.75rem
   margin-bottom: 1.25rem
-  border-radius: 12px
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
-              inset 0 -1px 2px rgba(0, 0, 0, 0.2),
-              0 8px 24px rgba(0, 0, 0, 0.4),
-              0 2px 8px rgba(0, 0, 0, 0.3)
+  liquid-glass-shadow()
   text-align: left
 
   // Add light reflection effect
-  &:after
-    content: ''
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    height: 50%
-    background: linear-gradient(180deg,
-                rgba(255, 255, 255, 0.05) 0%,
-                rgba(255, 255, 255, 0) 100%)
-    border-radius: 12px 12px 0 0
-    pointer-events: none
-    z-index: 1
+  liquid-glass-highlight-after(12px)
 
 // Default blockquote icon (quote)
 .post-body blockquote:before
@@ -952,48 +1074,14 @@ td
 .link-preview-widget
   display: table
   width: 100%
-  position: relative
-  background: linear-gradient(135deg,
-              rgba(255, 255, 255, 0.08) 0%,
-              rgba(255, 255, 255, 0.05) 50%,
-              rgba(255, 255, 255, 0.03) 100%)
-  backdrop-filter: blur(30px) saturate(160%)
-  -webkit-backdrop-filter: blur(30px) saturate(160%)
-  border: 1px solid rgba(255, 255, 255, 0.1)
-  border-radius: 12px
-  overflow: hidden
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
-              inset 0 -1px 2px rgba(0, 0, 0, 0.2),
-              0 8px 24px rgba(0, 0, 0, 0.4),
-              0 2px 8px rgba(0, 0, 0, 0.3)
+  liquid-glass-base(12px)
+  liquid-glass-shadow()
   transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease
 
   // Light reflection effect
-  &:before
-    content: ''
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    height: 50%
-    background: linear-gradient(180deg,
-                rgba(255, 255, 255, 0.05) 0%,
-                rgba(255, 255, 255, 0) 100%)
-    border-radius: 12px 12px 0 0
-    pointer-events: none
-    z-index: 1
-    transition: opacity 0.3s ease
+  liquid-glass-highlight-before(12px)
 
-  &:hover
-    background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.12) 0%,
-                rgba(255, 255, 255, 0.08) 50%,
-                rgba(255, 255, 255, 0.05) 100%)
-    border-color: rgba(255, 255, 255, 0.15)
-    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3),
-                inset 0 -2px 3px rgba(0, 0, 0, 0.3),
-                0 8px 24px rgba(0, 0, 0, 0.4),
-                0 2px 8px rgba(0, 0, 0, 0.3)
+  liquid-glass-hover()
 
   &:hover:before
     background: linear-gradient(180deg,
@@ -1080,18 +1168,12 @@ td
 .category .post,
 .archive .post
   position: relative
-  transition: all 0.2s ease
+  transition: background 0.2s ease, box-shadow 0.2s ease
   border-radius: 6px
 
   &:hover
-    background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.05) 0%,
-                rgba(255, 255, 255, 0.03) 50%,
-                rgba(255, 255, 255, 0.02) 100%)
-    backdrop-filter: blur(15px) saturate(130%)
-    -webkit-backdrop-filter: blur(15px) saturate(130%)
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1),
-                inset 0 -1px 1px rgba(0, 0, 0, 0.15)
+    liquid-glass-soft(6px)
+    liquid-glass-soft-shadow()
 
   &:hover::before
     content: ''
@@ -1122,6 +1204,8 @@ $gitalk-color = #ccc
 $gitalk-textarea-color = #181818
 
 .gt-container
+  font-size: 0.9em !important
+
   a
     color: $gitalk-color !important
 
@@ -1133,23 +1217,13 @@ $gitalk-textarea-color = #181818
 
   .gt-header-textarea,
   .gt-header-preview
-    position: relative !important
-    background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.12) 0%,
-                rgba(255, 255, 255, 0.08) 30%,
-                rgba(255, 255, 255, 0.05) 70%,
-                rgba(255, 255, 255, 0.03) 100%) !important
-    backdrop-filter: blur(30px) saturate(160%) !important
-    -webkit-backdrop-filter: blur(30px) saturate(160%) !important
-    border: 1px solid rgba(255, 255, 255, 0.15) !important
-    border-radius: 12px !important
+    liquid-glass-base-important(12px, 0.15)
     color: $gitalk-color !important
     font-family: Inter, Pretendard !important
     box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.25),
                 inset 0 -2px 3px rgba(0, 0, 0, 0.3),
                 0 8px 24px rgba(0, 0, 0, 0.4),
                 0 2px 8px rgba(0, 0, 0, 0.3) !important
-    overflow: hidden !important
 
   .gt-header-textarea::before,
   .gt-header-preview::before
@@ -1188,21 +1262,12 @@ $gitalk-textarea-color = #181818
     z-index: 2 !important
 
   .gt-btn
-    position: relative !important
-    background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.08) 0%,
-                rgba(255, 255, 255, 0.05) 50%,
-                rgba(255, 255, 255, 0.03) 100%) !important
-    backdrop-filter: blur(30px) saturate(160%) !important
-    -webkit-backdrop-filter: blur(30px) saturate(160%) !important
-    border: 1px solid rgba(255, 255, 255, 0.1) !important
-    border-radius: 8px !important
+    liquid-glass-base-important(8px)
     color: $gitalk-color !important
     box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
                 inset 0 -1px 2px rgba(0, 0, 0, 0.2),
                 0 4px 12px rgba(0, 0, 0, 0.3) !important
     transition: all 0.2s ease !important
-    overflow: hidden !important
 
   .gt-btn::before
     content: '' !important
@@ -1233,21 +1298,12 @@ $gitalk-textarea-color = #181818
     border: 1px solid rgba(255, 255, 255, 0.1) !important
 
   .gt-btn-preview
-    position: relative !important
-    background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.08) 0%,
-                rgba(255, 255, 255, 0.05) 50%,
-                rgba(255, 255, 255, 0.03) 100%) !important
-    backdrop-filter: blur(30px) saturate(160%) !important
-    -webkit-backdrop-filter: blur(30px) saturate(160%) !important
-    border: 1px solid rgba(255, 255, 255, 0.1) !important
-    border-radius: 8px !important
+    liquid-glass-base-important(8px)
     color: $gitalk-color !important
     box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
                 inset 0 -1px 2px rgba(0, 0, 0, 0.2),
                 0 4px 12px rgba(0, 0, 0, 0.3) !important
     transition: all 0.2s ease !important
-    overflow: hidden !important
 
     &::before
       content: '' !important
@@ -1274,19 +1330,10 @@ $gitalk-textarea-color = #181818
                   0 6px 16px rgba(0, 0, 0, 0.4) !important
 
   .gt-comment-content
-    position: relative !important
-    background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.08) 0%,
-                rgba(255, 255, 255, 0.05) 50%,
-                rgba(255, 255, 255, 0.03) 100%) !important
-    backdrop-filter: blur(30px) saturate(160%) !important
-    -webkit-backdrop-filter: blur(30px) saturate(160%) !important
-    border: 1px solid rgba(255, 255, 255, 0.1) !important
-    border-radius: 8px !important
+    liquid-glass-base-important(8px)
     box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
                 inset 0 -1px 2px rgba(0, 0, 0, 0.2),
                 0 4px 12px rgba(0, 0, 0, 0.3) !important
-    overflow: hidden !important
 
     &::before
       content: '' !important
@@ -1324,10 +1371,176 @@ $gitalk-textarea-color = #181818
 // ============================================================================
 // Hero section with background image on homepage
 
+@keyframes fadeIn
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes cardReveal
+  from
+    opacity: 0
+    transform: translateY(30px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+#fade-title
+  opacity: 0
+  animation: fadeIn 0.3s ease-in forwards
+  animation-delay: 0.05s
+  font-size: 2.2rem
+  font-weight: bold
+  text-align: center
+
+  +mobile()
+    font-size: 1.3rem
+    line-height: 1.4
+
+#fade-text
+  opacity: 0
+  animation: fadeIn 0.3s ease-in forwards
+  animation-delay: 0.3s
+  font-size: 1.1rem
+  text-align: center
+
+  +mobile()
+    font-size: 0.85rem
+    line-height: 1.5
+
+.quote-hover
+  cursor: help
+
+.quote-tooltip
+  visibility: hidden
+  opacity: 0
+  position: fixed
+  left: 0
+  top: 0
+  liquid-glass-quiet(8px)
+  position: fixed
+  color: #D6DADF
+  padding: 0.5rem 0.75rem
+  white-space: nowrap
+  font-size: 0.9rem
+  font-weight: bold
+  transition: opacity 0.2s ease, visibility 0.2s ease
+  z-index: 1000
+  pointer-events: none
+  transform: translate(-50%, -100%)
+  margin-top: -10px
+  liquid-glass-tooltip-shadow()
+  liquid-glass-highlight-before(8px, 0.02)
+
+  &::after
+    content: ''
+    position: absolute
+    top: 100%
+    left: 50%
+    transform: translateX(-50%)
+    border-width: 0.313rem
+    border-style: solid
+    border-color: rgba(255, 255, 255, 0.02) transparent transparent transparent
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5))
+
+  &.show
+    visibility: visible
+    opacity: 1
+
+.blog-cards-container
+  max-width: 1200px
+  margin: 0 auto 3rem
+  padding: 0 2rem
+
+  +mobile()
+    padding: 0 1rem
+
+.blog-cards-grid
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+  gap: 1.5rem
+  margin-top: 3rem
+
+  +mobile()
+    grid-template-columns: 1fr
+    gap: 1rem
+
+.blog-card
+  liquid-glass-base(12px)
+  liquid-glass-shadow()
+  liquid-glass-highlight-before(12px)
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  padding: 1.5rem
+  min-height: 11rem
+  color: inherit
+  cursor: pointer
+  outline: none
+  opacity: 0
+  transform: translateY(30px)
+  animation: cardReveal 0.3s ease-out forwards
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, transform 0.2s ease
+
+  liquid-glass-hover()
+
+  &:hover::before
+    background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.08) 0%,
+                rgba(255, 255, 255, 0.03) 50%,
+                rgba(255, 255, 255, 0) 100%)
+
+.blog-card-title
+  font-size: 1.3rem
+  font-weight: bold
+  color: #fff
+  margin-bottom: 1.5rem
+  line-height: 1.3
+  text-align: left
+  position: relative
+  z-index: 2
+
+.blog-card-footer
+  margin-top: auto
+  text-align: left
+  position: relative
+  z-index: 2
+
+.blog-card-tags
+  display: flex
+  flex-wrap: wrap
+  justify-content: flex-start
+  align-items: flex-start
+  gap: 0.5rem
+  margin-bottom: 0.5rem
+
+.blog-card-tag
+  background: #2a2a2a
+  color: #aaa
+  padding: 0.25rem 0.75rem
+  border-radius: 4px
+  font-size: 0.85rem
+  text-decoration: none
+  border: none
+  outline: none
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease
+  cursor: pointer
+
+  &:hover
+    background: #3a3a3a
+    color: #ccc
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3)
+    border: none
+    outline: none
+
+.blog-card-meta
+  color: #666
+  font-size: 0.9rem
+
 .frontpage-slider
   flex-direction: row
   flex-wrap: wrap
-  height: 60vh
+  height: 32vh !important
   margin-top: -4.375rem
 
 .frontpage-slider > h1,
@@ -1340,22 +1553,14 @@ $gitalk-textarea-color = #181818
 
 .frontpage-slider > h1
   justify-content: end
-  font-size: 2.2rem
   color: white
   padding-bottom: 2px
   letter-spacing: 0.1rem
-
-  +mobile()
-    font-size: 1.8rem
 
 .frontpage-slider > p
   color: rgba(255, 255, 255, 0.7)
   justify-content: start
   font-weight: bold
-  font-size: 1rem
-
-  +mobile()
-    font-size: 0.9rem
 
 .frontpage-background
   position: absolute
@@ -1397,7 +1602,107 @@ mark.search-keyword:not(.post-body mark.search-keyword)
 
 
 // ============================================================================
-// 11. Code Highlighting - Cursor Dark Midnight Theme
+// 11. Liquid Glass Fallbacks & Accessibility
+// ============================================================================
+// Keep the expensive SVG refraction limited to the surfaces chosen for visual
+// payoff. Everything else remains on the cheaper shared frosted material.
+
+.liquid-glass-filters
+  position: absolute
+  width: 0
+  height: 0
+  overflow: hidden
+  pointer-events: none
+
+html.liquid-filter-ok .glass-surface--refract,
+html.liquid-filter-ok .search-button,
+html.liquid-filter-ok .search-popup,
+html.liquid-filter-ok .link-preview-widget
+  backdrop-filter: url("#liquid-glass-refract") blur(24px) saturate(170%) !important
+  -webkit-backdrop-filter: url("#liquid-glass-refract") blur(24px) saturate(170%) !important
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)))
+  .glass-surface,
+  .glass-surface--compact,
+  .sidebar-toggle,
+  .search-button,
+  .search-popup,
+  .tooltip-text,
+  .quote-tooltip,
+  .blog-card,
+  .post-body blockquote,
+  .link-preview-widget,
+  .gt-container .gt-header-textarea,
+  .gt-container .gt-header-preview,
+  .gt-container .gt-btn,
+  .gt-container .gt-btn-preview,
+  .gt-container .gt-comment-content
+    background: rgba(24, 24, 24, 0.94) !important
+    backdrop-filter: none !important
+    -webkit-backdrop-filter: none !important
+
+.sidebar-toggle:focus-visible,
+.new-category-list-link:focus-visible,
+.new-category-list-container button:focus-visible,
+.search-button:focus-visible,
+.search-input:focus-visible,
+.blog-card:focus-visible,
+.blog-card-tag:focus-visible,
+.link-preview-widget > a:focus-visible,
+.tooltip-wrapper:focus-visible,
+.gt-container .gt-btn:focus-visible,
+.gt-container textarea:focus-visible
+  outline: 2px solid rgba(214, 218, 223, 0.72) !important
+  outline-offset: 3px !important
+  box-shadow: 0 0 0 4px rgba(214, 218, 223, 0.12) !important
+
+@media (prefers-reduced-motion: reduce)
+  #fade-title,
+  #fade-text,
+  .blog-card
+    opacity: 1 !important
+    transform: none !important
+    animation: none !important
+
+  .glass-surface,
+  .glass-surface--interactive,
+  .sidebar,
+  .sidebar-toggle,
+  .search-popup,
+  .search-pop-overlay,
+  .collapsible,
+  .collapsible-wrapper,
+  .collapsible-wrapper:after,
+  .blog-card,
+  .blog-card-tag,
+  .link-preview-widget
+    transition: none !important
+
+@media (forced-colors: active)
+  .glass-surface,
+  .glass-surface--compact,
+  .sidebar-toggle,
+  .search-button,
+  .search-popup,
+  .tooltip-text,
+  .quote-tooltip,
+  .blog-card,
+  .post-body blockquote,
+  .link-preview-widget,
+  .gt-container .gt-header-textarea,
+  .gt-container .gt-header-preview,
+  .gt-container .gt-btn,
+  .gt-container .gt-btn-preview,
+  .gt-container .gt-comment-content
+    background: Canvas !important
+    border: 1px solid CanvasText !important
+    box-shadow: none !important
+    color: CanvasText !important
+    backdrop-filter: none !important
+    -webkit-backdrop-filter: none !important
+
+// ============================================================================
+// 12. Code Highlighting - Cursor Dark Midnight Theme
 // ============================================================================
 // Custom syntax highlighting theme matching Cursor Dark Midnight
 // Colors sourced from official Cursor Dark Midnight VSCode theme
@@ -1421,6 +1726,17 @@ mark.search-keyword:not(.post-body mark.search-keyword)
   background: #1e2127 !important
   border-radius: 8px
   overflow: hidden
+
+.post-body figure.highlight td
+  vertical-align: top
+
+.post-body figure.highlight pre .line
+  display: block
+  line-height: inherit
+  height: 1.4em
+
+.post-body figure.highlight pre br
+  display: none
 
 .post-body figure.highlight pre,
 .post-body figure.highlight .code,

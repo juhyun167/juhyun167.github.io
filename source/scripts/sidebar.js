@@ -134,7 +134,8 @@ ul_elem.remove();
 // list of social services
 let social_list = [
     { name: "Facebook", href: "https://fb.com/hackrabbit    ", icon_link: "https://cdn.jsdelivr.net/gh/kaniwari/fcresources@1.0/favicon/facebook.png" },
-    { name: "Github", href: "https://github.com/juhyun167", icon_link: "https://cdn.jsdelivr.net/gh/kaniwari/fcresources@1.0/favicon/github.png" }
+    { name: "Github", href: "https://github.com/juhyun167", icon_link: "https://cdn.jsdelivr.net/gh/kaniwari/fcresources@1.0/favicon/github.png" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/juhyun-song-267231395/", icon_link: "https://cdn.jsdelivr.net/gh/kaniwari/fcresources@1.0/favicon/linkedin.png" }
 ];
 let social_ul_elem = document.createElement("ul");
 social_ul_elem.setAttribute("class", "new-category-list");
