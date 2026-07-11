@@ -1,5 +1,5 @@
 ---
-title: 2022년을 돌아보며
+title: 2022년 회고
 date: 2022-12-31 13:34:34
 tags:
 categories: Thoughts

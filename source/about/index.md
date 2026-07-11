@@ -11,7 +11,7 @@ categories: about
 
 ## Education
 
-- **M.S. in Electrical Engineering** (Sep. 2024 - Present)
+- **M.S. in Electrical Engineering** (Sep. 2024 - Aug. 2026)
     - Advisor: Insu Yun
 	- KAIST, Daejeon, Korea
 
@@ -21,30 +21,19 @@ categories: about
 
 ## Experience
 
-- **Security Research Intern** (Mar. 2023 - Jun. 2023)
-    - Samsung Electronics
+- **Intern, Samsung Electronics** (Mar. 2023 - Jun. 2023)
+    - Conducted TrustZone security research and published DTA in IEEE Access.
 
-- **Cyber Operations Specialist** (Aug. 2021 - Feb. 2023)
-	- Republic of Korea Army
-
-- **Vulnerability Assessment Trainee** (Jul. 2020 - Mar. 2021)
-    - Best of the BEST 9th, KITRI
-	- Ranked in top 10 among all contestants (Hall of Fame)
-
-
-## Talks
-
-- **Stabilizing Linux Cross-Cache Attacks**
-    - .HACK Conference 2026, Seoul, Korea
-
-- **Towards Comprehensive Fuzzing of TrustZone TAs**
-    - .HACK Conference 2024, Seoul, Korea [<i class="fa-solid fa-file-pdf"></i>](/uploads/talks/dothack_2024.pdf)
-
+- **Cyber Operations Specialist, Republic of Korea Army** (Aug. 2021 - Feb. 2023)
+    - Participated in CTF competitions with VII Maneuver Corps.
 
 ## Publications
 
 ### International Conference
 
+- **QueryHouse: Cross-DBMS Differential Testing with LLM and Query Transpilation**
+    - Seoyeon Oh, **Juhyun Song**, Jaemin Park, Kwanghee Lee, Minae Hyeon, Minji Kim, Sehyuk Ka, Gwangwun Jung, Brian Pak, and Insu Yun
+    - European Symposium on Research in Computer Security (ESORICS) 2026 [<i class="fa-solid fa-globe"></i>](https://github.com/queryhouse-2037/QueryHouse.git)
 - **CROSS-X: Generalized and Stable Cross-Cache Attack on the Linux Kernel**
     - Dong-ok Kim<span class="tooltip-wrapper"><i class="fa-solid fa-circle-info"></i><span class="tooltip-text">Equal Contribution</span></span>, **Juhyun Song<span class="tooltip-wrapper"><i class="fa-solid fa-circle-info"></i><span class="tooltip-text">Equal Contribution</span></span>**, and Insu Yun
     - ACM Conference on Computer and Communications Security (CCS) 2025 [<i class="fa-solid fa-globe"></i>](https://github.com/juhyun167/CROSS-X)
@@ -56,13 +45,34 @@ categories: about
     - IEEE Access, vol. 12, pp. 16715-16727, 2024 [<i class="fa-solid fa-globe"></i>](https://github.com/juhyun167/dta)
 
 
+## Talks
+
+- **Stabilizing Linux Cross-Cache Attacks**
+    - .HACK Conference 2026, Seoul, Korea
+
+- **Towards Comprehensive Fuzzing of TrustZone TAs**
+    - .HACK Conference 2024, Seoul, Korea [<i class="fa-solid fa-file-pdf"></i>](/uploads/talks/dothack_2024.pdf)
+
+
 ## Projects
 
-- **Fuzzing I/O communications in Windows device drivers** (Sep. 2020 - Dec. 2020)
-    - Contributed to fuzzer and exploit development, reported 20+ vulnerabilities [<i class="fa-solid fa-globe"></i>](https://kronl.github.io/docs/)
+- **macOS Application Security Assessment** (Mar. 2025 - Nov. 2025)
+    - Applied an LLM-driven reverse-engineering workflow to security assessments of third-party macOS applications.
+    - Received KIISC (한국정보보호학회) Research Excellence Award.
+
+- **Relational DBMS Differential Testing** (Sep. 2024 - Dec. 2024)
+    - Project lead for differential testing of SQL engines using LLM-driven mutation and cross-dialect transpilation.
+    - Discovered 12 logic bugs and 16 undocumented behavioral inconsistencies across 5 DBMS. [<i class="fa-solid fa-globe"></i>](https://github.com/queryhouse-2037/QueryHouse/blob/main/docs/BUGLIST.md)
+
+- **Windows Driver Security Assessment** (Sep. 2020 - Dec. 2020)
+    - Co-designed a custom fuzzer and contributed to exploit development for Windows driver security testing.
+    - Discovered 20 bugs, including exploitable 0-days (e.g., CVE-2021-27965). [<i class="fa-solid fa-globe"></i>](https://kronl.github.io/docs/)
 
 
 ## Honors and Awards
+
+- **Midnight Sun CTF Finals** (2026)
+    - 4th place (Team RubiyaLab Expeditions)
 
 - **HACKSIUM BUSAN Hacking Competition** (2025)
     - 4th place award (Team 핵쉬움)
@@ -71,7 +81,7 @@ categories: about
     - 3rd place award (Team xerophthalmia)
 
 - **MIST Minister Prize** (2021)
-    - Awarded to top 10 contestants of KITRI Best of the Best 9th (10M KRW)
+    - Awarded to top 10 participants of KITRI Best of the Best 9th (10M KRW)
 
 
 ## Vulnerability Disclosure

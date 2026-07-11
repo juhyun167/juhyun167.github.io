@@ -498,7 +498,12 @@ Dump of assembler code for function main:
 
 새로운 코드를 삽입하기 전 먼저 섹션 헤더와 세그먼트 헤더를 수정하여 코드를 삽입할 공간이 실행 가능한 영역으로 로드되도록 해야 합니다. 섹션 헤더와 세그먼트 헤더를 수정하기 위해서는 바이너리의 섹션 헤더 테이블과 프로그램 헤더 테이블에서 해당하는 부분을 직접 고쳐야 합니다. 상용 프로그램인 010 Editor의 템플릿 기능을 사용하는 방법이 가장 빠르긴 하나, 바이너리를 파싱하여 편집할 수 있도록 도와주는 무료 웹페이지를 사용하는 방법도 못지 않게 간편합니다.
 
-[@preview](https://elfy.io/)
+<blockquote class="callout-warning">
+    <p>
+    <strong>주의사항</strong><br>
+    현재 elfy.io 웹서비스에 접속할 수 없습니다. ELF 파일 형식을 지원하는 헥스 에디터인 <a href="https://github.com/WerWolv/ImHex/releases">ImHex</a> 사용을 권장합니다.
+    </p>
+</blockquote>
 
 페이지 좌상단의 Open 버튼을 클릭하여 바이너리를 업로드한 후, 왼쪽의 Section headers 메뉴를 클릭하면 섹션 헤더들이 나열됩니다. 이들 중 Elf_Shdr3 , Elf_Shdr4 섹션 헤더가 코드를 삽입할 `.note.gnu.build-id` , `.note.ABI-tag` 섹션에 해당합니다. 각각의 필드를 클릭하면 아래와 같이 페이지 우측에 헥스 에디터와 같은 인터페이스가 표시됩니다. 
 

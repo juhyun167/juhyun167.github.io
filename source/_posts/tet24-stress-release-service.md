@@ -72,7 +72,7 @@ function validateInput($input) {
 
 기존의 특수문자만을 이용한 PHP 코드 실행 문제를 보면 몇 가지 파훼법이 존재합니다. 예를 들어 아래 풀이는 `$_` 변수에 아무 문자열이나 대입한 후, `$_++;` 로 원하는 문자가 나올 때까지 증감 연산을 하는 방법을 사용합니다.
 
-[@preview](https://medium.com/mucomplex/bypass-with-php-non-alpha-encoder-fee4e1bac31e)
+[@preview](https://web.archive.org/web/20221126230403/https://medium.com/mucomplex/bypass-with-php-non-alpha-encoder-fee4e1bac31e)
 
 그런데 이 문제는 PHP 8.3 버전에서 동작하여 위와 같은 방식을 사용할 수 없습니다. 증감 연산자에 대한 PHP [문서](https://www.php.net/manual/en/language.operators.increment.php)를 보면 8.3 버전부터 문자열에 대한 증감 연산을 더 이상 지원하지 않습니다.
 

@@ -295,13 +295,13 @@ $sidebar-list-height = 2.8em
 
   +mobile()
     // Liquid Glass design with increased size
-    liquid-glass-base(16px)
+    liquid-glass-base(8px)
     position: fixed
-    padding: 16px
+    padding: 11px
     liquid-glass-shadow()
-    transform: translateY(20px) scale(1.15)
+    transform: translateY(20px) scale(1.08)
     transform-origin: top left
-    liquid-glass-highlight-before(16px)
+    liquid-glass-highlight-before(8px)
 
   &:hover
     background: rgba(0, 0, 0, 0.8)
@@ -317,7 +317,7 @@ $sidebar-list-height = 2.8em
                   inset 0 -1px 2px rgba(0, 0, 0, 0.25),
                   0 12px 40px rgba(0, 0, 0, 0.5),
                   0 4px 12px rgba(0, 0, 0, 0.4)
-      transform: translateY(20px) scale(1.18)
+      transform: translateY(20px) scale(1.1)
 
   &:focus
     outline: none
@@ -333,7 +333,7 @@ $sidebar-list-height = 2.8em
     outline: none
 
     +mobile()
-      transform: translateY(20px) scale(1.12)
+      transform: translateY(20px) scale(1.04)
 
   *
     -webkit-tap-highlight-color: transparent
@@ -348,7 +348,16 @@ $sidebar-list-height = 2.8em
     backdrop-filter: none
     -webkit-backdrop-filter: none
     border: none
+    border-radius: 8px
     box-shadow: none
+    padding: 8px
+    transform: translateY(20px)
+
+    &::before
+      display: none
+
+    &:active
+      transform: translateY(20px)
 
   &:hover
     background: $sidebar-bg-color-hover
@@ -357,13 +366,17 @@ $sidebar-list-height = 2.8em
       background: $sidebar-bg-color-hover
       border: none
       box-shadow: none
-      transform: translateY(20px) scale(1.18)
+      transform: translateY(20px)
 
 // Hamburger icon lines
 .sidebar-toggle span,
 .sidebar-toggle .toggle-line
   background: white
 
+.sidebar-toggle:hover .toggle-line,
+.sidebar-toggle:focus .toggle-line,
+.sidebar-toggle:active .toggle-line
+  background: white
 .site-author-name
   font-size: 1.3rem
   cursor: pointer
@@ -677,6 +690,7 @@ post-content-width()
 
   +mobile()
     width: auto
+    padding-inline: clamp(24px, 5vw, 32px)
 
   +desktop-large()
     width: 589px
@@ -844,63 +858,66 @@ html:has(link[rel="canonical"][href$="/about/"]) .main-inner.page
     font-variant-ligatures: none
     font-feature-settings: "liga" 0, "calt" 0
 
-// Reduce spacing between h2 and h3
-@css {
-  .post-body h2 + h3 {
-    margin-top: 0px;
-  }
-}
+// Keep subsection headings visually attached to their parent section.
+.post-body h2 + h3
+  margin-top: 0
 
 // ─────────────────────────────────────────────────────────────────────────
 // Lists
 // ─────────────────────────────────────────────────────────────────────────
 
+// Markdown can render a list as either "tight" or "loose" depending on
+// source blank lines. Keep that parser detail from changing visual spacing.
+.post-body li > p:first-child
+  margin-block: 0
+
+// Preserve readable spacing for genuine multi-paragraph list items.
+.post-body li > p + p
+  margin-top: 0.75rem
+
+// Base list rhythm. Sibling spacing is defined on list items rather than by
+// combining list, paragraph, and negative margins.
+.post-body ul,
+.post-body ol
+  margin-block: 0.5rem 1.5rem
+
 .post-body ul
-  margin-block-start: 0.5rem
-  margin-block-end: 2rem
   padding-inline-start: 1.25rem
 
-.post-body ul li ul
-  margin-block-start: 0 !important
-  margin-block-end: 0.6rem !important
-
-// Reduce spacing between nested list and next top-level item
-.post-body li:has(ul)
-  margin-bottom: -0.5rem
-
-.post-body ol > li:has(ul):last-child
-  margin-bottom: 0
-
 .post-body ol
-  margin-block-start: 0.5rem
-  margin-block-end: 0.5rem
   padding-inline-start: 1.625rem
 
-.post-body ol li ul
-  margin-block-start: 0 !important
-  margin-block-end: 0.6rem !important
+.post-body ul > li,
+.post-body ol > li
+  margin-block: 0
 
-// List spacing adjustments
-@css {
-  .post-body p + ol {
-    // margin-top: -0.938rem;
-  }
+.post-body ul > li + li,
+.post-body ol > li + li
+  margin-top: 0.25rem
 
-  .post-body p + ul {
-    // margin-top: -0.938rem;
-  }
+// Nested lists are details belonging to the current item, so they sit close
+// to the item title and do not contribute an independent bottom margin.
+.post-body li > ul,
+.post-body li > ol
+  margin-block: 0.2rem 0
 
-  .post-body ul + p img {
-    margin-top: 0.938rem;
-  }
+.post-body li > ul > li + li,
+.post-body li > ol > li + li
+  margin-top: 0.1rem
 
-  .post-body ul + .table-container {
-    margin-top: 0.625rem;
-  }
-}
+// Top-level items with nested details are distinct content records (for
+// example publications, talks, and CV entries) and need a clear group gap.
+.post-body > ul > li:has(> ul) + li:has(> ul),
+.post-body > ul > li:has(> ol) + li:has(> ol),
+.post-body > ol > li:has(> ul) + li:has(> ul),
+.post-body > ol > li:has(> ol) + li:has(> ol)
+  margin-top: 0.75rem
 
-.post-body li p
-  margin-bottom: 0
+.post-body ul + p img
+  margin-top: 0.938rem
+
+.post-body ul + .table-container
+  margin-top: 0.625rem
 
 // Image opacity override for post body
 :root img
@@ -1261,103 +1278,26 @@ $gitalk-textarea-color = #181818
     position: relative !important
     z-index: 2 !important
 
-  .gt-btn
-    liquid-glass-base-important(8px)
-    color: $gitalk-color !important
-    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
-                inset 0 -1px 2px rgba(0, 0, 0, 0.2),
-                0 4px 12px rgba(0, 0, 0, 0.3) !important
-    transition: all 0.2s ease !important
-
-  .gt-btn::before
-    content: '' !important
-    position: absolute !important
-    top: 0 !important
-    left: 0 !important
-    right: 0 !important
-    height: 50% !important
-    background: linear-gradient(180deg,
-                rgba(255, 255, 255, 0.05) 0%,
-                rgba(255, 255, 255, 0) 100%) !important
-    border-radius: 8px 8px 0 0 !important
-    pointer-events: none !important
-    z-index: 1 !important
-
-  .gt-btn:hover
-    background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0.06) 50%,
-                rgba(255, 255, 255, 0.04) 100%) !important
-    border-color: rgba(255, 255, 255, 0.12) !important
-    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.25),
-                inset 0 -1px 2px rgba(0, 0, 0, 0.25),
-                0 6px 16px rgba(0, 0, 0, 0.4) !important
-
-  .gt-btn-login,
-  .gt-btn-public
-    border: 1px solid rgba(255, 255, 255, 0.1) !important
-
-  .gt-btn-preview
-    liquid-glass-base-important(8px)
-    color: $gitalk-color !important
-    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
-                inset 0 -1px 2px rgba(0, 0, 0, 0.2),
-                0 4px 12px rgba(0, 0, 0, 0.3) !important
-    transition: all 0.2s ease !important
-
-    &::before
-      content: '' !important
-      position: absolute !important
-      top: 0 !important
-      left: 0 !important
-      right: 0 !important
-      height: 50% !important
-      background: linear-gradient(180deg,
-                  rgba(255, 255, 255, 0.05) 0%,
-                  rgba(255, 255, 255, 0) 100%) !important
-      border-radius: 8px 8px 0 0 !important
-      pointer-events: none !important
-      z-index: 1 !important
-
-    &:hover
-      background: linear-gradient(135deg,
-                  rgba(255, 255, 255, 0.1) 0%,
-                  rgba(255, 255, 255, 0.06) 50%,
-                  rgba(255, 255, 255, 0.04) 100%) !important
-      border-color: rgba(255, 255, 255, 0.12) !important
-      box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.25),
-                  inset 0 -1px 2px rgba(0, 0, 0, 0.25),
-                  0 6px 16px rgba(0, 0, 0, 0.4) !important
-
+  // Gitalk controls and comment cards share the same material. Keeping the
+  // third-party override strength in one selector group prevents the visual
+  // definitions from drifting apart.
+  .gt-btn,
+  .gt-btn-preview,
   .gt-comment-content
     liquid-glass-base-important(8px)
+    liquid-glass-highlight-before-important(8px, 0.05)
+    liquid-glass-hover-important()
     box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2),
                 inset 0 -1px 2px rgba(0, 0, 0, 0.2),
                 0 4px 12px rgba(0, 0, 0, 0.3) !important
 
-    &::before
-      content: '' !important
-      position: absolute !important
-      top: 0 !important
-      left: 0 !important
-      right: 0 !important
-      height: 50% !important
-      background: linear-gradient(180deg,
-                  rgba(255, 255, 255, 0.05) 0%,
-                  rgba(255, 255, 255, 0) 100%) !important
-      border-radius: 8px 8px 0 0 !important
-      pointer-events: none !important
-      z-index: 1 !important
+  .gt-btn,
+  .gt-btn-preview
+    color: $gitalk-color !important
+    transition: all 0.2s ease !important
 
-    &:hover
-      background: linear-gradient(135deg,
-                  rgba(255, 255, 255, 0.1) 0%,
-                  rgba(255, 255, 255, 0.06) 50%,
-                  rgba(255, 255, 255, 0.04) 100%) !important
-      border-color: rgba(255, 255, 255, 0.12) !important
-      box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.25),
-                  inset 0 -1px 2px rgba(0, 0, 0, 0.25),
-                  0 6px 16px rgba(0, 0, 0, 0.4) !important
+  .gt-btn-login, .gt-btn-public
+    border: 1px solid rgba(255, 255, 255, 0.1) !important
 
 .gt-container .gt-comments .gt-comment-body
   color: $gitalk-color !important
@@ -1417,8 +1357,9 @@ $gitalk-textarea-color = #181818
   position: fixed
   left: 0
   top: 0
-  liquid-glass-quiet(8px)
-  position: fixed
+  background: #181818
+  border: 1px solid #333
+  border-radius: 8px
   color: #D6DADF
   padding: 0.5rem 0.75rem
   white-space: nowrap
@@ -1429,8 +1370,7 @@ $gitalk-textarea-color = #181818
   pointer-events: none
   transform: translate(-50%, -100%)
   margin-top: -10px
-  liquid-glass-tooltip-shadow()
-  liquid-glass-highlight-before(8px, 0.02)
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45)
 
   &::after
     content: ''
@@ -1440,7 +1380,7 @@ $gitalk-textarea-color = #181818
     transform: translateX(-50%)
     border-width: 0.313rem
     border-style: solid
-    border-color: rgba(255, 255, 255, 0.02) transparent transparent transparent
+    border-color: #181818 transparent transparent transparent
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5))
 
   &.show

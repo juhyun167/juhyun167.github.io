@@ -1,8 +1,24 @@
+# OS files
 .DS_Store
 Thumbs.db
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# Generated files
 db.json
-*.log
 node_modules/
 public/
 .deploy*/
 _multiconfig.yml
+
+# Runtime temporary files
+*.log
+.node-xmlhttprequest-*

@@ -21,6 +21,19 @@ search_a_elem.appendChild(search_i_elem);
 let site_state_wrap = document.getElementsByClassName("site-state-wrap")[0];
 insertAfter(search_a_elem, site_state_wrap);
 
+// Mobile browsers only show the virtual keyboard when focus happens directly
+// inside a trusted user gesture. NexT's delayed focus runs after the popup
+// animation and loses that gesture, so reveal the popup and focus immediately.
+// NexT's own click handler still manages the gutter, search data, and fallback
+// focus after the animation.
+search_a_elem.addEventListener("click", () => {
+    const search_input = document.querySelector(".search-input");
+    if (!search_input) return;
+
+    document.body.classList.add("search-active");
+    search_input.focus();
+});
+
 // Load categories dynamically from generated JSON
 fetch('/data/categories.json')
   .then(response => response.json())
