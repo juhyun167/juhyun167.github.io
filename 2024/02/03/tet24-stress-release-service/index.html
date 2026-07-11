@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://juhyun167.github.io/images/tet24-stress-release-service/2.png">
 <meta property="og:image" content="https://juhyun167.github.io/images/tet24-stress-release-service/3.png">
 <meta property="article:published_time" content="2024-02-03T16:32:53.000Z">
-<meta property="article:modified_time" content="2026-05-10T06:20:28.495Z">
+<meta property="article:modified_time" content="2026-07-11T07:56:03.787Z">
 <meta property="article:author" content="juhyun167 블로그">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://juhyun167.github.io/images/tet24-stress-release-service/1.png">
@@ -302,7 +302,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validateInput</span>(<span class="params"><span class="variable">$input</span></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// To make your shout effective, it shouldn&#x27;t contain alphabets or numbers.</span></span><br><span class="line">    <span class="variable">$pattern</span> = <span class="string">&#x27;/[a-z0-9]/i&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$input</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// and only a few characters. Let&#x27;s make your shout clean.</span></span><br><span class="line">	<span class="variable">$count</span> = <span class="title function_ invoke__">count</span>(<span class="title function_ invoke__">array_count_values</span>(<span class="title function_ invoke__">str_split</span>(<span class="variable">$input</span>)));</span><br><span class="line">	<span class="keyword">if</span> (<span class="variable">$count</span> &gt; <span class="number">7</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4" tabindex="-1">문제 풀이</h2>
 <p>기존의 특수문자만을 이용한 PHP 코드 실행 문제를 보면 몇 가지 파훼법이 존재합니다. 예를 들어 아래 풀이는 <code>$_</code> 변수에 아무 문자열이나 대입한 후, <code>$_++;</code> 로 원하는 문자가 나올 때까지 증감 연산을 하는 방법을 사용합니다.</p>
-<p><div class="link-preview-widget"><a href="https://medium.com/mucomplex/bypass-with-php-non-alpha-encoder-fee4e1bac31e" rel="noopener external nofollow noreferrer" target="_blank"><div class="link-preview-widget-title"></div><div class="link-preview-widget-description"></div><div class="link-preview-widget-url"></div></a><a class="link-preview-widget-image" href="https://medium.com/mucomplex/bypass-with-php-non-alpha-encoder-fee4e1bac31e" rel="noopener external nofollow noreferrer" style="background-image: url('');" target="_blank"></a></div></p>
+<p><div class="link-preview-widget"><a href="https://web.archive.org/web/20221126230403/https://medium.com/mucomplex/bypass-with-php-non-alpha-encoder-fee4e1bac31e" rel="noopener external nofollow noreferrer" target="_blank"><div class="link-preview-widget-title">Bypass with PHP non-alpha encoder</div><div class="link-preview-widget-description">In this tutorial, I will cover PHP non-alpha encoder. I will show some basic concept first before we going deeper which may cause brain…</div><div class="link-preview-widget-url">Medium</div></a><a class="link-preview-widget-image" href="https://web.archive.org/web/20221126230403/https://medium.com/mucomplex/bypass-with-php-non-alpha-encoder-fee4e1bac31e" rel="noopener external nofollow noreferrer" style="background-image: url('https://web.archive.org/web/20221126230403im_/https://miro.medium.com/freeze/max/800/1*iZe04u0aJPryRXy3azmq6w.gif');" target="_blank"></a></div></p>
 <p>그런데 이 문제는 PHP 8.3 버전에서 동작하여 위와 같은 방식을 사용할 수 없습니다. 증감 연산자에 대한 PHP <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.php.net/manual/en/language.operators.increment.php">문서</a>를 보면 8.3 버전부터 문자열에 대한 증감 연산을 더 이상 지원하지 않습니다.</p>
 <p><img src="/images/tet24-stress-release-service/2.png" alt="2.png"></p>
 <p>다만 PHP의 논리적 xor 연산자는 문자열 간의 연산을 지원하고 있습니다. <code>php -a</code> 로 인터랙티브 셸을 실행하여 확인할 수도 있습니다.</p>
@@ -332,8 +332,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/12/31/looking-back-on-2022/" rel="prev" title="2022년을 돌아보며">
-                  <i class="fa fa-angle-left"></i> 2022년을 돌아보며
+                <a href="/2022/12/31/looking-back-on-2022/" rel="prev" title="2022년 회고">
+                  <i class="fa fa-angle-left"></i> 2022년 회고
                 </a>
             </div>
             <div class="post-nav-item">
