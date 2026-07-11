@@ -56,7 +56,7 @@ categories: about
 
 ## Projects
 
-- **macOS Application Security Assessment** (Mar. 2025 - Nov. 2025)
+- **MacOS Application Security Assessment** (Mar. 2025 - Nov. 2025)
     - Applied an LLM-driven reverse-engineering workflow to security assessments of third-party macOS applications.
     - Received KIISC (한국정보보호학회) Research Excellence Award.
 
