@@ -71,11 +71,11 @@ categories: about
 
 ## Honors and Awards
 
+- **DEF CON CTF Finals** (2026)
+    - 9th place (Team The Seoul Sauna Shogunate)
+
 - **Midnight Sun CTF Finals** (2026)
     - 4th place (Team RubiyaLab Expeditions)
-
-- **HACKSIUM BUSAN Hacking Competition** (2025)
-    - 4th place award (Team 핵쉬움)
 
 - **FIESTA: Financial Institutes' Event on Security Threat Analysis** (2023)
     - 3rd place award (Team xerophthalmia)
