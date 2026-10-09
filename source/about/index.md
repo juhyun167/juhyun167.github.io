@@ -8,24 +8,25 @@ categories: about
 
 [@preview](https://github.com/juhyun167)
 
+## Experience
+
+- **Security Engineer, Samsung Semiconductor** (Sep 2026 - Present)
+    - Automated program analysis for cybersecurity
+
+- **Intern, Samsung Semiconductor** (Mar 2023 - Jun 2023)
+    - ARM TrustZone security testing
+    - Publication: DTA (IEEE Access)
+
 
 ## Education
 
-- **M.S. in Electrical Engineering** (Sep. 2024 - Aug. 2026)
-    - Advisor: Insu Yun
+- **M.S. in Electrical Engineering** (Sep 2024 - Aug 2026)
 	- KAIST, Daejeon, Korea
+    - Publications: CROSS-X (ACM CCS 2025), QueryHouse (ESORICS 2026)
 
-- **B.S. in Computer Science** (Mar. 2018 - Aug. 2024)
+- **B.S. in Computer Science** (Mar 2018 - Aug 2024)
 	- Korea University, Seoul, Korea
 
-
-## Experience
-
-- **Intern, Samsung Electronics** (Mar. 2023 - Jun. 2023)
-    - Conducted TrustZone security research and published DTA in IEEE Access.
-
-- **Cyber Operations Specialist, Republic of Korea Army** (Aug. 2021 - Feb. 2023)
-    - Participated in CTF competitions with VII Maneuver Corps.
 
 ## Publications
 
@@ -54,21 +55,6 @@ categories: about
     - .HACK Conference 2024, Seoul, Korea [<i class="fa-solid fa-file-pdf"></i>](/uploads/talks/dothack_2024.pdf)
 
 
-## Projects
-
-- **MacOS Application Security Assessment** (Mar. 2025 - Nov. 2025)
-    - Applied an LLM-driven reverse-engineering workflow to security assessments of third-party macOS applications.
-    - Received KIISC (한국정보보호학회) Research Excellence Award.
-
-- **Relational DBMS Differential Testing** (Sep. 2024 - Dec. 2024)
-    - Project lead for differential testing of SQL engines using LLM-driven mutation and cross-dialect transpilation.
-    - Discovered 12 logic bugs and 16 undocumented behavioral inconsistencies across 5 DBMS. [<i class="fa-solid fa-globe"></i>](https://github.com/queryhouse-2037/QueryHouse/blob/main/docs/BUGLIST.md)
-
-- **Windows Driver Security Assessment** (Sep. 2020 - Dec. 2020)
-    - Co-designed a custom fuzzer and contributed to exploit development for Windows driver security testing.
-    - Discovered 20 bugs, including exploitable 0-days (e.g., CVE-2021-27965). [<i class="fa-solid fa-globe"></i>](https://kronl.github.io/docs/)
-
-
 ## Honors and Awards
 
 - **DEF CON CTF Finals** (2026)
@@ -81,7 +67,8 @@ categories: about
     - 3rd place award (Team xerophthalmia)
 
 - **MIST Minister Prize** (2021)
-    - Awarded to top 10 participants of KITRI Best of the Best 9th (10M KRW)
+    - Top 10 (Hall of Fame), KITRI Best of the Best (BoB), 9th cohort
+    - Cybersecurity expert development program supported by Korea’s MSIT
 
 
 ## Vulnerability Disclosure
@@ -90,7 +77,7 @@ categories: about
     - Privilege escalation vulnerability in MSI Dragon Center
 
 - **KVE-2020-1585, KVE-2020-1604 (collective work)**
-    - Privilege escalation vulnerabilities in gaming software and keyboard security solution (Reported to KISA bug bounty)
+    - Privilege escalation vulnerabilities (Reported to KISA bug bounty)
 
 - **NBB-1705**
     - Stored XSS vulnerability in kin.naver.com (Reported to Naver bug bounty)
